@@ -1,0 +1,39 @@
+@extends('components.layouts.app')
+@section('content')
+<div class="row">
+    <div class="col-md-7">
+        <h6 class="border-bottom"><i class="fa-solid fa-pen"></i> Buat Mapel</h6>
+        <form action="{{ route('mapel.store') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="name">Nama Mapel</label>
+                <input type="text" class="form-control @error('name')
+                    is-invalid
+                @enderror" name="name" id="name" value="{{ old('name') }}">
+                @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="slug">Slug Mapel</label>
+                <input type="text" class="form-control @error('slug')
+                    is-invalid
+                @enderror" name="slug" id="slug" readonly value="{{ old('slug') }}">
+                @error('slug')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="btn btn-group float-right">
+                <a href="{{ route('mapel.index') }}" class="btn btn-danger" type="reset">Batal</a>
+                <button class="btn btn-success" type="submit">Simpan</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3 d-none d-md-flex">
+        <img src="{{ asset('backend/img/undraw_designer_girl_re_h54c.svg') }}" class="img-fluid">
+    </div>
+</div>
+@endsection
+@push('js')
+@include('dashboard.mapels.script')
+@endpush
