@@ -13,17 +13,20 @@
             <button type="submit" class="btn btn-success mb-2">Simpan</button>
         </div>
         <div class="mt-5">
-            @if ($images)
+            @if($images)
             @foreach($images as $image)
+            @if (Str::startsWith($image->getMimeType(), 'image/'))
             <img src="{{ $image->temporaryUrl() }}" width="700" class="img-fluid">
+            @else
+            <div class="text-danger">File with extension "{{ $image->getClientOriginalExtension() }}" is not a valid image.</div>
+            @endif
             @endforeach
             @endif
-            @if ($oldImages)
-            <div>
-                @foreach($oldImages as $image)
-                <img src="{{ asset('storage/' . $image) }}" width="700" class="img-fluid">
-                @endforeach
-            </div>
+        
+            @if($oldImages)
+            @foreach($oldImages as $image)
+            <img src="{{ asset('storage/' . $image) }}" width="700" class="img-fluid">
+            @endforeach
             @endif
         </div>
     </form>

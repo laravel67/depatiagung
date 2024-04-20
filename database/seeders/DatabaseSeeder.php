@@ -50,6 +50,7 @@ class DatabaseSeeder extends Seeder
 
         Taj::factory()->create([
             'name' => '2024/2025',
+            'ketua_penitia' => 'Murtaki Shihab',
         ]);
 
         // User::factory()->create([

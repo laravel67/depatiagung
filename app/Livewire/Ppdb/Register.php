@@ -175,7 +175,7 @@ class Register extends Component
 
     public function checkActive()
     {
-        $count = Taj::where('status', 0)->count();
+        $count = Taj::where('status', 1)->count();
         return $count > 0;
     }
 }

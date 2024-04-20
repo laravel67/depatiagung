@@ -43,10 +43,8 @@
                         <div class="btn btn-group">
                             <a href="{{ route('apost.show', $post->slug) }}" class="btn btn-sm btn-success"><i
                                     class="fa-solid fa-eye"></i></a>
-                            @can('user')
                             <a href="{{ route('apost.edit', $post->slug) }}"
                                 class="btn btn-sm btn-warning text-white"><i class="fa-solid fa-edit"></i></a>
-                            @endcan
                             <button wire:click.prevent='deleting("{{ $post->slug }}")'
                                 class="btn btn-sm btn-danger text-white">
                                 <i class="fa-solid fa-trash"></i>

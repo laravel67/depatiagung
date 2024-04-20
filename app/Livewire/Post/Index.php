@@ -32,10 +32,7 @@ class Index extends Component
     public function render()
     {
         $query = Post::query();
-
-        // Pemeriksaan peran pengguna yang sedang login
         if (Auth::check() && Auth::user()->role === 'admin') {
-            // Jika pengguna adalah admin, tampilkan semua posting
             $query->where(function ($q) {
                 $q->where('title', 'like', '%' . $this->search . '%')
                     ->orWhereHas('category', function ($cq) {

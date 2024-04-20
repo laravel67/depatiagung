@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\Home\AkademikController;
 use App\Http\Controllers\Home\KesiswaanController;
 use App\Http\Controllers\AdminAchievmentController;
+use App\Http\Controllers\AdminKesiswaanController;
 use App\Http\Controllers\AdminPengaturanController;
 use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AdminStudentController;
@@ -83,6 +84,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/dashboard/users', AdminUserController::class)->names('user');
     Route::get('/dashboard/pengaturan/pendaftaran', [AdminSettingController::class, 'setDaftar'])->name('set.reg');
     Route::get('/dashboard/pengaturan/umum', [AdminPengaturanController::class, 'index'])->name('pengaturan');
+    Route::get('/dashboard/kesiswaan', [AdminKesiswaanController::class, 'index'])->name('admin.kesiswaan');
 });
 // Sarana
 

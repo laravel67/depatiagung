@@ -12,8 +12,12 @@ class Register extends Component
 {
     use WithPagination;
     public $name;
+    public $ketua_penitia;
     public $editId;
     public $isEditing = false;
+    protected $listeners = [
+        'deleteConfirmed' => 'delete'
+    ];
     public function render()
     {
         $tajs = Taj::orderBy('id', 'desc')->paginate(1);
@@ -24,9 +28,11 @@ class Register extends Component
     {
         $this->validate([
             'name' => 'required|string|max:9|unique:tajs,name',
+            'ketua_penitia' => 'required|string|max:255',
         ]);
         Taj::create([
             'name' => $this->name,
+            'ketua_penitia' => $this->ketua_penitia,
         ]);
         return redirect()->route('set.reg')->with('success', 'Tahun Ajaran has been saved!');
     }
@@ -46,22 +52,26 @@ class Register extends Component
     public function cancel()
     {
         $this->reset('name');
+        $this->reset('ketua_penitia');
     }
     public function edit($tajId)
     {
         $taj = Taj::findOrFail($tajId);
         $this->isEditing = true;
         $this->name = $taj->name;
+        $this->ketua_penitia = $taj->ketua_penitia;
         $this->editId = $tajId;
     }
     public function update()
     {
         $this->validate([
-            'name' => 'required|string|max:9|unique:tajs,name',
+            'name' => 'required|string|max:9|unique:tajs,name,' . $this->editId,
+            'ketua_penitia' => 'required|string|max:255',
         ]);
         $taj = Taj::findOrFail($this->editId);
         $taj->update([
             'name' => $this->name,
+            'ketua_penitia' => $this->ketua_penitia,
         ]);
         $this->isEditing = false;
         $this->reset(['name', 'editId']);
@@ -72,12 +82,20 @@ class Register extends Component
         $this->isEditing = false;
         $this->cancel();
     }
-    public function delete($tajId)
+    public function deleting($id)
     {
-        $taj = Taj::findOrFail($tajId);
-        $taj->delete();
+        $this->editId = $id;
+        $this->dispatch('show-delete-confirmation');
+    }
+
+    public function delete()
+    {
+        $category = Taj::where('id', $this->editId)->first();
+        if ($category) {
+            $category->delete();
+        }
+        $this->reset(['name', 'editId', 'ketua_penitia']);
         $this->isEditing = false;
-        $this->reset(['name', 'editId']);
         return redirect()->route('set.reg')->with('success', 'Tahun Ajaran has been deleted!');
     }
 }

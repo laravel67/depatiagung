@@ -5,9 +5,16 @@
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button class="nav-link active" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button"
-                role="tab" aria-controls="nav-profile" aria-selected="true">Profile</button>
+                role="tab" aria-controls="nav-profile" aria-selected="true"><strong>Profile</strong></button>
             <button class="nav-link" id="nav-deskripsi-tab" data-toggle="tab" data-target="#nav-deskripsi" type="button"
-                role="tab" aria-controls="nav-deskripsi" aria-selected="false">Deskripsi</button>
+                role="tab" aria-controls="nav-deskripsi" aria-selected="false"><strong>Deskripsi</strong>
+            </button>
+            <button class="nav-link" id="nav-logo-tab" data-toggle="tab" data-target="#nav-logo" type="button" role="tab"
+                    aria-controls="nav-logo" aria-selected="false"><strong>Lambang/Logo</strong>
+            </button>
+            <button class="nav-link" id="nav-hymne-tab" data-toggle="tab" data-target="#nav-hymne" type="button" role="tab"
+                aria-controls="nav-hymne" aria-selected="false"><strong>Hymne</strong>
+            </button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -81,7 +88,7 @@
             </ul>
         </div>
         <div class="tab-pane fade mt-2" id="nav-deskripsi" role="tabpanel" aria-labelledby="nav-deskripsi-tab">
-            <article align="justify">
+            <article align="justify" class="blockquote">
                 <p>
                     Ponpes Salafiyah Depati Agung merupakan salah satu pondok pesantren yang ada di Kabupaten Merangin. Adapun belajar
                     mengajar di ponpes ini menggunakan kurikulum yang berlaku di tambah dengan ilmu agama. Ada juga kegiatan-kegiatan
@@ -99,61 +106,56 @@
                 </p>
             </article>
         </div>
-    </div>
-</div>
-<div class="card mb-2">
-    <div class="card-header">
-        <strong>Lambang</strong>
-    </div>
-    <div class="card-body">
-        <article >
-            <p align='justify'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero magnam consectetur corporis architecto,
-                deleniti
-                molestias eos consequatur fugit placeat atque harum aut sint officia omnis iste commodi, ea doloremque
-                quia
-                nemo.
-                Cum veritatis dolor, tenetur excepturi corrupti optio voluptate corporis enim aperiam quos animi cumque,
-                quas
-                quae
-                laudantium facilis recusandae fugit minima sint, voluptatem atque culpa soluta nisi. Molestiae ipsam
-                aspernatur
-                quidem iste accusamus? Nemo quis praesentium consectetur, suscipit eveniet voluptas excepturi temporibus
-                ex quos
-                quae maxime minus repudiandae quod sint totam, atque hic, ut explicabo omnis inventore. Eaque qui
-                aliquid
-                dolores
-                aperiam atque rem beatae? Quasi quas sed excepturi!
-            </p>
-        </article>
-    </div>
-</div>
-<div class="card">
-    <div class="card-header">
-        <strong>Hymne Pondok</strong>
-    </div>
-    <div class="card-body">
-        <article >
-            <p align='justify'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero magnam consectetur corporis architecto,
-                deleniti
-                molestias eos consequatur fugit placeat atque harum aut sint officia omnis iste commodi, ea doloremque
-                quia
-                nemo.
-                Cum veritatis dolor, tenetur excepturi corrupti optio voluptate corporis enim aperiam quos animi cumque,
-                quas
-                quae
-                laudantium facilis recusandae fugit minima sint, voluptatem atque culpa soluta nisi. Molestiae ipsam
-                aspernatur
-                quidem iste accusamus? Nemo quis praesentium consectetur, suscipit eveniet voluptas excepturi temporibus
-                ex quos
-                quae maxime minus repudiandae quod sint totam, atque hic, ut explicabo omnis inventore. Eaque qui
-                aliquid
-                dolores
-                aperiam atque rem beatae? Quasi quas sed excepturi!
-            </p>
-        </article>
-        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+        <div class="tab-pane fade mt-2" id="nav-logo" role="tabpanel" aria-labelledby="nav-logo-tab">
+            <div class="text-center">
+                <img src="{{ asset('logo_depati_aguung.png') }}" class="img-fluid" width="200">
+            </div>
+            <article>
+                <p align='justify' class="blockquote">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero magnam consectetur corporis architecto,
+                    deleniti
+                    molestias eos consequatur fugit placeat atque harum aut sint officia omnis iste commodi, ea doloremque
+                    quia
+                    nemo.
+                    Cum veritatis dolor, tenetur excepturi corrupti optio voluptate corporis enim aperiam quos animi cumque,
+                    quas
+                    quae
+                    laudantium facilis recusandae fugit minima sint, voluptatem atque culpa soluta nisi. Molestiae ipsam
+                    aspernatur
+                    quidem iste accusamus? Nemo quis praesentium consectetur, suscipit eveniet voluptas excepturi temporibus
+                    ex quos
+                    quae maxime minus repudiandae quod sint totam, atque hic, ut explicabo omnis inventore. Eaque qui
+                    aliquid
+                    dolores
+                    aperiam atque rem beatae? Quasi quas sed excepturi!
+                </p>
+            </article>
+        </div>
+        <div class="tab-pane fade mt-2" id="nav-hymne" role="tabpanel" aria-labelledby="nav-hymne-tab">
+            <div class="text-center">
+                <img src="{{ asset('logo_depati_aguung.png') }}" class="img-fluid" width="200">
+            </div>
+            <article>
+                <p align='justify' class="blockquote">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero magnam consectetur corporis architecto,
+                    deleniti
+                    molestias eos consequatur fugit placeat atque harum aut sint officia omnis iste commodi, ea doloremque
+                    quia
+                    nemo.
+                    Cum veritatis dolor, tenetur excepturi corrupti optio voluptate corporis enim aperiam quos animi cumque,
+                    quas
+                    quae
+                    laudantium facilis recusandae fugit minima sint, voluptatem atque culpa soluta nisi. Molestiae ipsam
+                    aspernatur
+                    quidem iste accusamus? Nemo quis praesentium consectetur, suscipit eveniet voluptas excepturi temporibus
+                    ex quos
+                    quae maxime minus repudiandae quod sint totam, atque hic, ut explicabo omnis inventore. Eaque qui
+                    aliquid
+                    dolores
+                    aperiam atque rem beatae? Quasi quas sed excepturi!
+                </p>
+            </article>
+        </div>
     </div>
 </div>
 @endsection

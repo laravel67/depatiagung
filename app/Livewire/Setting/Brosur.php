@@ -39,7 +39,7 @@ class Brosur extends Component
     public function submit()
     {
         $this->validate([
-            'images.*' => 'image|max:2024',
+            'images.*' => 'image|mimes:jpeg,png,jpg |max:2024',
         ]);
         $imagesArray = [];
         foreach ($this->images as $image) {

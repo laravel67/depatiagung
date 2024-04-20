@@ -33,7 +33,7 @@
     <main role="main" class="container-md mb-5">
         @yield('content')
         <button class="btn btn-success rounded-circle" onclick="topFunction()" id="backToTopBtn" class="btn btn-primary"
-            title="Go to top"><i class="fa-solid fa-chevron-up"></i></button>
+          title="Go to top"><i class="fa-solid fa-chevron-up"></i></button>
     </main>
     @include('components.frontend.partials.footer')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
