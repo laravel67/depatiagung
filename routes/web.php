@@ -14,15 +14,13 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\Home\AkademikController;
 use App\Http\Controllers\Home\KesiswaanController;
 use App\Http\Controllers\AdminAchievmentController;
-use App\Http\Controllers\AdminDaftarController;
-use App\Http\Controllers\AdminRegisterController;
+use App\Http\Controllers\AdminPengaturanController;
 use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Home\AchievmentController;
-use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\UserProfileController;
 
 Auth::routes();
@@ -31,6 +29,7 @@ Route::get('/articles', [PostController::class, 'index'])->name('posts');
 Route::get('/articles/{slug}', [PostController::class, 'show'])->name('post');
 // Profile
 Route::get('/profile/identitas', [ProfileController::class, 'identitas'])->name('identitas');
+Route::get('/profile/sambutan', [ProfileController::class, 'sambutan'])->name('sambutan');
 Route::get('/profile/struktural', [ProfileController::class, 'struktur'])->name('struktur');
 Route::get('/profile/sejarah', [ProfileController::class, 'sejarah'])->name('sejarah');
 Route::get('/profile/visi-misi', [ProfileController::class, 'visi'])->name('visi');
@@ -47,10 +46,8 @@ Route::get('/kesiswaan/students-achievments', [AchievmentController::class, 'stu
 // Pendaftaran PPDB
 Route::get('/ppdb/home', [PpdbController::class, 'home'])->name('ppdb.home');
 Route::get('/ppdb/daftar', [PpdbController::class, 'daftar'])->name('ppdb.daftar');
-// Route::middleware(['auth', 'role:siswa'])->group(function () {
-//     Route::get('/ppdb/pendaftaran/data', [PpdbController::class, 'profileRegister'])->name('ppdb.profile');
-// });
-
+// Arsip
+Route::get('/kesiswaan/album', [KesiswaanController::class, 'album'])->name('album');
 
 Route::group(['middleware' => ['siswa']], function () {
     Route::get('/ppdb/pendaftaran/data', [PpdbController::class, 'profileRegister'])->name('ppdb.profile');
@@ -85,6 +82,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/dashboard/mapels', AdminMapelController::class)->names('mapel');
     Route::resource('/dashboard/users', AdminUserController::class)->names('user');
     Route::get('/dashboard/pengaturan/pendaftaran', [AdminSettingController::class, 'setDaftar'])->name('set.reg');
+    Route::get('/dashboard/pengaturan/umum', [AdminPengaturanController::class, 'index'])->name('pengaturan');
 });
 // Sarana
 

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('backend/css/dashboard.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('backend/css/trix-editor.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('toast.css') }}">
     <style>
@@ -75,6 +76,14 @@
     <script src="{{ asset('backend/js/sweet-alert.js') }}"></script>
     <script src="{{ asset('backend/js/sweetalert2.js') }}"></script>
     <script src="{{ asset('toast.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Hello Bootstrap 4',
+            tabsize: 2,
+            height: 300
+          });
+    </script>
     @stack('js')
     <script>
         window.addEventListener('show-delete-confirmation', event=>{

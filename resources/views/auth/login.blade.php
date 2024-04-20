@@ -12,8 +12,8 @@
         <form class="form-signin" style="max-width: 430px;" action="{{ route('login') }}" method="POST">
             @csrf
             <div class="text-center">
-                <img class="mb-4" src="{{ asset('frontend/img/almnrroh.png') }}" alt="" width="72" height="72">
-                <h1 class="h3 mb-3 font-weight-normal">MAS AL-MUNAWWAROH</h1>
+                <img class="mb-4" src="{{ asset('logo_depati_aguung.png') }}" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">PPS DEPATI AGUNG</h1>
             </div>
             <div class="form-group">
                 <label for="email" class="mb-0">Email</label>

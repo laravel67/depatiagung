@@ -1,12 +1,12 @@
 @extends('components.frontend.layouts.app')
 @section('content')
 @include('home.carousel')
-<div class="my-5 my-md-3 p-3 bg-white rounded shadow-sm">
+{{-- <div class="my-5 my-md-3 p-3 bg-white rounded shadow-sm">
     <h3 class="pb-2 mb-0 text-success">Postingan Terbaru</h3>
     <div class="row justify-content-center">
         
     </div>
-</div>
+</div> --}}
 {{-- Berita --}}
 <div class="row">
     <div class="col-md-4 order-md-last">
@@ -16,40 +16,39 @@
                     <h6 class="pb-2 mb-0 text-success card-header mx-0">Sambutan Pimpinan PPS DEPATI AGUNG</h6>
                     <div class="block">
                         <div class="p-3">
-                            <img src="{{ asset('frontend/img/Pimpinan.jpg') }}" alt="" srcset="" class="img-fluid">
+                            @if ($sambutan->image)
+                                <img src="{{ asset('storage/'.$sambutan->image) }}" class="img-fluid">          
+                            @endif
                         </div>
-                        <article align="justify">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur sint dolore voluptatum
-                            nostrum
-                            est rem inventore officiis optio unde sapiente <a href="">Selengkapnya...</a>,
-                        </article>
+                        <small align="justify">
+                             {!! $sambutan->excerpt !!}<a href="">Selengkapnya...</a>,
+                        </small>
                     </div>
                 </div>
             </div>
-            <div class="col-12">
-                <div id="carouselExampleIndicators" class="carousel slide my-5 my-md-3 bg-white rounded shadow-sm" data-ride="carousel">
-                    <h6 class="pb-2 text-success card-header">Galeri</h6>
-                    <div class="carousel-inner text-center">
-                        <div class="carousel-item active">
-                            <img src="{{ asset('frontend/icons/images.jpeg') }}" alt="..." class="d-block img-fluid w-100">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset('frontend/icons/images.jpeg') }}" alt="..." class="d-block img-fluid w-100">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset('frontend/icons/images.jpeg') }}" alt="..." class="d-block img-fluid w-100">
-                        </div>
+          <div class="col-12">
+            <div id="slideGaleri" class="carousel slide my-5 my-md-3 bg-white rounded shadow-sm"
+                data-ride="carousel">
+                <h6 class="pb-2 text-success card-header">Galeri</h6>
+                <div class="carousel-inner text-center">
+                    @foreach($galeri as $key => $item)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                        <a href="">
+                            <img src="{{ asset($item->image) }}" class="img-top" style="height: 225px; width: 100%; display: block;">
+                        </a>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                    @endforeach
                 </div>
+                <a class="carousel-control-prev" href="#slideGaleri" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#slideGaleri" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
+        </div>
         </div>
     </div>
     <div class="col-md-8 order-md-first">

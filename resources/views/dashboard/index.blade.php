@@ -118,7 +118,7 @@
     </div>
 
     <div class="col-xl-3 col-md-6 mb-3">
-        <div class="card border-secondary">
+        <div class="card border-success">
             <div class="card-body">
                 <div class="row">
                     <div class="col">
@@ -137,7 +137,7 @@
     </div>
 
     <div class="col-xl-3 col-md-6 mb-3">
-        <div class="card border-secondary">
+        <div class="card border-danger">
             <div class="card-body">
                 <div class="row">
                     <div class="col">
@@ -156,7 +156,7 @@
     </div>
 
     <div class="col-xl-3 col-md-6 mb-3">
-        <div class="card border-secondary">
+        <div class="card border-primary">
             <div class="card-body">
                 <div class="row">
                     <div class="col">

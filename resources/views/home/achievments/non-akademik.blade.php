@@ -2,10 +2,9 @@
 @section('content')
 @include('home.profile.header')
 <div class="card mt-3 mb-1">
-    @if (!$posts->isEmpty())
     <div class="card-body">
         <div class="container marketing">
-            @foreach ($posts as $i => $post)
+            @forelse ($posts as $i => $post)
             <div class="row featurette">
                 <div class="col-md-7 {{ $i % 2 == 0 ? 'order-md-2' : '' }}" data-aos="flip-up"
                     data-aos-duration="10000">
@@ -34,18 +33,15 @@
                 </div>
             </div>
             <hr class="featurette-divider">
-            @endforeach
+            @empty
+            <div class="col text-center">
+                <img src="{{ asset('frontend/img/clipboard.png') }}" alt="" srcset="" class="img-fluid" width="400">
+            </div>
+            @endforelse
         </div>
     </div>
     <small class="d-flex align-items-center justify-content-end m-3" style="overflow: hidden">
         {{ $posts->links('pagination::bootstrap-4') }}
     </small>
-    @else
-    <div class="d-flex justify-content-center p-3">
-        <img src="{{ asset('frontend/img/undraw_page_not_found_re_e9o6.svg') }}" alt="" srcset="" class="img-fluid"
-            width="300">
-        <strong class="text-danger" for="">Tidak ada data</strong>
-    </div>
-    @endif
 </div>
 @endsection

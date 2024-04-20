@@ -121,7 +121,7 @@
         </ul>
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/users*') ? 'active': '' }}" href="{{ route('user.index') }}">
+                <a class="nav-link {{ Request::is('dashboard/pengaturan/umum*') ? 'active': '' }}" href="{{ route('pengaturan') }}">
                     <i class="fa-solid fa-cog"></i>
                     Pengaturan
                 </a>

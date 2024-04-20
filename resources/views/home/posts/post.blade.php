@@ -8,11 +8,11 @@
     <div class="row">
         <div class="col p-3" data-aos="zoom-in" data-aos-duration="1000">
             @if ($post->image)
-            <img class="card-img-top" src="{{ asset('storage/'.$post->image) }}"
-                style="height: 400px; width: 100%; display: block;">
+            <img class="img-fluid w-100" src="{{ asset('storage/'.$post->image) }}"
+                >
             @else
-            <img class="card-img-top" src="https://source.unsplash.com/1200x600/?{{ $post->category->name }}"
-                style="height: 400px; width: 100%; display: block;">
+            <img class="img-fluid w-100" src="https://source.unsplash.com/1200x600/?{{ $post->category->name }}"
+                >
             @endif
             <div class="card-body">
                 <div class="d-flex align-items-center">
@@ -33,7 +33,7 @@
                         </small>
                     </div>
                 </div>
-                <article align='justify' class="card-text text-dark blockquote">
+                <article align='justify' class="card-text text-dark" style="overflow: hidden">
                     {!! $post->body !!}
                 </article>
                 <a class="btn btn-danger" href="{{ route('posts') }}">

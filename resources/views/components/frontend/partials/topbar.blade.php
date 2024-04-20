@@ -28,6 +28,9 @@
                     class="nav-item dropdown mx-lg-3 {{ Request::is('profile/identitas*', 'profile/struktural*','profile/sejarah*', 'profile/visi-misi*') ? 'active':'' }}">
                     <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="false">Profile</a>
                     <div class="dropdown-menu bg-green">
+                        <a class="dropdown-item text-light {{ Request::is('profile/sambutan') ? 'bg-dark': '' }}"
+                            href="{{ route('sambutan') }}">Kata Sambutan
+                        </a>
                         <a class="dropdown-item text-light {{ Request::is('profile/identitas') ? 'bg-dark': '' }}"
                             href="{{ route('identitas') }}">Identitas
                         </a>
@@ -64,7 +67,7 @@
                 </li>
                 <li
                     class="nav-item dropdown mx-lg-3 {{ Request::is('achievments/akdemik*', 'achievments/nonakdemik*') ? 'active':'' }}">
-                    <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="false">Achievment</a>
+                    <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="false">Prestasi</a>
                     <div class="dropdown-menu bg-green">
                         <a class="dropdown-item text-light {{ Request::is('achievments/akdemik') ? 'bg-dark': '' }}"
                             href="{{ route('akademik') }}">Akademik
@@ -76,7 +79,7 @@
                     </div>
                 </li>
                 <li
-                    class="nav-item dropdown mx-lg-3 {{ Request::is('kesiswaan/ekstrakulikuler*', 'kesiswaan/students-achievments*') ? 'active':'' }}">
+                    class="nav-item dropdown mx-lg-3 {{ Request::is('kesiswaan/ekstrakulikuler*', 'kesiswaan/students-achievments*', 'kesiswaan/album*') ? 'active':'' }}">
                     <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="false">Kesiswaan</a>
                     <div class="dropdown-menu bg-green">
                         <a class="dropdown-item text-light {{ Request::is('kesiswaan/ekstrakulikuler*') ? 'bg-dark': '' }}"
@@ -89,6 +92,10 @@
                         <a class="dropdown-item text-light {{ Request::is('kesiswaan/students-achievments') ? 'bg-dark': '' }}"
                             href="{{ route('students.prestasi') }}">
                             Prestasi Santri
+                        </a>
+                        <a class="dropdown-item text-light {{ Request::is('kesiswaan/album') ? 'bg-dark': '' }}"
+                            href="{{ route('album') }}">
+                            Album
                         </a>
                     </div>
                 </li>

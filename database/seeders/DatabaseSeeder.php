@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Daftar;
 use App\Models\Identity;
 use App\Models\Register;
+use App\Models\Sambutan;
 use App\Models\Student;
 use App\Models\Taj;
 use Illuminate\Database\Seeder;
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
         Guru::factory(10)->create();
         Mapel::factory(5)->create();
         Student::factory(100)->create();
+        Sambutan::factory(1)->create();
 
         $faker = Factory::create();
         Identity::factory()->create([

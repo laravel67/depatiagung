@@ -17,183 +17,149 @@
     <form class="row justify-content-start my-3" wire:submit.prevent="submit">
         <div class="col-lg-6">
             <h6 class="card-header p-1 text-uppercase bg-primary text-white mb-2">Biodata</h6>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <label for="no_identitas" class="m-0">No Identitas<strong class="text-danger">*</strong></label>
-                    <input type="number" wire:model="no_identitas" class="form-control rounded-0 form-control-sm @error('no_identitas')
-                            is-invalid
-                        @enderror" id="no_identitas" value="{{ old('no_identitas') }}">
-                    @error('no_identitas')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+            {{-- NIK --}}
+            <div class="px-0 mb-2">
+                <label for="nik" class="m-0">No NIK <strong class="text-danger">*</strong></label>
+                <input type="number" wire:model="nik" class="form-control rounded-0 form-control-sm @error('nik') is-invalid @enderror" id="nik" value="{{ old('nik') }}">
+                @error('nik')
+                <div class="invalid-feedback">
+                    {{ $message }}
                 </div>
-                <div class="col-md-6">
-                    <label for="nama" class="m-0">Nama Lengkap<strong class="text-danger">*</strong></label>
-                    <input type="text" wire:model="nama" class="form-control rounded-0 form-control-sm @error('nama')
-                            is-invalid
-                        @enderror" id="nama" value="{{ old('nama') }}">
-                    @error('nama')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
+                @enderror
             </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <label for="tempat_lahir" class="m-0">Tempat Lahir<strong class="text-danger">*</strong></label>
-                    <input type="text" class="form-control rounded-0 form-control-sm @error('tempat_lahir')
+            {{-- Nama Lengkap --}}
+            <div class="px-0 mb-2">
+                <label for="nama" class="m-0">Nama Lengkap <strong class="text-danger">*</strong></label>
+                <input type="text" wire:model="nama" class="form-control rounded-0 form-control-sm @error('nama') is-invalid @enderror" id="nama" value="{{ old('nama') }}"> 
+                @error('nama')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+            {{-- Umur --}}
+            <div class="px-0 mb-2">
+                <label for="umur" class="m-0">Umur <strong class="text-danger">*</strong></label>
+                <input type="number" wire:model="umur"
+                    class="form-control rounded-0 form-control-sm @error('umur') is-invalid @enderror" id="umur"
+                    value="{{ old('umur') }}">
+                @error('umur')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+            {{-- Tempat Lahir --}}
+            <div class="px-0 mb-2">
+                <label for="tempat_lahir" class="m-0">Tempat Lahir <strong class="text-danger">*</strong></label>
+                <input type="text" class="form-control rounded-0 form-control-sm @error('tempat_lahir')
                             is-invalid
                         @enderror" id="tempat_lahir" value="{{ old('tempat_lahir') }}" wire:model="tempat_lahir">
-                    @error('tempat_lahir')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="col-md-6">
-                    <label for="tanggal_lahir" class="m-0">Tanggal Lahir<strong class="text-danger">*</strong></label>
-                    <input type="date" wire:model="tanggal_lahir" class="form-control rounded-0 form-control-sm @error('tanggal_lahir')
+                @error('tempat_lahir')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            {{-- Tanggal Lahir --}}
+            <div class="px-0 mb-2">
+                <label for="tanggal_lahir" class="m-0">Tanggal Lahir <strong class="text-danger">*</strong></label>
+                <input type="date" wire:model="tanggal_lahir" class="form-control rounded-0 form-control-sm @error('tanggal_lahir')
                             is-invalid
                         @enderror" id="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
-                    @error('tanggal_lahir')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
+                @error('tanggal_lahir')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <label for="jenis_kelamin" class="m-0">Jenis Kelamin<strong class="text-danger">*</strong></label>
-                    <select type="text" class="form-control rounded-0 form-control-sm @error('jenis_kelamin')
+            {{-- Jenis Kelamin --}}
+            <div class="px-0 mb-2">
+                <label for="jenis_kelamin" class="m-0">Jenis Kelamin <strong class="text-danger">*</strong></label>
+                <select type="text" class="form-control rounded-0 form-control-sm @error('jenis_kelamin')
                             is-invalid
                         @enderror" id="jenis_kelamin" value="{{ old('jenis_kelamin') }}" wire:model="jenis_kelamin">
                         <option value="">Pilih Jenis Kelamin</option>
                         <option value="L">Laki-laki</option>
                         <option value="P">Perempuan</option>
-                    </select>
-                    @error('jenis_kelamin')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="col-md-6">
-                    <label for="agama" class="m-0">Pilih Agama<strong class="text-danger">*</strong></label>
-                    <select type="text" class="form-control rounded-0 form-control-sm @error('agama')
-                            is-invalid
-                        @enderror" id="agama" value="{{ old('agama') }}" wire:model="agama">
-                        <option>Pilih Agama</option>
-                        <option value="Islam">Islam</option>
-                        <option value="Katolik">Katolik</option>
-                        <option value="Protestan">Protestan</option>
-                        <option value="Hindu">Hindu</option>
-                        <option value="Budha">Budha</option>
-                        <option value="Lainya">Lainya</option>
-                    </select>
-                    @error('agama')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
+                </select>
+                @error('jenis_kelamin')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <label for="kewarganegaraan" class="m-0">Kewarganegaraan<strong
-                            class="text-danger">*</strong></label>
-                    <select type="text" class="form-control rounded-0 form-control-sm @error('kewarganegaraan')
+            {{-- Nama Asal Sekolah --}}
+            <div class="px-0 mb-2">
+                <label for="asal_sekolah" class="m-0">Asal Sekolah <strong class="text-danger">*</strong></label>
+                <input type="text" wire:model="asal_sekolah" class="form-control rounded-0 form-control-sm @error('asal_sekolah')
                             is-invalid
-                        @enderror" id="kewarganegaraan" value="{{ old('kewarganegaraan') }}"
-                        wire:model="kewarganegaraan">
-                        <option>Kewarganegaraan</option>
-                        <option value="WNI">WNI</option>
-                        <option value="WNA">WNA</option>
-                    </select>
-                    @error('kewarganegaraan')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="col-md-6">
-                    <label for="negara" class="m-0">Negara<strong class="text-danger">*</strong></label>
-                    <input type="text" class="form-control rounded-0 form-control-sm @error('negara')
-                            is-invalid
-                        @enderror" id="negara" value="{{ old('negara') }}" wire:model="negara">
-                    @error('negara')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
+                        @enderror" id="asal_sekolah" value="{{ old('asal_sekolah') }}">
+                @error('asal_sekolah')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
-            <div class="row">
-                <div class="col-md-6 mb-2">
-                    <input class="form-control rounded-0 form-control-sm @error('provinsi')
-                            is-invalid
-                        @enderror" id="provinsi" wire:model="provinsi" placeholder="Provinsi">
-                    @error('provinsi')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+            {{-- Nomor Peserta Ujian --}}
+            <div class="px-0 mb-2">
+                <label for="npu" class="m-0">No Peserta Ujian <strong class="text-danger">*</strong></label>
+                <input type="number" wire:model="npu"
+                    class="form-control rounded-0 form-control-sm @error('npu') is-invalid @enderror" id="npu"
+                    value="{{ old('npu') }}">
+                @error('npu')
+                <div class="invalid-feedback">
+                    {{ $message }}
                 </div>
-                <div class="col-md-6 mb-2">
-                    <input class="form-control rounded-0 form-control-sm @error('kabupaten')
-                            is-invalid
-                        @enderror" id="kabupaten" wire:model="kabupaten" placeholder="Kabupaten/Kota">
-                    @error('kabupaten')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="col-md-6 mb-2">
-                    <input class="form-control rounded-0 form-control-sm @error('kecamatan')
-                            is-invalid
-                        @enderror" id="kecamatan" wire:model="kecamatan" placeholder="Kecamatan">
-                    @error('kecamatan')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="col-md-6 mb-2">
-                    <input class="form-control rounded-0 form-control-sm @error('kode_pos')
-                            is-invalid
-                        @enderror" id="kode_pos" wire:model="kode_pos" placeholder="Kode Pos">
-                    @error('kode_pos')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-
+                @enderror
             </div>
-            <div class="row mb-2">
-                <div class="col-md">
-                    <label for="alamat" class="m-0">Alamat Lengkap<strong class="text-danger">*</strong></label>
-                    <textarea type="text" class="form-control rounded-0 form-control-sm @error('alamat')
-                            is-invalid
-                        @enderror" id="alamat" value="{{ old('alamat') }}" wire:model="alamat"></textarea>
-                    @error('alamat')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+            {{-- Nisn --}}
+            <div class="px-0 mb-2">
+                <label for="nisn" class="m-0">NISN <strong class="text-danger">*</strong></label>
+                <input type="number" wire:model="nisn"
+                    class="form-control rounded-0 form-control-sm @error('nisn') is-invalid @enderror" id="nisn"
+                    value="{{ old('nisn') }}">
+                @error('nisn')
+                <div class="invalid-feedback">
+                    {{ $message }}
                 </div>
+                @enderror
+            </div>
+            <div class="px-0 mb-2">
+                <label for="tahun_lulus" class="m-0">Tahun Kelulusan <strong class="text-danger">*</strong></label>
+                <input type="number" wire:model="tahun_lulus"
+                    class="form-control rounded-0 form-control-sm @error('tahun_lulus') is-invalid @enderror" id="tahun_lulus"
+                    value="{{ old('tahun_lulus') }}">
+                @error('tahun_lulus')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
         </div>
 
         <div class="col-lg-6">
-            <h6 class="card-header p-1 text-uppercase bg-primary text-white mb-2">Data orang tua</h6>
+            <h6 class="card-header p-1 text-uppercase bg-primary text-white mb-2">Data Orang Tua/Wali</h6>
             <div class="row mb-2">
                 <div class="col-md-6">
-                    <label for="nama_ayah" class="m-0">Nama Orang Tua<strong class="text-danger">*</strong></label>
+                    <label for="nik_ayah" class="m-0">NIK Orang Tua <strong
+                            class="text-danger">*</strong></label>
+                    <input type="number" wire:model="nik_ayah" class="form-control rounded-0 form-control-sm @error('nik_ayah')
+                            is-invalid
+                        @enderror" id="nik_ayah" value="{{ old('nik_ayah') }}" placeholder="Ayah">
+                    @error('nik_ayah')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="col-md-6 mt-lg-4">
+                    <input type="number" wire:model="nik_ibu" class="form-control rounded-0 form-control-sm @error('nik_ibu')
+                            is-invalid
+                        @enderror" id="nik_ibu" value="{{ old('nik_ibu') }}" placeholder="Ibu">
+                    @error('nik_ibu')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label for="nama_ayah" class="m-0">Nama Orang Tua <strong class="text-danger">*</strong></label>
                     <input type="text" wire:model="nama_ayah" class="form-control rounded-0 form-control-sm @error('nama_ayah')
                             is-invalid
                         @enderror" id="nama_ayah" value="{{ old('nama_ayah') }}" placeholder="Ayah">
@@ -214,61 +180,44 @@
                     @enderror
                 </div>
             </div>
+
+            <h6 class="card-header p-1 text-uppercase bg-primary text-white mb-2">Alamat Orang Tua</h6>
             <div class="row mb-2">
-                <div class="col-md-6">
-                    <label for="pekerjaan_ayah" class="m-0">Pekerjaan Orang Tua<strong
-                            class="text-danger">*</strong></label>
-                    <input type="text" wire:model="pekerjaan_ayah" class="form-control rounded-0 form-control-sm @error('pekerjaan_ayah')
+                <div class="col-md-6 mb-2">
+                    <input class="form-control rounded-0 form-control-sm @error('desa')
                             is-invalid
-                        @enderror" id="pekerjaan_ayah" value="{{ old('pekerjaan_ayah') }}" placeholder="Ayah">
-                    @error('pekerjaan_ayah')
+                        @enderror" id="desa" wire:model="desa" placeholder="Desa/RW/RT">
+                    @error('desa')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
-                <div class="col-md-6 mt-lg-4">
-                    <input type="text" wire:model="pekerjaan_ibu" class="form-control rounded-0 form-control-sm @error('pekerjaan_ibu')
+                <div class="col-md-6 mb-2">
+                    <input class="form-control rounded-0 form-control-sm @error('kecamatan')
                             is-invalid
-                        @enderror" id="pekerjaan_ibu" value="{{ old('pekerjaan_ibu') }}" placeholder="Ibu">
-                    @error('pekerjaan_ibu')
+                        @enderror" id="kecamatan" wire:model="kecamatan" placeholder="Kecamatan">
+                    @error('kecamatan')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <label for="telphone_ayah" class="m-0">Nomor Telpon/Whatsapp <small>(Aktif)</small><strong
-                            class="text-danger">*</strong></label>
-                    <input type="text" wire:model="telphone_ayah" class="form-control rounded-0 form-control-sm @error('telphone_ayah')
+                <div class="col-md-6 mb-2">
+                    <input class="form-control rounded-0 form-control-sm @error('kabupaten')
                             is-invalid
-                        @enderror" id="telphone_ayah" value="{{ old('telphone_ayah') }}" placeholder="Ayah">
-                    @error('telphone_ayah')
+                        @enderror" id="kabupaten" wire:model="kabupaten" placeholder="Kabupaten">
+                    @error('kabupaten')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
-                <div class="col-md-6 mt-lg-4">
-                    <input type="text" wire:model="telphone_ibu" class="form-control rounded-0 form-control-sm @error('telphone_ibu')
+                <div class="col-md-6 mb-2">
+                    <input class="form-control rounded-0 form-control-sm @error('provinsi')
                             is-invalid
-                        @enderror" id="telphone_ibu" value="{{ old('telphone_ibu') }}" placeholder="Ibu">
-                    @error('telphone_ibu')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-            </div>
-            <h6 class="card-header p-1 text-uppercase bg-primary text-white mb-2">Asal Sekolah</h6>
-            <div class="row mb-2">
-                <div class="col-md">
-                    <input type="text" wire:model="asal_sekolah" class="form-control rounded-0 form-control-sm @error('asal_sekolah')
-                            is-invalid
-                        @enderror" id="asal_sekolah" value="{{ old('asal_sekolah') }}" placeholder="Nama Sekolah">
-                    @error('asal_sekolah')
+                        @enderror" id="provinsi" wire:model="provinsi" placeholder="Provinsi">
+                    @error('provinsi')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -305,7 +254,23 @@
                     </div>
                     @enderror
                 </div>
+                <div class="col-md">
+                    <select type="text" wire:model="kelas" class="form-control rounded-0 form-control-sm @error('kelas')
+                            is-invalid
+                        @enderror" id="kelas" value="{{ old('kelas') }}">
+                        <option value="">-Kelas-</option>
+                        <option value="I">I</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                    </select>
+                    @error('jenjang')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
             </div>
+
             <h6 class="card-header p-1 text-uppercase bg-primary text-white mb-2">Kontak</h6>
             <div class="row mb-md-2">
                 <div class="col-md">

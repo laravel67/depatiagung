@@ -6,7 +6,6 @@
     <img class="img-fluid" src="{{ asset('storage/'.$image) }}" alt="">
     @endforeach
     @else
-    <!-- Tampilkan pesan jika tidak ada gambar yang ditemukan -->
     <p>Tidak ada gambar yang ditemukan.</p>
     @endisset
 </div>

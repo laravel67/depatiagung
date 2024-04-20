@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Sambutan;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -32,6 +33,14 @@ class ProfileController extends Controller
     {
         return view('home.profile.visi-misi', [
             'title' => 'Visi, Misi & Motto'
+        ]);
+    }
+
+    public function sambutan()
+    {
+        return view('home.profile.sambutan', [
+            'title' => 'Kata Sambutan Pimpinan PPS Depati Agung',
+            'sambutan' => Sambutan::latest()->first()
         ]);
     }
 }

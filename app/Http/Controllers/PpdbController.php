@@ -10,8 +10,12 @@ class PpdbController extends Controller
 {
     public function home()
     {
-        $brosurs = Brosur::orderBy('id', 'desc')->first(); // Ambil data pertama
-        $images = json_decode($brosurs->images); // Decode string JSON menjadi array
+        $brosurs = Brosur::orderBy('id', 'desc')->first();
+        if ($brosurs) {
+            $images = json_decode($brosurs->images);
+        } else {
+            $images = [];
+        }
         return view('ppdb.index', compact('images'));
     }
 
