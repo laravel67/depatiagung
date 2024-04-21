@@ -33,45 +33,75 @@
 </div>
 <div>
     @if (!$posts->isEmpty())
-    <div class="row">
-        <div class="col mb-4" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="card box-shadow p-4">
-                @if ($posts[0]->image)
-                <img class="card-img-top" src="{{ asset('storage/'.$posts[0]->image) }}"
-                    style="height: 400px; width: 100%; display: block;">
-                @else
-                <img class="card-img-top" src="https://source.unsplash.com/1200x600?{{ $posts[0]->category->name }}"
-                    style="height: 400px; width: 100%; display: block;">
-                @endif
-                <div class="card-body">
-                    <h4 class="mb-0 text-dark font-weight-bold">{{ $posts[0]->title }}</h4>
-                    <p class="card-text text-dark">
-                        {{ $posts[0]->excerpt }}
-                        <a href="{{ route('post',$posts[0]->slug) }}">Selengkapnya</a>
-                    </p>
-                    <div class="d-flex align-items-center">
-                        <div>
-                            <a href="{{ route('posts', ['author' => $posts[0]->author->username]) }}"
-                                class="badge badge-light">
-                                <i class="fa-solid fa-user-tie"></i> {{
-                                $posts[0]->author->name }}
-                            </a>
-                            <a href="{{ route('posts', ['category' => $posts[0]->category->slug]) }}"
-                                class="badge badge-light">
-                                <i class="fa-solid fa-tag"></i> {{
-                                $posts[0]->category->name }}
-                            </a>
-                            <small class="text-muted text-end">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                {{
-                                \Carbon\Carbon::parse($posts[0]->created_at)->locale('id')->translatedFormat('d F
-                                Y')}} /
-                                <i class="fa-regular fa-clock"></i>
-                                {{ $posts[0]->created_at->diffForHumans() }}
-                            </small>
+    <div class="card box-shadow p-2 mb-4">
+        <div class="mb-4" data-aos="zoom-in" data-aos-duration="500">
+            <div class="row">
+                <div class="col-md-9">
+                    @if ($posts[0]->image)
+                    <img class="card-img-top" src="{{ asset('storage/'.$posts[0]->image) }}"
+                        style="height: 400px; width: 100%; display: block;">
+                    @else
+                    <img class="card-img-top" src="https://placehold.jp/1200x600.png"
+                        style="height: 400px; width: 100%; display: block;">
+                    @endif
+                    <div class="card-body">
+                        <h4 class="mb-0 text-dark font-weight-bold">{{ $posts[0]->title }}</h4>
+                        <p class="card-text text-dark">
+                            {{ $posts[0]->excerpt }}
+                            <a href="{{ route('post',$posts[0]->slug) }}">Selengkapnya</a>
+                        </p>
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <a href="{{ route('posts', ['author' => $posts[0]->author->username]) }}" class="badge badge-light">
+                                    <i class="fa-solid fa-user-tie"></i> {{
+                                    $posts[0]->author->name }}
+                                </a>
+                                <a href="{{ route('posts', ['category' => $posts[0]->category->slug]) }}" class="badge badge-light">
+                                    <i class="fa-solid fa-tag"></i> {{
+                                    $posts[0]->category->name }}
+                                </a>
+                                <small class="text-muted text-end">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    {{
+                                    \Carbon\Carbon::parse($posts[0]->created_at)->locale('id')->translatedFormat('d F
+                                    Y')}} /
+                                    <i class="fa-regular fa-clock"></i>
+                                    {{ $posts[0]->created_at->diffForHumans() }}
+                                </small>
+                            </div>
                         </div>
                     </div>
                 </div>
+               <div class="col-md-3">
+                    <ul class="list-group">
+                        <li class="list-group-item active" aria-current="true">
+                            <i class="fa-solid fa-calendar"></i> Jadwal Acara
+                        </li>
+                        @forelse ($jadwals as $jadwal)
+                        <li class="list-group-item">
+                            <small>
+                                <a href="" data-toggle="collapse" data-target="#colspan{{ $jadwal->id }}" aria-expanded="false"
+                                    aria-controls="{{ $jadwal->id }}">{{ $jadwal->name }}</a>
+                            </small>
+                            <div class="accordion" id="accordionExample">
+                                <div id="colspan{{ $jadwal->id }}" class="collapse" aria-labelledby="headingOne"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body mt-3">
+                                        <strong>{{ $jadwal->name }}</strong><br>
+                                        <small><i class="fa-solid fa-location"></i> {{ $jadwal->tempat }}</small><br>
+                                        <strong>
+                                            <i class="fa-solid fa-calendar"></i>
+                                            {{ \Carbon\Carbon::parse($jadwal->waktu)->locale('id')->translatedFormat('d F Y H:i') }}
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        @empty
+                        <li class="list-group-item">Belum ada acara terbaru.</li>
+                        @endforelse
+                    </ul>
+               </div>
             </div>
         </div>
     </div>
@@ -90,7 +120,7 @@
                         <img class="card-img-top" src="{{ asset('storage/'.$post->image) }}"
                             style="height: 225px; width: 100%; display: block;">
                         @else
-                        <img class="card-img-top" src="https://source.unsplash.com/1200x600?{{ $post->category->name }}"
+                        <img class="card-img-top" src="https://placehold.jp/300x400.png"
                             style="height: 225px; width: 100%; display: block;">
                         @endif
                         <div class="card-body">
@@ -122,15 +152,12 @@
         {{ $posts->links('pagination::bootstrap-4') }}
     </small>
     @else
-    <div class="d-flex justify-content-center">
-        <img src="{{ asset('frontend/img/undraw_page_not_found_re_e9o6.svg') }}" alt="" srcset="" class="img-fluid"
-            width="300">
-        <strong class="text-danger" for="">Tidak ada postingan</strong>
+    <div class="col text-center">
+        <img src="{{ asset('frontend/img/clipboard.png') }}" alt="" srcset="" class="img-fluid" width="400">
     </div>
     @endif
 </div>
 @endsection
-
 <style>
     .bg {
         background-image: url();

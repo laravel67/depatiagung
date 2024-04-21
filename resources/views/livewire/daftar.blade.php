@@ -39,7 +39,7 @@
                     @forelse ($daftars as $i=> $daftar)
                     <tr>
                         <td>{{ $daftars->firstItem() + $i }}</td>
-                        <td>{{ $daftar->no_identitas }}</td>
+                        <td>{{ $daftar->nik }}</td>
                         <td>{{ $daftar->nama }}</td>
                         <td>
                             {{ $daftar->tempat_lahir }}, {{
@@ -47,8 +47,14 @@
                             Y')}}
                         </td>
                         <td>{{ $daftar->jenis_kelamin }}</td>
-                        <td>{{ $daftar->agama }}</td>
-                        <td>{{ $daftar->kewarganegaraan }}</td>
+                        <td>{{ $daftar->umur }} Tahun</td>
+                        <td>
+                            @if ($daftar->status=='baru')
+                                Siswa Baru
+                            @else
+                                Siswa Pindahan
+                            @endif
+                        </td>
                         <td>
                             {{
                             \Carbon\Carbon::parse($daftar->created_at)->locale('id')->translatedFormat('d F
@@ -67,9 +73,9 @@
                                     class="btn btn-sm btn-success text-white"><i class="fa-solid fa-eye"></i></a>
                                 <a href="{{ route('daftar.edit', $daftar->id) }}"
                                     class="btn btn-sm btn-warning text-white"><i class="fa-solid fa-edit"></i></a>
-                                {{-- <button wire:click.prevent='("{{ $daftar->id }}")'
-                                    class="btn btn-sm btn-warning text-white"><i class="fa-solid fa-edit"></i></button>
-                                --}}
+                                    <button wire:click='deleting({{ $daftar->id }})' class="btn btn-sm btn-danger text-white"><i
+                                            class="fa-solid fa-trash"></i>
+                                    </button>
                             </div>
                         </td>
                     </tr>

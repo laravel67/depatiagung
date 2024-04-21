@@ -7,7 +7,7 @@
         <img class="img-thumbnail" src="{{ $imageOld }}"
             style="width: 250px; height: 300px; object-fit: cover; overflow: hidden;">
         @else
-        <img class="img-thumbnail" src="{{ asset('frontend/img/user.svg') }}"
+        <img class="img-thumbnail" src="{{ asset('frontend/img/man-user.svg') }}"
             style="width: 250px; height: 300px; object-fit: cover; overflow: hidden;">
         @endif
         <form wire:submit.prevent='uploadImage' enctype="multipart/form-data">

@@ -60,7 +60,7 @@
                 <img src="{{ asset('storage/'.$post->image) }}" alt="" width="80" height="80"
                     class="img-fluid mr-2 d-none d-lg-block">
                 @else
-                <img src="https://source.unsplash.com/1200x600?{{ $post->category->name }}" alt="" width="80"
+                <img src="https://placehold.jp/300x300.png" alt="" width="80"
                     height="80" class="img-fluid mr-2 d-none d-lg-block">
                 @endif
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">

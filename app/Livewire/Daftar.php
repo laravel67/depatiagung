@@ -2,16 +2,22 @@
 
 namespace App\Livewire;
 
-use App\Models\Daftar as Daf;
 use App\Models\Student;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\Daftar as Daf;
+use Illuminate\Support\Facades\Storage;
 
 class Daftar extends Component
 {
     use WithPagination;
     public $search = '';
     public $perPage = 10;
+    public $deletId;
+    protected $listeners = [
+        'deleteConfirmed' => 'delete'
+    ];
+
 
     protected $updateQueryString = [
         'search' => ['except' => '']
@@ -41,5 +47,23 @@ class Daftar extends Component
     {
         $daftar = Student::findOrFail($id);
         return redirect()->route('daftar.show', ['daftar' => $daftar]);
+    }
+
+    public function deleting($id)
+    {
+        $this->deletId = $id;
+        $this->dispatch('show-delete-confirmation');
+    }
+
+    public function delete()
+    {
+        $student = Student::where('id', $this->deletId)->first();
+        if ($student) {
+            if ($student->image) {
+                Storage::delete($student->image);
+            }
+            $student->delete();
+        }
+        return redirect()->route('daftar.index')->with('success', 'Student has been deleted!');
     }
 }

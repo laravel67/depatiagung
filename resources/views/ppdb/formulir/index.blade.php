@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('favicon-32x32.png') }}" type="image/x-icon">
-    <title>Cetak Formulir PPDB</title>
+    <title>Formulir PPDB</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <style>
         /* CSS untuk styling KOP */
@@ -73,22 +73,22 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="d-flex align-items-center">
-            <img src="{{ asset('Untitled-1_copy-removebg-preview.png') }}" alt="Logo Lembaga" class="kop-logo">
+            <img src="{{ asset('logo_depati_aguung.png') }}" alt="Logo Lembaga" class="kop-logo">
             <div class="col-12">
-                <h4 class="text-center">Pondok Pesantren Tahfiz Al-qur'an Wal Hadits</h4>
-                <h1 class="kop-title text-center">AL-MUNAWWAROH BANGKO</h1>
-                <div class="text-center">Jl. Lintas Sumatera, Dusun Bangko, Bangko, Kabupaten Merangin, Jambi 37311
-                </div>
-                <div class="text-center">Telp: (0123) 456789 | Email: info@lembaga-xyz.com</div>
+                <h4 class="text-center mb-0">YAYASAN PONDOK PESANTREN SALAFIYAH</h4>
+                <h1 class="kop-title text-center mb-0">DEPATI AGUNG</h1>
+                <h4 class="text-center mb-0">DESA PULAU RAMAN KECEMATAN MUARA SIAU</h4>
+                <h4 class="text-center mb-0">KABUPATEN MERANGIN PROVINSI JAMBI</h4>
+                <div class="text-center">Jalan Lintas Bangko-Jangkat KM.45 Kode POS 37371</div>
+                <div class="text-center">Telp: 082279761815 | Email: depatiagung@gmail.com | Website: <a href="">www.depatiagung.id</a></div>
             </div>
         </div>
     </div>
-    <h3 class="text-center font-weight-bold">Formulir Penerimaan Peserta Didik Baru</h3>
-    <h3 class="text-center font-weight-bold mb-3">Tahun Ajaran 2024/2025</h3>
+    <h3 class="text-center font-weight-bold">FORMULIR PENDAFTARAN</h3>
+    <h5 class="text-center font-weight-bold mb-3">CALON SISWA BARU T.P {{ $penitia->name }}</h5>
     <div class="form-group row">
         <strong class="col-sm-3">No. Pendaftaran</strong>
         <div class="col-sm-1">
@@ -97,10 +97,10 @@
         </div>
     </div>
     <div class="form-group row mb-1">
-        <label for="no_identitas" class="col-sm-3 col-form-label">No Identitas</label>
+        <label for="no_identitas" class="col-sm-3 col-form-label">NIK</label>
         <div class="col-sm-4">
             <input type="text" class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
-                value="{{ $data->no_identitas }}">
+                value="{{ $data->nik }}">
         </div>
     </div>
     <div class="form-group row mb-1">
@@ -126,44 +126,41 @@
         </div>
     </div>
     <div class="form-group row mb-1">
-        <label for="agama" class="col-sm-3 col-form-label">Agama</label>
+        <label for="agama" class="col-sm-3 col-form-label">Umur</label>
         <div class="col-sm-2">
             <input type="text" class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
-                value="{{ $data->agama }}">
+                value="{{ $data->umur }} Tahun">
         </div>
     </div>
     <div class="form-group row mb-1">
-        <label for="kewarganegaraan" class="col-sm-3 col-form-label">Kewarganegaraan/Negara</label>
-        <div class="col-sm-8 d-flex">
-            <input class="form-control form-control-sm border-dark rounded-0 mr-3 font-weight-bold text-dark"
-                value="{{ $data->kewarganegaraan }}">
-            <input class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
-                value="{{ $data->negara }}">
+        <label for="agama" class="col-sm-3 col-form-label">Nomor Peserta Ujian</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
+                value="{{ $data->npu }}">
         </div>
     </div>
     <div class="form-group row mb-1">
-        <label for="provinsi" class="col-sm-3 col-form-label">Provinsi/Kabupaten/Kecamatan</label>
-        <div class="col-sm-8 d-flex">
-            <input class="form-control form-control-sm border-dark rounded-0 mr-1 font-weight-bold text-dark"
-                value="{{ $data->provinsi }}">
-            <input class="form-control form-control-sm border-dark rounded-0 mr-1 font-weight-bold text-dark"
-                value="{{ $data->kabupaten }}">
-            <input class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
-                value="{{ $data->kecamatan }}">
+        <label for="agama" class="col-sm-3 col-form-label">NISN</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
+                value="{{ $data->nisn }}">
         </div>
     </div>
     <div class="form-group row mb-1">
-        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+        <label class="col-sm-3 col-form-label">NIK Orang Tua</label>
         <div class="col-sm-8">
-            <input type="text" class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
-                value="{{ $data->alamat }}">
-        </div>
-    </div>
-    <div class="form-group row mb-1">
-        <label for="kode_pos" class="col-sm-3 col-form-label">Kode Pos</label>
-        <div class="col-sm-2">
-            <input type="text" class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
-                value="{{ $data->kode_pos }}">
+            <div class="row">
+                <div class="d-flex col align-items-center">
+                    <label class="ml-2">Ayah</label>
+                    <input type="text" class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
+                        value="{{ $data->nik_ayah }}">
+                </div>
+                <div class="d-flex col align-items-center">
+                    <label class="ml-2">Ibu</label>
+                    <input type="text" class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
+                        value="{{ $data->nik_ibu }}">
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group row mb-1">
@@ -186,41 +183,17 @@
         </div>
     </div>
     <div class="form-group row mb-1">
-        <label class="col-sm-3 col-form-label">Pekerjaan Orang Tua</label>
-        <div class="col-sm-8">
-            <div class="row">
-                <div class="d-flex col align-items-center">
-                    <label class="ml-2">Ayah</label>
-                    <input type="text"
-                        class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
-                        value="{{ $data->pekerjaan_ayah }}">
-                </div>
-                <div class="d-flex col align-items-center">
-                    <label class="ml-2">Ibu</label>
-                    <input type="text"
-                        class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
-                        value="{{ $data->pekerjaan_ibu }}">
-                </div>
-            </div>
+        <label for="kode_pos" class="col-sm-3 col-form-label">Kontak Orang Tua</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
+                value="{{ $data->kontak }}">
         </div>
     </div>
     <div class="form-group row mb-1">
-        <label class="col-sm-3 col-form-label">Kontak Orang Tua</label>
+        <label for="alamat" class="col-sm-3 col-form-label">Alamat Orang Tua</label>
         <div class="col-sm-8">
-            <div class="row">
-                <div class="d-flex col align-items-center">
-                    <label class="ml-2">Ayah</label>
-                    <input type="text"
-                        class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
-                        value="{{ $data->telphone_ayah }}">
-                </div>
-                <div class="d-flex col align-items-center">
-                    <label class="ml-2">Ibu</label>
-                    <input type="text"
-                        class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
-                        value="{{ $data->telphone_ibu }}">
-                </div>
-            </div>
+            <input type="text" class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
+                value="{{ $data->desa }}, {{ $data->kecamatan }}, {{ $data->kabupaten }}, {{ $data->provinsi }}">
         </div>
     </div>
     <div class="form-group row mb-1">
@@ -245,23 +218,28 @@
         </div>
     </div>
     <div class="form-group row mb-1">
-        <label for="kontak" class="col-sm-3 col-form-label">Kontak/Email</label>
-        <div class="col-sm-8 d-flex">
+        <label for="kontak" class="col-sm-3 col-form-label">Kelas</label>
+        <div class="col-sm-4 d-flex">
             <input class="form-control form-control-sm border-dark rounded-0 mr-3 font-weight-bold text-dark"
-                value="{{ $data->kontak}}">
-            <input class="form-control form-control-sm border-dark rounded-0 font-weight-bold text-dark"
-                value="{{ $data->email }}">
+                value="{{ $data->kelas}}">
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        <label for="kontak" class="col-sm-3 col-form-label">Alamat Email</label>
+        <div class="col-sm-4 d-flex">
+            <input class="form-control form-control-sm border-dark rounded-0 mr-3 font-weight-bold text-dark"
+                value="{{ $data->email}}">
         </div>
     </div>
     <div class="mt-5">
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-4">
+            <div class="col-4 d-block">
                 <strong class="text-center">Ketua Penitia PPDB</strong>
                 <br>
                 <br>
                 <br>
                 <br>
-                <strong class="text-center">( ....................... )</strong>
+                <strong class="text-center">( {{ $penitia->ketua_penitia }} )</strong>
             </div>
             <div class="col-4">
                 <strong class="text-center">Calon Siswa Baru</strong>
@@ -291,5 +269,4 @@
             };
     </script>
 </body>
-
 </html>

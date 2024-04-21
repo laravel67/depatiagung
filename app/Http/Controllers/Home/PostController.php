@@ -8,6 +8,7 @@ use App\Models\Category;
 use Jorenvh\Share\Share;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Acara;
 
 class PostController extends Controller
 {
@@ -22,19 +23,20 @@ class PostController extends Controller
             $author = User::firstWhere('username', request('author'));
             $title = ' Oleh ' . $author->name;
         }
-        $posts = Post::latest()->filter(request(['search', 'category', 'author']))->paginate(9)->withQueryString();
+        $posts = Post::latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString();
         $categories = Category::latest()->get();
         $shareComponent = new Share();
         $shareComponent->page(
             'http://www.mas-blog.test/articles',
             'Your share text comes here'
         )->facebook()->twitter()->linkedin()->telegram()->whatsapp()->instagram();
-
+        $jadwal = Acara::where('status', false)->orderBy('id', 'desc')->get();
         return view('home.posts.posts', [
             'posts' => $posts,
             'subtitle' => $title,
             'categories' => $categories,
-            'shareComponent' => $shareComponent
+            'shareComponent' => $shareComponent,
+            'jadwals' => $jadwal
         ]);
     }
 

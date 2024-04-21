@@ -10,7 +10,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/offcanvas.css') }}">
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
     <title>PPDB DEPATI AGUNG</title>
 </head>
 
@@ -25,21 +24,9 @@
         @include('components.frontend.partials.footer')
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> --}}
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('frontend/js/offcanvas.js') }}"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script>
-        $(document).ready(function() {
-        // Menampilkan dropdown saat mouse masuk
-        $('.nav-item.dropdown').hover(function() {
-        $(this).find('.dropdown-menu').addClass('show');
-        }, function() {
-        // Menyembunyikan dropdown saat mouse meninggalkan
-        $(this).find('.dropdown-menu').removeClass('show');
-        });
-        });
-    </script>
     @stack('js')
 </body>
 

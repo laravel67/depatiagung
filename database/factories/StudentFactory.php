@@ -41,7 +41,7 @@ class StudentFactory extends Factory
             'kelas' => $this->faker->randomElement(['I', 'II', 'III']),
             'kontak' => $this->faker->unique()->phoneNumber,
             'email' => $this->faker->unique()->safeEmail,
-            'image' => $this->faker->imageUrl(),
+            'image' => null,
             'created_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];

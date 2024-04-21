@@ -1,12 +1,17 @@
 @extends('components.layouts.app')
 @section('content')
 <div class="my-3 p-3 bg-white rounded shadow-sm rounded-0">
-    <h6 class="border-bottom border-gray pb-2 mb-0"><i class="fa-solid fa-user-tie"></i> Data Lengkap</h6>
+    <div class="d-flex justify-content-between">
+        <h6 class="border-gray pb-2 mb-0"><i class="fa-solid fa-user-tie"></i> Data Lengkap</h6>
+        <div>
+            <a class="btn btn-sm btn-secondary" href="{{ route('daftar.index') }}">Kembali</a>
+        </div>
+    </div>
     <div class="row justify-content-center mt-2">
         @if ($student->image)
-        <img class="img-thumbnail" src="{{ asset('storage/'.$student->image) }}" width="200" height="200">
+        <img class="img-thumbnail" src="{{ asset('storage/' . $student->image) }}" width="200" height="200">
         @else
-        <img class="img-thumbnail" src="{{ asset('frontend/img/user.svg') }}" width="200" height="200">
+        <img class="img-thumbnail" src="{{ asset('frontend/img/man-user.svg') }}" width="200" height="200">
         @endif
     </div>
     <div class="row">
@@ -15,9 +20,9 @@
                 <i class="fa-solid fa-xl mx-2 fa-address-card bd-placeholder-img rounded" width="52" height="52"></i>
                 <div class="media-body mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <span class="text-gray-dark">Nomor Identitas</span>
+                        <span class="text-gray-dark">NIK</span>
                     </div>
-                    <strong class="d-block text-dark">{{ $student->no_identitas }}</strong>
+                    <strong class="d-block text-dark">{{ $student->nik }}</strong>
                 </div>
             </div>
             <div class="media text-muted pt-3 d-flex align-items-center">
@@ -27,6 +32,15 @@
                         <span class="text-gray-dark">Nama Lengkap</span>
                     </div>
                     <strong class="d-block text-dark">{{ $student->nama }}</strong>
+                </div>
+            </div>
+            <div class="media text-muted pt-3 d-flex align-items-center">
+                <i class="fa-brands fa-xl mx-2 fa-digital-ocean bd-placeholder-img rounded" width="52" height="52"></i>
+                <div class="media-body mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <span class="text-gray-dark">Umur</span>
+                    </div>
+                    <strong class="d-block text-dark">{{ $student->umur }}</strong>
                 </div>
             </div>
             <div class="media text-muted pt-3 d-flex align-items-center">
@@ -72,30 +86,30 @@
                 </div>
             </div>
             <div class="media text-muted pt-3 d-flex align-items-center">
-                <i class="fa-solid fa-xl mx-2 fa-hands-praying bd-placeholder-img rounded" width="52" height="52"></i>
-                <div class="media-body mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <span class="text-gray-dark">Agama</span>
-                    </div>
-                    <strong class="d-block text-dark">{{ $student->agama }}</strong>
-                </div>
-            </div>
-            <div class="media text-muted pt-3 d-flex align-items-center">
                 <i class="fa-solid fa-xl mx-2 fa-globe bd-placeholder-img rounded" width="52" height="52"></i>
                 <div class="media-body mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <span class="text-gray-dark">Kewarganegaraan</span>
+                        <span class="text-gray-dark">Nomor Peserta Uian</span>
                     </div>
-                    <strong class="d-block text-dark">{{ $student->kewarganegaraan }}</strong>
+                    <strong class="d-block text-dark">{{ $student->npu }}</strong>
                 </div>
             </div>
             <div class="media text-muted pt-3 d-flex align-items-center">
                 <i class="fa-solid fa-xl mx-2 fa-earth-asia bd-placeholder-img rounded" width="52" height="52"></i>
                 <div class="media-body mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <span class="text-gray-dark">Negara</span>
+                        <span class="text-gray-dark">NISN</span>
                     </div>
-                    <strong class="d-block text-dark">{{ $student->negara }}</strong>
+                    <strong class="d-block text-dark">{{ $student->nisn }}</strong>
+                </div>
+            </div>
+            <div class="media text-muted pt-3 d-flex align-items-center">
+                <i class="fa-solid fa-xl mx-2 fa-user-graduate bd-placeholder-img rounded" width="52" height="52"></i>
+                <div class="media-body mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <span class="text-gray-dark">Tahun Kelulusan</span>
+                    </div>
+                    <strong class="d-block text-dark">{{ $student->tahun_lulus }}</strong>
                 </div>
             </div>
             <div class="media text-muted pt-3 d-flex align-items-center">
@@ -105,8 +119,8 @@
                         <span class="text-gray-dark">Alamat Lengkap</span>
                     </div>
                     <strong class="d-block text-dark">
-                        {{ $student->alamat }}, {{ $student->kecamatan }}, {{ $student->kabupaten }}, {{
-                        $student->provinsi }}, {{ $student->kode_pos }}
+                        {{ $student->desa }}, {{ $student->kecamatan }}, {{ $student->kabupaten }}, {{
+                        $student->provinsi }}
                     </strong>
                 </div>
             </div>
@@ -132,14 +146,14 @@
                 <i class="fa-solid fa-xl mx-2 fa-briefcase bd-placeholder-img rounded" width="52" height="52"></i>
                 <div class="media-body mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100 text-nowrap">
-                        <span class="text-dark">Pekerjaan Orang Tua:</span>
+                        <span class="text-dark">NIK Orang Tua:</span>
                     </div>
                     <div class="d-flex">
                         <div class="d-flex mr-3">
-                            Ayah : <strong class="d-block text-dark">{{ $student->pekerjaan_ayah }}</strong>
+                            Ayah : <strong class="d-block text-dark">{{ $student->nik_ayah }}</strong>
                         </div>
                         <div class="d-flex">
-                            Ibu : <strong class="d-block text-dark">{{ $student->pekerjaan_ibu }}</strong>
+                            Ibu : <strong class="d-block text-dark">{{ $student->nik_ibu }}</strong>
                         </div>
                     </div>
                 </div>
@@ -150,14 +164,7 @@
                     <div class="d-flex justify-content-between align-items-center w-100 text-nowrap">
                         <span class="text-dark">Nomor Telpon/Whatsapp Orang Tua:</span>
                     </div>
-                    <div class="d-flex">
-                        <div class="d-flex mr-3">
-                            Ayah : <strong class="d-block text-dark">{{ $student->telphone_ayah }}</strong>
-                        </div>
-                        <div class="d-flex">
-                            Ibu : <strong class="d-block text-dark">{{ $student->telphone_ibu }}</strong>
-                        </div>
-                    </div>
+                   <strong class="d-block text-dark">{{ $student->kontak }}</strong>
                 </div>
             </div>
             <div class="media text-muted pt-3 d-flex align-items-center">
@@ -200,17 +207,13 @@
                 </div>
             </div>
             <div class="media text-muted pt-3 d-flex align-items-center">
-                <i class="fa-brands fa-xl mx-2 fa-whatsapp bd-placeholder-img rounded" width="52" height="52"></i>
+                <i class="fa-solid fa-xl mx-2 fa-medal bd-placeholder-img rounded" width="52" height="52"></i>
                 <div class="media-body mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <span class="text-gray-dark">Kontak</span>
+                        <span class="text-gray-dark">Kelas</span>
                     </div>
                     <strong class="d-block text-dark">
-                        @if ($student->kontak)
-                        {{ $student->kontak }}
-                        @else
-                        -
-                        @endif
+                        {{ $student->kelas }}
                     </strong>
                 </div>
             </div>

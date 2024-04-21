@@ -11,7 +11,7 @@
             <img class="img-fluid w-100" src="{{ asset('storage/'.$post->image) }}"
                 >
             @else
-            <img class="img-fluid w-100" src="https://source.unsplash.com/1200x600/?{{ $post->category->name }}"
+            <img class="img-fluid w-100" src="https://placehold.jp/1200x600.png"
                 >
             @endif
             <div class="card-body">

@@ -32,24 +32,21 @@ class AdminStudentController extends Controller
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
-            'agama' => 'required|in:Islam,Katolik,Protestan,Hindu,Budha,Lainya',
-            'kewarganegaraan' => 'required|in:WNI,WNA',
-            'negara' => 'required|string',
+            'umur' => 'required|digits:2',
             'kecamatan' => 'required|string',
             'kabupaten' => 'required|string',
             'provinsi' => 'required|string',
-            'kode_pos' => 'required|string',
-            'alamat' => 'required|string',
+            'desa' => 'required|string',
+            'tahun_lulus' => 'required|digits:4',
             'nama_ayah' => 'required|string',
             'nama_ibu' => 'required|string',
-            'pekerjaan_ayah' => 'required|string',
-            'pekerjaan_ibu' => 'required|string',
             'asal_sekolah' => 'required|string',
             'status' => 'required|in:baru,pindahan',
             'jenjang' => 'required|in:ma,mts',
+            'kelas' => 'required|in:I,II,III',
         ];
-        if ($request->no_identitas != $student->no_identitas) {
-            $rules['no_identitas'] = 'required|numeric|unique:students,no_identitas';
+        if ($request->nik != $student->nik) {
+            $rules['nik'] = 'required|numeric|unique:students,nik';
         }
         if ($request->email != $student->email) {
             $rules['email'] = 'required|email|unique:students,email';
@@ -57,11 +54,17 @@ class AdminStudentController extends Controller
         if ($request->kontak != $student->kontak) {
             $rules['kontak'] = 'required|numeric|unique:students,kontak';
         }
-        if ($request->telphone_ayah != $student->telphone_ayah) {
-            $rules['telphone_ayah'] = 'required|numeric|unique:students,telphone_ayah';
+        if ($request->nik_ayah != $student->nik_ayah) {
+            $rules['nik_ayah'] = 'required|numeric|unique:students,nik_ayah';
         }
-        if ($request->telphone_ibu != $student->telphone_ibu) {
-            $rules['telphone_ibu'] = 'required|numeric|unique:students,telphone_ibu';
+        if ($request->nik_ibu != $student->nik_ibu) {
+            $rules['nik_ibu'] = 'required|numeric|unique:students,nik_ibu';
+        }
+        if ($request->npu != $student->npu) {
+            $rules['npu'] = 'required|numeric|unique:students,npu';
+        }
+        if ($request->nisn != $student->nisn) {
+            $rules['nisn'] = 'required|numeric|unique:students,nisn';
         }
         $validated = $request->validate($rules);
         if ($request->file('image')) {
