@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
-
-use function Laravel\Prompts\search;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -16,6 +14,7 @@ class AdminGuruController extends Controller
     {
         return view()->share('title', 'Data Ustadz/Ustadzah');
     }
+    
     public function index()
     {
         return view('dashboard.teachers.index');
@@ -112,6 +111,7 @@ class AdminGuruController extends Controller
         Guru::destroy($guru->id);
         return back()->with('success', 'Sarana Prasarna has been deleted');
     }
+
     public function slug(Request $request)
     {
         $slug = SlugService::createSlug(Mapel::class, 'slug', $request->name);

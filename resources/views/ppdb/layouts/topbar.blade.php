@@ -51,7 +51,7 @@
                     <a class="nav-link" href="{{ route('ppdb.home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Download Formulir</a>
+                    <a class="nav-link" href="{{ route('downloading') }}">Download</a>
                 </li>
                 @guest
                 <li class="nav-item">
@@ -81,6 +81,7 @@
                         @endif
                     </a>
                     <div class="dropdown-menu">
+                        @can('admin')
                         <a class="dropdown-item px-2" href="{{ route('user.profile') }}">
                             @if (Auth::user()->image)
                             <img src="{{ asset('storage/'.Auth::user()->image) }}" class="rounded-circle" width="20" height="20">
@@ -93,6 +94,7 @@
                             <i class="fa-solid fa-gauge"></i> Dashboard
                         </a>
                         <div class="dropdown-divider"></div>
+                        @endcan
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <button type="submit" class="dropdown-item px-2">

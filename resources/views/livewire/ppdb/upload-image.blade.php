@@ -4,7 +4,7 @@
         <img class="img-thumbnail" src="{{ $image->temporaryUrl() }}"
             style="width: 250px; height: 300px; object-fit: cover; overflow: hidden;">
         @elseif ($imageOld)
-        <img class="img-thumbnail" src="{{ $imageOld }}"
+        <img class="img-thumbnail" src="{{ asset('storage/'.$imageOld) }}"
             style="width: 250px; height: 300px; object-fit: cover; overflow: hidden;">
         @else
         <img class="img-thumbnail" src="{{ asset('frontend/img/man-user.svg') }}"

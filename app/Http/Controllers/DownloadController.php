@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Mpdf\Mpdf;
+use ZipArchive;
+use App\Models\Taj;
+use App\Models\Brosur;
 use App\Models\Daftar;
 use App\Models\Student;
-use App\Models\Taj;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DownloadController extends Controller
 {
@@ -18,5 +21,33 @@ class DownloadController extends Controller
             'data' => $data,
             'penitia' => $penitia
         ]);
+    }
+
+    public function download()
+    {
+        $form = Taj::latest()->first();
+        $brosur = Brosur::latest()->first();
+        return view('ppdb.formulir.unduh', compact('form', 'brosur'));
+    }
+    
+    public function downloadBrosur()
+    {
+        $brosurDirectory = storage_path('app/public/brosurs');
+
+        // Pastikan direktori brosurs ada
+        if (file_exists($brosurDirectory)) {
+            // Ambil semua file dalam direktori brosurs
+            $files = glob($brosurDirectory . '/*');
+
+            // Pastikan ada setidaknya satu file dalam direktori
+            if (!empty($files)) {
+                $filePath = $files[1];
+                return response()->download($filePath);
+            } else {
+                return response()->json(['message' => 'Tidak ada file brosur dalam direktori'], 404);
+            }
+        } else {
+            return response()->json(['message' => 'Direktori brosurs tidak ditemukan'], 404);
+        }
     }
 }

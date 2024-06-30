@@ -87,17 +87,12 @@ class Ekstrakulikuler extends Component
         $lifeskill->name = $this->name;
         $lifeskill->category = $this->category;
         $lifeskill->deskripsi = $this->deskripsi;
-        // Mengelola gambar
         if ($this->image) {
-            // Simpan gambar baru
             $name = Str::random(10) . '.' . $this->image->getClientOriginalExtension();
             $imagePath = $this->image->storeAs('lifeskills', $name);
-
-            // Hapus gambar lama jika ada
             if ($lifeskill->image) {
                 Storage::delete($lifeskill->image);
             }
-
             $lifeskill->image = $imagePath;
         } 
         $lifeskill->save();

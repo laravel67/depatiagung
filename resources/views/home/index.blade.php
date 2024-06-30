@@ -1,19 +1,13 @@
 @extends('components.frontend.layouts.app')
 @section('content')
 @include('home.carousel')
-{{-- <div class="my-5 my-md-3 p-3 bg-white rounded shadow-sm">
-    <h3 class="pb-2 mb-0 text-success">Postingan Terbaru</h3>
-    <div class="row justify-content-center">
-        
-    </div>
-</div> --}}
 {{-- Berita --}}
 <div class="row">
     <div class="col-md-4 order-md-last">
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="my-md-3 p-3 bg-white rounded shadow-sm">
-                    <h6 class="pb-2 mb-0 text-success card-header mx-0">Sambutan Pimpinan PPS DEPATI AGUNG</h6>
+                    <h6 class="pb-2 mb-0 text-success card-header mx-0">{{ __('Sambutan Pimpinan PPS DEPATI AGUNG') }}</h6>
                     <div class="block">
                         <div class="p-3">
                             @if ($sambutan->image)
@@ -21,7 +15,7 @@
                             @endif
                         </div>
                         <small align="justify">
-                             {!! $sambutan->excerpt !!}<a href="">Selengkapnya...</a>,
+                             {!! $sambutan->excerpt !!}<a href="{{ route('sambutan') }}">{{ __('Selengkapnya...') }}</a>,
                         </small>
                     </div>
                 </div>
@@ -53,7 +47,7 @@
     </div>
     <div class="col-md-8 order-md-first">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-            <h5 class="pb-2 mb-0 text-success card-header">Postingan Terbaru</h5>
+            <h5 class="pb-2 mb-0 text-success card-header">{{ __('Postingan Terbaru') }}</h5>
             @forelse ( $posts as $post )
             <div class="media text-muted pt-3 d-flex align-items-center" data-aos="zoom-in" data-aos-duration="500">
                 @if ($post->image)
@@ -69,14 +63,14 @@
                                 }}</a></strong>
                     </div>
                     <span class="d-block">
-                        {{ $post->excerpt }} <a href="{{ route('post',$post->slug) }}">Selengkapnya</a>
+                        {{ $post->excerpt }} <a href="{{ route('post',$post->slug) }}">{{ __('Selengkapnya') }}</a>
                     </span>
                     @if ($post->author)
                     <a href="{{ route('posts', ['author' => $post->author->username]) }}" class="badge badge-light">
                         <i class="fa-solid fa-user-tie"></i> {{ $post->author->name }}
                     </a>
                     @else
-                    <span class="badge badge-light text-muted">Unknown Author</span>
+                    <span class="badge badge-light text-muted">{{ __('Unknown Author') }}</span>
                     @endif
                     <small class="text-muted">
                         <i class="fa-solid fa-calendar-days"></i>
@@ -88,11 +82,11 @@
             </div>
             @empty
             <p class="text-muted">
-                Belum ada berita yang dipublish
+                {{ __('Belum ada berita yang dipublish') }}
             </p>
             @endforelse
             <div class="text-right mt-2">
-                <a href="{{ route('posts') }}" class="btn btn-success"><i class="fa-regular fa-newspaper"></i> Semua Berita</a>
+                <a href="{{ route('posts') }}" class="btn btn-success"><i class="fa-regular fa-newspaper"></i> {{ __('Semua Berita') }}</a>
             </div>
         </div>
     </div>

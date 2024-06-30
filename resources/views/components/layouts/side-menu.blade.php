@@ -92,6 +92,7 @@
                 </a>
             </li>
         </ul>
+        @can('admin')
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('dashboard/pengaturan/pendaftaran*') ? 'active': '' }}"
@@ -116,7 +117,6 @@
                 </a>
             </li>
         </ul>
-        @can('admin')
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Admin</span>
             <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">

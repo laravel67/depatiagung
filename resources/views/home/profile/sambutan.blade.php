@@ -12,7 +12,11 @@
         <article align="justify" class="card-text blockquote">
             {!! $sambutan->body !!}
         </article>
-        <p class="card-text"><small class="text-muted">{{ $sambutan->updated_at }}</small></p>
+        <p class="card-text">
+            <small class="text-muted">
+                {{ \Carbon\Carbon::parse($sambutan->updated_at)->translatedFormat('j F Y') }}
+            </small>
+        </p>
     </div>
 </div>
 @endsection

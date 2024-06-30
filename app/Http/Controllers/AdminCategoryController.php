@@ -12,14 +12,17 @@ class AdminCategoryController extends Controller
     {
         return view()->share('title', 'Kelola Kategori');
     }
+
     public function index()
     {
         return view('dashboard.categories.index');
     }
+
     public function create()
     {
         return view('dashboard.categories.create');
     }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -29,10 +32,12 @@ class AdminCategoryController extends Controller
         Category::create($validated);
         return redirect(route('category.index'))->with('success', 'Category has been saved!');
     }
+
     public function edit(Category $category)
     {
         return view('dashboard.categories.edit', compact('category'));
     }
+
     public function update(Request $request, Category $category)
     {
         $rules = [];
@@ -46,6 +51,7 @@ class AdminCategoryController extends Controller
         Category::where('id', $category->id)->update($validated);
         return redirect(route('category.index'))->with('success', 'Category has been updated');
     }
+    
     public function slug(Request $request)
     {
         $slug = SlugService::createSlug(Category::class, 'slug', $request->name);

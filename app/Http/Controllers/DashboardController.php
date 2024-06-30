@@ -11,16 +11,9 @@ use App\Models\Student;
 use App\Models\Category;
 use App\Models\Achievment;
 use App\Models\Taj;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    // public function __construct()
-    // {
-    //     if (!auth()->check() || auth()->user()->role !== 'user') {
-    //         abort(403);
-    //     }
-    // }
     public function index()
     {
         $users = User::where('role', 'admin')
@@ -47,7 +40,7 @@ class DashboardController extends Controller
             'sarana' => $sarana,
             'guru' => $guru,
             'achievment' => $achievment,
-            'student'=>$students
+            'student' => $students
         ]);
     }
 }

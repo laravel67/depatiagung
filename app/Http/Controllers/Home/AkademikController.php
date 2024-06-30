@@ -15,6 +15,7 @@ class AkademikController extends Controller
             'title' => 'Kurikulum'
         ]);
     }
+    
     public function sarana()
     {
         $saranas = Sarana::orderBy('id', 'desc')->get();

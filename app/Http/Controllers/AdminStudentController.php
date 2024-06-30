@@ -12,14 +12,17 @@ class AdminStudentController extends Controller
     {
         return view()->share('title', 'Data Pendaftaran');
     }
+    
     public function index()
     {
         return view('dashboard.daftar.index');
     }
+
     public function show(Student $student)
     {
         return view('dashboard.daftar.show', compact('student'));
     }
+
     public function edit(Student $student)
     {
         return view('dashboard.daftar.edit', compact('student'));
@@ -71,7 +74,7 @@ class AdminStudentController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validated['image'] = $request->file('image')->store('siswa-images');
+            $validated['image'] = $request->file('image')->store('siswa');
         }
         Student::where('id', $student->id)->update($validated);
         return redirect(route('daftar.index'))->with('success', 'Student has been updated!');

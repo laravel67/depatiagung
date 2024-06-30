@@ -24,37 +24,54 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Home\AchievmentController;
 use App\Http\Controllers\UserProfileController;
 
+
+
+
+
+
 Auth::routes();
+
+
 Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/articles', [PostController::class, 'index'])->name('posts');
-Route::get('/articles/{slug}', [PostController::class, 'show'])->name('post');
+Route::get('/berita', [PostController::class, 'index'])->name('posts');
+Route::get('/berita/{slug}', [PostController::class, 'show'])->name('post');
 // Profile
 Route::get('/profile/identitas', [ProfileController::class, 'identitas'])->name('identitas');
 Route::get('/profile/sambutan', [ProfileController::class, 'sambutan'])->name('sambutan');
 Route::get('/profile/struktural', [ProfileController::class, 'struktur'])->name('struktur');
 Route::get('/profile/sejarah', [ProfileController::class, 'sejarah'])->name('sejarah');
 Route::get('/profile/visi-misi', [ProfileController::class, 'visi'])->name('visi');
+
 // Akademik
 Route::get('/akademik/kurikulum', [AkademikController::class, 'kurikulum'])->name('kurikulum');
 Route::get('/akademik/sarana-prasarana', [AkademikController::class, 'sarana'])->name('sarana');
 Route::get('/akademik/biografi', [AkademikController::class, 'biografi'])->name('biografi');
+
 // Achievment
-Route::get('/achievments/akdemik', [AchievmentController::class, 'akademik'])->name('akademik');
-Route::get('/achievments/nonakdemik', [AchievmentController::class, 'nonakademik'])->name('nonakademik');
+Route::get('/prestasi/akdemik', [AchievmentController::class, 'akademik'])->name('akademik');
+Route::get('/prestasi/non-akdemik', [AchievmentController::class, 'nonakademik'])->name('nonakademik');
+
 // Ektra Kuli kuler
 Route::get('/kesiswaan/ekstrakulikuler', [KesiswaanController::class, 'lifeskill'])->name('lifeskill');
-Route::get('/kesiswaan/students-achievments', [AchievmentController::class, 'student'])->name('students.prestasi');
+Route::get('/kesiswaan/prestasi-santri', [AchievmentController::class, 'student'])->name('students.prestasi');
+
 // Pendaftaran PPDB
 Route::get('/ppdb/home', [PpdbController::class, 'home'])->name('ppdb.home');
 Route::get('/ppdb/daftar', [PpdbController::class, 'daftar'])->name('ppdb.daftar');
+Route::get('/ppdb/download', [DownloadController::class, 'download'])->name('downloading');
+Route::get('/ppdb/downloads/brosur', [DownloadController::class, 'downloadBrosur'])->name('downloadBrosur');
+// Route::get('/ppdb/downloads/form', [DownloadController::class, 'downloadFormulir'])->name('download.formulir');
+
 // Arsip
 Route::get('/kesiswaan/album', [KesiswaanController::class, 'album'])->name('album');
 
+// Santri
 Route::group(['middleware' => ['siswa']], function () {
     Route::get('/ppdb/pendaftaran/data', [PpdbController::class, 'profileRegister'])->name('ppdb.profile');
     Route::get('/download/formulir/{id}', [DownloadController::class, 'downloadForm'])->name('downloadForm');
 });
 
+// User dan admin
 Route::group(['middleware' => ['role']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/post/slug', [AdminPostController::class, 'slug']);
@@ -75,7 +92,7 @@ Route::group(['middleware' => ['role']], function () {
     Route::post('/update/profile', [UserProfileController::class, 'updateprofile'])->name('profile.update');
 });
 
-
+// Admin
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/category/slug', [AdminCategoryController::class, 'slug']);
     Route::resource('/dashboard/categories', AdminCategoryController::class)->names('category');
@@ -86,20 +103,3 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard/pengaturan/umum', [AdminPengaturanController::class, 'index'])->name('pengaturan');
     Route::get('/dashboard/kesiswaan', [AdminKesiswaanController::class, 'index'])->name('admin.kesiswaan');
 });
-// Sarana
-
-// // Guru
-// Achievment
-// Route::get('/mapel/slug', [AdminMapelController::class, 'slug']);
-// Route::get('/dashboard/mapels', [AdminMapelController::class, 'index'])->name('mapel.index');
-// Route::post('/mapels/store', [AdminMapelController::class, 'store'])->name('mapel.store');
-// Route::put('/mapels/update', [AdminMapelController::class, 'update'])->name('mapel.update');
-// Route::delete('/mapels/delete', [AdminMapelController::class, 'destroy'])->name('mapel.delete');
-// Route::get('/mapels/search', [AdminMapelController::class, 'search'])->name('mapel.search');
-// Route::get('/mapels/pagination', [AdminMapelController::class, 'paginate']);
-// // Kelola Profile Pondok
-// Route::get('/dashboard/identity', [AdminProfileController::class, 'identity'])->name('identity');
-// Route::post('/dashboard/identity', [AdminProfileController::class, 'identityUpdate'])->name('identityUpdate');
-// // Struktur 
-// Route::resource('/dashboard/strukturs', AdminStrukturController::class)->names('astruktur');
-// // Prasarana

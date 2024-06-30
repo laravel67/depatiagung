@@ -13,6 +13,7 @@ class AdminAchievmentController extends Controller
     {
         return view()->share('title', 'Kelola Pencapaian/Prestasi/Penghargaan');
     }
+    
     public function index()
     {
         return view('dashboard.achievments.index');
@@ -70,6 +71,7 @@ class AdminAchievmentController extends Controller
         Achievment::where('id', $achievment->id)->update($validated);
         return redirect(route('prestasi.index'))->with('success', 'Achievment has been updated');
     }
+    
     public function slug(Request $request)
     {
         $slug = SlugService::createSlug(Achievment::class, 'slug', $request->title);

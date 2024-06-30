@@ -29,11 +29,11 @@ class Post extends Model
             fn ($query, $author) =>
             $query->whereHas('author', fn ($query) => $query->where('username', $author))
         );
-        $query->when(
-            $filters['unit'] ?? false,
-            fn ($query, $unit) =>
-            $query->whereHas('unit', fn ($query) => $query->where('slug', $unit))
-        );
+        // $query->when(
+        //     $filters['unit'] ?? false,
+        //     fn ($query, $unit) =>
+        //     $query->whereHas('unit', fn ($query) => $query->where('slug', $unit))
+        // );
     }
 
     public function category()

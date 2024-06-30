@@ -14,19 +14,34 @@ class UploadImage extends Component
     use WithFileUploads;
     public $image, $imageOld, $nama;
 
+    protected $rules = [
+        'image' => [
+            'required',
+            'image',
+            'max:1024', // 1 MB = 1024 KB
+        ],
+    ];
+
+    protected $messages = [
+        'image.required' => 'Kolom gambar wajib diisi.',
+        'image.image' => 'Kolom yang diunggah harus berupa gambar.',
+        'image.max' => 'Ukuran file gambar tidak boleh lebih dari 1MB.',
+    ];
+
     public function mount()
     {
         $this->loadStudentData();
+        // dd($this->imageOld);
     }
 
     public function loadStudentData()
     {
         $user = Auth::user();
-        if ($user->role == 'siswa') {
+        if ($user && $user->role == 'siswa') {
             $student = Student::where('email', $user->email)->first();
             if ($student) {
                 $this->nama = $student->nama;
-                $this->imageOld = $student->image ? asset('storage/siswa-images/' . $student->image) : null;
+                $this->imageOld = $student->image;
             }
         }
     }
@@ -38,30 +53,16 @@ class UploadImage extends Component
 
     public function uploadImage()
     {
-        sleep(2);
-        $validatedData = $this->validate([
-            'image' => [
-                'required',
-                'image',
-                // Rule::dimensions()->ratio(4 / 3),
-                'max:1024', // 1 MB = 1024 KB
-            ],
-        ], [
-            'image.required' => 'Kolom gambar wajib diisi.',
-            'image.image' => 'Kolom yang diunggah harus berupa gambar.',
-            'image.dimensions' => 'Gambar harus memiliki 3 4:3.',
-            'image.max' => 'Ukuran file gambar tidak boleh lebih dari 1MB.',
-        ]);
-        $name = $this->nama;
-        $nameWithoutSpaces = str_replace(' ', '', $name); // Remove spaces from the name
-        $uniqueId = Str::uuid();
-        $extension = $validatedData['image']->getClientOriginalExtension();
-        $imageName = $nameWithoutSpaces . '-' . $uniqueId . '.' . $extension;
-        if ($this->imageOld) {
-            Storage::delete('siswa-images/' . basename($this->imageOld));
+        $this->validate();
+
+        if ($this->image) {
+            if ($this->imageOld) {
+                Storage::delete($this->imageOld);
+            }
+            $imageName = $this->image->store('siswa');
+            $this->updateImageColumn($imageName);
         }
-        $this->image = $validatedData['image']->storeAs('siswa-images', $imageName);
-        $this->updateImageColumn($imageName);
+
         Storage::deleteDirectory('livewire-tmp');
         $this->reset();
         $this->loadStudentData();
@@ -71,7 +72,7 @@ class UploadImage extends Component
     protected function updateImageColumn($imageName)
     {
         $user = Auth::user();
-        if ($user->role == 'siswa') {
+        if ($user && $user->role == 'siswa') {
             $student = Student::where('email', $user->email)->first();
             if ($student) {
                 $student->update([
@@ -82,8 +83,7 @@ class UploadImage extends Component
     }
     public function cancel()
     {
-        $this->image = '';
-        $this->reset();
+        $this->reset(['image']);
         $this->loadStudentData();
     }
 }

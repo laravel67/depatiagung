@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sarana;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -20,12 +19,10 @@ class AdminSaranaController extends Controller
         return view('dashboard.saranas.index');
     }
 
-
     public function create()
     {
         return view('dashboard.saranas.create');
     }
-
 
     public function store(Request $request)
     {
@@ -47,11 +44,11 @@ class AdminSaranaController extends Controller
         return view('dashboard.saranas.show', compact('sarana'));
     }
 
-
     public function edit(Sarana $sarana)
     {
         return view('dashboard.saranas.edit', compact('sarana'));
     }
+
     public function update(Request $request, Sarana $sarana)
     {
         $rules = [

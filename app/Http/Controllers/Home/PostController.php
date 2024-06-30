@@ -17,8 +17,9 @@ class PostController extends Controller
         $title = '';
         if (request('category')) {
             $category = Category::firstWhere('slug', request('category'));
-            $title = 'Kategori: ' . $category->name;
+            $title = 'kategori ' . $category->name;
         }
+        
         if (request('author')) {
             $author = User::firstWhere('username', request('author'));
             $title = ' Oleh ' . $author->name;

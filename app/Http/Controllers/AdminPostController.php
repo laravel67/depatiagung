@@ -22,6 +22,7 @@ class AdminPostController extends Controller
         $posts = Post::orderBy('id', 'desc')->paginate(10);
         return view('dashboard.posts.index', compact('posts'));
     }
+
     public function create()
     {
         $categories = Category::latest()->get();
@@ -46,17 +47,20 @@ class AdminPostController extends Controller
         Post::create($validated);
         return redirect(route('apost.index'))->with('success', 'Your post has been saved!');
     }
+    
     public function show(Post $post)
     {
         $subTitle = 'Detail Artikel';
         return view('dashboard.posts.show', compact('subTitle', 'post'));
     }
+
     public function edit(Post $post)
     {
         $categories = Category::latest()->get();
         $subTitle = 'Update Postingan/Artikel';
         return view('dashboard.posts.edit', compact('post', 'subTitle', 'categories'));
     }
+
     public function update(Request $request, Post $post)
     {
         $rules = [
@@ -80,6 +84,7 @@ class AdminPostController extends Controller
         Post::where('id', $post->id)->update($validated);
         return redirect(route('apost.index'))->with('success', 'Your post has been updated');
     }
+
     public function slug(Request $request)
     {
         $slug = SlugService::createSlug(Post::class, 'slug', $request->title);

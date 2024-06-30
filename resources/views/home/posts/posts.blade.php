@@ -3,11 +3,11 @@
 <header class="blog-header pt-5">
     <div class="row">
         <div class="col-md-6">
-            <div class="text-dark">All Post: {{ $subtitle }}</div>
+            <div class="text-dark"><div class="badge bg-success text-light">{{ $subtitle }}</div></div>
         </div>
         <div class="col-md-6">
             <form class=" d-flex justify-content-end align-items-center" action="{{ route('posts') }}">
-                @if (request('category', 'author', 'unit'))
+                @if (request('category', 'author'))
                 <input type="hidden" name="category" value="{{ request('category') }}">
                 <input type="hidden" name="author" value="{{ request('author') }}">
                 {{-- <input type="hidden" name="unit" value="{{ request('unit') }}"> --}}
@@ -24,7 +24,7 @@
 </header>
 <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between bg-primary">
-        <a class="p-2 text-light" href="{{ route('posts') }}"><strong>Semua</strong></a>
+        <a class="p-2 text-light text-decoration-none" href="{{ route('posts') }}"><strong>Semua Berita</strong></a>
         @foreach ($categories as $category)
         <a class="p-2 text-light" href="{{ route('posts', ['category' => $category->slug]) }}">{{ $category->name
             }}</a>

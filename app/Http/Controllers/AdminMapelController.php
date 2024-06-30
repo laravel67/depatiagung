@@ -12,6 +12,7 @@ class AdminMapelController extends Controller
     {
         return view()->share('title', 'Kelola Mapel');
     }
+
     public function index()
     {
         return view('dashboard.mapels.index');
@@ -21,7 +22,6 @@ class AdminMapelController extends Controller
     {
         return view('dashboard.mapels.create');
     }
-
 
     public function store(Request $request)
     {

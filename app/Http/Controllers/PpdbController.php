@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brosur;
-use App\Models\Register;
-use Illuminate\Http\Request;
+
 
 class PpdbController extends Controller
 {
@@ -18,8 +17,6 @@ class PpdbController extends Controller
         }
         return view('ppdb.index', compact('images'));
     }
-
-
 
     public function daftar()
     {
