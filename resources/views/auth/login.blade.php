@@ -16,11 +16,11 @@
                 <h1 class="h3 mb-3 font-weight-normal">PPS DEPATI AGUNG</h1>
             </div>
             <div class="form-group">
-                <label for="email" class="mb-0">Email</label>
-                <input type="text" class="form-control @error('email')
+                <label for="user" class="mb-0">Username / Email</label>
+                <input type="text" class="form-control @error('user')
                     is-invalid
-                @enderror rounded-0" name="email" id="email" placeholder="example@gmail.com">
-                @error('email')
+                @enderror rounded-0" name="user" id="user" placeholder="example@gmail.com / username">
+                @error('user')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -29,7 +29,7 @@
                 <input type="password" name="password" id="password" class="form-control rounded-0 @error('password')
                     is-invalid
                 @enderror" id="password" placeholder="*********">
-                @error('email')
+                @error('password')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -38,7 +38,7 @@
                     <input type="checkbox" id="showPasswordCheckbox"> Tampilkan sandi
                 </label>
             </div>
-            <button class="btn btn-primary btn-block rounded-0" type="submit">Login <i
+            <button class="btn btn-success btn-block rounded-0" type="submit">Login <i
                     class="fa-solid fa-right-to-bracket"></i></button>
             <p class="my-3 text-center text-muted">© 2024</p>
         </form>

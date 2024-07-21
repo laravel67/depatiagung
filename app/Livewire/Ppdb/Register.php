@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Ppdb;
 
-use App\Models\Student;
 use App\Models\Taj;
 use App\Models\User;
+use App\Models\Student;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 
 class Register extends Component
 {
@@ -32,7 +32,7 @@ class Register extends Component
     public $provinsi;
     public $status;
     public $jenjang;
-    public $kelas = 'I';
+    public $kelas;
     public $kontak;
     public $email;
 
@@ -136,43 +136,15 @@ class Register extends Component
         ]);
         $latestTajId = Taj::latest()->value('id');
         $validatedData['ta_id'] = $latestTajId;
-        User::create([
+        $user = User::create([
             'name' => $validatedData['nama'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['kontak']),
         ]);
         Student::create($validatedData);
-        $this->resetForm();
-        Session::flash('success', 'Pendaftaran berhasil, silahkan login menggunakan email yang terdaftar');
+        Auth::login($user);
+        return redirect()->route('ppdb.profile')->with('success', 'Pendaftaran berhasil!, Silahkah unggah foto 3x4');
     }
-    private function resetForm()
-    {
-        $this->nik = null;
-        $this->nama = null;
-        $this->umur = null;
-        $this->tempat_lahir = null;
-        $this->tanggal_lahir = null;
-        $this->jenis_kelamin = null;
-        $this->asal_sekolah = null;
-        $this->npu = null;
-        $this->tahun_lulus = null;
-        $this->nisn = null;
-        $this->nama_ayah = null;
-        $this->nama_ibu = null;
-        $this->nik_ayah = null;
-        $this->nik_ibu = null;
-        $this->desa = null;
-        $this->kecamatan = null;
-        $this->kabupaten = null;
-        $this->provinsi = null;
-        $this->status = null;
-        $this->jenjang = null;
-        $this->kelas = null;
-        $this->kontak = null;
-        $this->email = null;
-    }
-
-
     public function checkActive()
     {
         $count = Taj::where('status', 1)->count();

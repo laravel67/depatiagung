@@ -51,7 +51,7 @@ Route::get('/akademik/biografi', [AkademikController::class, 'biografi'])->name(
 Route::get('/prestasi/akdemik', [AchievmentController::class, 'akademik'])->name('akademik');
 Route::get('/prestasi/non-akdemik', [AchievmentController::class, 'nonakademik'])->name('nonakademik');
 
-// Ektra Kuli kuler
+// Ektra Kulikuler
 Route::get('/kesiswaan/ekstrakulikuler', [KesiswaanController::class, 'lifeskill'])->name('lifeskill');
 Route::get('/kesiswaan/prestasi-santri', [AchievmentController::class, 'student'])->name('students.prestasi');
 

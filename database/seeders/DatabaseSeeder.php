@@ -24,21 +24,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
-        Post::factory(100)->create();
-        Category::factory(10)->create();
-        Guru::factory(10)->create();
-        Mapel::factory(5)->create();
-        Student::factory(100)->create();
-        Sambutan::factory(1)->create();
+        // User::factory(10)->create();
+        // Post::factory(100)->create();
+        // Category::factory(10)->create();
+        // Guru::factory(10)->create();
+        // Mapel::factory(5)->create();
+        // Student::factory(100)->create();
+        // Sambutan::factory(1)->create();
 
-        $faker = Factory::create();
-        Identity::factory()->create([
-            'sejarah' => $faker->paragraphs(3, true),
-            'hymne' => $faker->paragraphs(2, true),
-            'lambang' => $faker->sentence(),
-            'user_id' => 1,
-        ]);
+        // $faker = Factory::create();
+        // Identity::factory()->create([
+        //     'sejarah' => $faker->paragraphs(3, true),
+        //     'hymne' => $faker->paragraphs(2, true),
+        //     'lambang' => $faker->sentence(),
+        //     'user_id' => 1,
+        // ]);
         User::factory()->create([
             'name' => 'Murtaki',
             'username' => 'murtaki99',
@@ -48,10 +48,10 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        Taj::factory()->create([
-            'name' => '2024/2025',
-            'ketua_penitia' => 'Murtaki Shihab',
-        ]);
+        // Taj::factory()->create([
+        //     'name' => '2024/2025',
+        //     'ketua_penitia' => 'Murtaki Shihab',
+        // ]);
 
         // User::factory()->create([
         //     'name' => 'Test User',

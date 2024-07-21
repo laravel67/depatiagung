@@ -29,17 +29,13 @@ class DownloadController extends Controller
         $brosur = Brosur::latest()->first();
         return view('ppdb.formulir.unduh', compact('form', 'brosur'));
     }
-    
+
     public function downloadBrosur()
     {
         $brosurDirectory = storage_path('app/public/brosurs');
-
-        // Pastikan direktori brosurs ada
+        dd($brosurDirectory);
         if (file_exists($brosurDirectory)) {
-            // Ambil semua file dalam direktori brosurs
             $files = glob($brosurDirectory . '/*');
-
-            // Pastikan ada setidaknya satu file dalam direktori
             if (!empty($files)) {
                 $filePath = $files[1];
                 return response()->download($filePath);

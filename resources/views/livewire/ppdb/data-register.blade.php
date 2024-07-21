@@ -1,4 +1,5 @@
 <div>
+    
     <main role="main" class="container">
         <div
             class="rounded-0 d-flex align-items-center justify-content-center my-3 text-white-50 bg-purple rounded shadow-sm">
@@ -258,7 +259,7 @@
                     <i class="fa-solid fa-print"></i></a>
             </div>
             @if(session()->has('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                 <strong><i class="fa-solid fa-circle-check"></i></strong> {{ session('success') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

@@ -24,7 +24,7 @@
                 <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active': '' }}"
                     href="{{ route('apost.index') }}">
                     <i class="fa-solid fa-newspaper"></i>
-                    Posts
+                    Postingan 
                 </a>
             </li>
             @can('admin')
@@ -50,7 +50,7 @@
                 <a class="nav-link {{ Request::is('dashboard/mapels*') ? 'active': '' }}"
                     href="{{ route('mapel.index') }}">
                     <i class="fa-solid fa-book"></i>
-                    Mapel
+                    Mata Pelajaran
                 </a>
             </li>
             @endcan
@@ -72,7 +72,7 @@
                 <a class="nav-link {{ Request::is('dashboard/achievments*') ? 'active': '' }}"
                     href="{{ route('prestasi.index') }}">
                     <i class="fa-solid fa-trophy"></i>
-                    Achievements
+                    Prestasi/Penghargaan
                 </a>
             </li>
         </ul>

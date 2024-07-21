@@ -27,7 +27,14 @@ class DashboardController extends Controller
         $guru = Guru::count();
         $sarana = Sarana::count();
         $achievment = Achievment::count();
-        $newestTaId = Taj::latest('id')->first()->id;
+        $newestTa = Taj::latest('id')->first();
+        $newestTaId = $newestTa ? $newestTa->id : null;
+
+        if ($newestTaId) {
+            $students = Student::where('ta_id', $newestTaId)->count();
+        } else {
+            $students = 0; // atau nilai default lain yang sesuai
+        }
         $students = Student::where('ta_id', $newestTaId)->count();
 
         return view('dashboard.index', [

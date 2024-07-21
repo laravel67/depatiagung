@@ -10,12 +10,23 @@
                     <h6 class="pb-2 mb-0 text-success card-header mx-0">{{ __('Sambutan Pimpinan PPS DEPATI AGUNG') }}</h6>
                     <div class="block">
                         <div class="p-3">
-                            @if ($sambutan->image)
-                                <img src="{{ asset('storage/'.$sambutan->image) }}" class="img-fluid">          
+                        
+                            @if ($sambutan && $sambutan->image)
+                        
+                            <img src="{{ asset('storage/'.$sambutan->image) }}" class="img-fluid">
+                        
+                            @else
+                        
+                            <img src="placeholder.jpg" class="img-fluid">
+                        
                             @endif
+                        
                         </div>
+                        
                         <small align="justify">
-                             {!! $sambutan->excerpt !!}<a href="{{ route('sambutan') }}">{{ __('Selengkapnya...') }}</a>,
+                        
+                            {!! $sambutan ? $sambutan->excerpt : '' !!}<a href="{{ route('sambutan') }}">{{ __('Selengkapnya...') }}</a>,
+                        
                         </small>
                     </div>
                 </div>
