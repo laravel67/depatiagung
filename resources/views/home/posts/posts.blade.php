@@ -1,39 +1,32 @@
 @extends('components.frontend.layouts.app')
 @section('content')
 <header class="blog-header pt-5">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="text-dark"><div class="badge bg-success text-light">{{ $subtitle }}</div></div>
-        </div>
-        <div class="col-md-6">
-            <form class=" d-flex justify-content-end align-items-center" action="{{ route('posts') }}">
-                @if (request('category', 'author'))
-                <input type="hidden" name="category" value="{{ request('category') }}">
-                <input type="hidden" name="author" value="{{ request('author') }}">
-                {{-- <input type="hidden" name="unit" value="{{ request('unit') }}"> --}}
-                @endif
-                <input class="form-control form-control-sm mx-md-2" type="search" name="search" placeholder="Search..."
-                    value="{{ Request('search') }}">
-                <button class="btn btn-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </div>
-    </div>
-    <div class="d-flex justify-content-end m-0 p-0">
+    <div class="d-flex justify-content-end m-0 p-0 mt-2">
         {!! $shareComponent !!}
     </div>
 </header>
 <div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-between bg-primary">
-        <a class="p-2 text-light text-decoration-none" href="{{ route('posts') }}"><strong>Semua Berita</strong></a>
-        @foreach ($categories as $category)
+    <nav class="nav d-flex justify-content-between bg-success">
+        <a class="p-2 text-light text-decoration-none" href="{{ route('posts') }}"><strong>Berita </strong> <small>{{ $subtitle }}</small></a>
+        {{-- @foreach ($categories as $category)
         <a class="p-2 text-light" href="{{ route('posts', ['category' => $category->slug]) }}">{{ $category->name
             }}</a>
-        @endforeach
+        @endforeach --}}
+        <form class=" d-flex justify-content-end align-items-center" action="{{ route('posts') }}">
+            @if (request('category', 'author'))
+            <input type="hidden" name="category" value="{{ request('category',old('category')) }}">
+            <input type="hidden" name="author" value="{{ request('author') }}">
+            {{-- <input type="hidden" name="unit" value="{{ request('unit') }}"> --}}
+            @endif
+            <input class="form-control form-control-sm mx-md-1" type="search" name="search" placeholder="Pencarian..."
+                value="{{ Request('search') }}">
+            <button class="btn btn-success btn-sm" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
     </nav>
 </div>
 <div>
     @if (!$posts->isEmpty())
-    <div class="card box-shadow p-2 mb-4">
+    <div class="card p-2 mb-4 shadow-0">
         <div class="mb-4" data-aos="zoom-in" data-aos-duration="500">
             <div class="row">
                 <div class="col-md-9">
@@ -108,9 +101,9 @@
     <div class="row justify-content-center">
         @foreach ($posts->skip(1) as $post)
         <div class="col-md-4 mb-4" data-aos="zoom-out" data-aos-duration="1000">
-            <div class="card">
+            <div class="card shadow-0">
                 <a href="{{ route('posts', ['category' => $post->category->slug]) }}"
-                    style="position: absolute;background-color:rgba(0, 0, 0, 0.5)"
+                    style="position: relative;background-color:rgba(0, 0, 0, 0.5)"
                     class="w-100 py-1 text-white text-center text-decoration-none">
                     {{$post->category->name }}
                 </a>
@@ -158,11 +151,3 @@
     @endif
 </div>
 @endsection
-<style>
-    .bg {
-        background-image: url();
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover
-    }
-</style>

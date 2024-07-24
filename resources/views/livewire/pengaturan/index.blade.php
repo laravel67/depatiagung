@@ -7,6 +7,8 @@
                 role="tab" aria-controls="nav-profile" aria-selected="false">Galeri</button>
             <button class="nav-link" id="nav-acara-tab" data-toggle="tab" data-target="#nav-acara" type="button"
                 role="tab" aria-controls="nav-acara" aria-selected="false">Jadwal Acara</button>
+            <button class="nav-link" id="nav-slide-tab" data-toggle="tab" data-target="#nav-slide" type="button" role="tab"
+                    aria-controls="nav-slide" aria-selected="false">Slide</button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -19,5 +21,9 @@
         <div class="tab-pane fade" id="nav-acara" role="tabpanel" aria-labelledby="nav-acara-tab">
             @livewire('pengaturan.acara')
         </div>
+        <div class="tab-pane fade" id="nav-slide" role="tabpanel" aria-labelledby="nav-slide-tab">
+            @livewire('pengaturan.slide')
+        </div>
     </div>
+    
 </div>

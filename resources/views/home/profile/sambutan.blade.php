@@ -3,7 +3,7 @@
 @include('home.profile.header')
 <div class="card mb-3">
     <div class="card-body">
-        <h3 class="card-title text-center">بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ</h3>
+        <h5 class="card-title text-center">بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ</h5>
         <div class="text-center">
             @if ($sambutan ? $sambutan->image:'')
             <img src="{{ asset('storage/'.$sambutan->image) }}" width="350" class="img-thumbnail rounded">

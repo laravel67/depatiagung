@@ -17,12 +17,12 @@ class PostController extends Controller
         $title = '';
         if (request('category')) {
             $category = Category::firstWhere('slug', request('category'));
-            $title = 'kategori ' . $category->name;
+            $title = 'kategori : ' . $category->name;
         }
         
         if (request('author')) {
             $author = User::firstWhere('username', request('author'));
-            $title = ' Oleh ' . $author->name;
+            $title = ' Oleh : ' . $author->name;
         }
         $posts = Post::latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString();
         $categories = Category::latest()->get();

@@ -8,22 +8,21 @@
     </div>
    <div id="slideJumbotron" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        @foreach($posts as $key => $slide)
+        @foreach($slides as $key => $slide)
         <li data-target="#slideJumbotron" data-slide-to="{{ $key }}" @if($key===0) class="active" @endif>
         </li>
         @endforeach
     </ol>
     <div class="carousel-inner bg-secondary">
-        @foreach($posts as $key => $slide)
+        @foreach($slides as $key => $slide)
         <div class="carousel-item @if($key === 0) active @endif">
             @if ($slide->image)
-                <img src="{{ asset('frontend/img/da2.jpg') }}" class="img-fluid w-100" style="width: 100%; height:467px;">
+                <img src="{{ asset('storage/slides/'.$slide->image) }}" class="img-fluid w-100" >
             @else
-                <img src="{{ asset('frontend/img/da2.jpg') }}" class="img-fluid w-100" style="width: 100%; height:467px;">
+                <img src="{{ asset('frontend/img/da2.jpg') }}" class="img-fluid w-100" >
             @endif
-            <div class="carousel-caption rounded-3" style="background-color:rgba(0, 0, 0, 0.5)">
-                <h5 class="text-light">{{ $slide->title }}</h5>
-                <p class="text-light d-none d-md-block">{{ $slide->excerpt }}</p>
+            <div class="carousel-caption rounded-3" style="background-color:rgba(0, 0, 0, 0.7)">
+                <p class="text-light">{{ $slide->caption }}</p>
             </div>
         </div>
         @endforeach

@@ -5,8 +5,6 @@ namespace App\Livewire\Setting;
 use App\Models\Taj;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class Register extends Component
