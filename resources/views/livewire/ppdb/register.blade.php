@@ -1,4 +1,4 @@
-<div class="my-3 p-3 bg-white rounded shadow-sm my-5">
+<div class="p-2 p-md-3 bg-white rounded shadow-sm my-lg-5">
     @if ($this->checkActive())
     <h3 class="border-bottom border-gray pb-2 mb-0 text-center">
         <font style="vertical-align: inherit;">
@@ -14,7 +14,7 @@
         </button>
     </div>
     @endif
-    <form class="row justify-content-start my-3" wire:submit.prevent="submit">
+    <form class="row justify-content-start my-lg-3" wire:submit.prevent="submit">
         <div class="col-lg-6">
             <h6 class="card-header p-1 text-uppercase bg-primary text-white mb-2">Biodata</h6>
             {{-- NIK --}}
@@ -274,7 +274,7 @@
             <h6 class="card-header p-1 text-uppercase bg-primary text-white mb-2">Kontak</h6>
             <div class="row mb-md-2">
                 <div class="col-md">
-                    <input type="number" wire:model="kontak" class="form-control rounded-0 form-control-sm @error('kontak')
+                    <input type="text" wire:model="kontak" class="form-control rounded-0 form-control-sm @error('kontak')
                             is-invalid
                         @enderror" id="kontak" value="{{ old('kontak') }}" placeholder="Kontak">
                     @error('kontak')
@@ -284,7 +284,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="row mb-md-2">
+            <div class="row mb-md-2 mb-3">
                 <div class="col-md">
                     <input type="email" wire:model="email" class="form-control rounded-0 form-control-sm @error('email')
                             is-invalid
@@ -296,7 +296,7 @@
                     @enderror
                 </div>
             </div>
-            <button wire:loading.class="btn btn-success rounded-0 col-12" class="btn btn-success rounded-0 col-12">
+            <button wire:loading.class="btn btn-success rounded-0 col-12 mt-3" class="btn btn-success rounded-0 col-12">
                 <span wire:loading.delay.longest>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Mohon menunggu...
@@ -308,6 +308,6 @@
         </div>
     </form>
     @else
-    Pendafataran belum dibuka
+    <div class="text-center">{{ __('Pendafataran belum dibuka') }}</div>
     @endif
 </div>

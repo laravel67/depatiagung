@@ -47,25 +47,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('ppdb.home') }}">Home</a>
+                <li class="nav-item {{ request()->routeIs('ppdb.home') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('ppdb.home') }}">Info PPDB</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('downloading') }}">Download</a>
+                <li class="nav-item {{ request()->routeIs('downloading') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('downloading') }}">Unduhan</a>
                 </li>
                 @guest
-                <li class="nav-item">
+                <li class="nav-item {{ request()->routeIs('ppdb.daftar') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('ppdb.daftar') }}">Pendaftaran</a>
                 </li>
                 @else
                 @can('siswa')
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('ppdb.profile') }}">Data Pendaftaran</a>
+                <li class="nav-item {{ request()->routeIs('ppdb.profile') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('ppdb.profile') }}">Biodata</a>
                 </li>
                 @endcan
                 @endguest
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Blog</a>
+                    <a class="nav-link" href="/">Beranda</a>
                 </li>
                 @guest
                     <li class="nav-item mx-md-5">

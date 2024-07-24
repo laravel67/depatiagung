@@ -16,7 +16,7 @@
 <body class="bg-gray">
     @include('ppdb.layouts.topbar')
     <main role="main" class="container-md my-5" >
-        <div class="py-5">
+        <div class="py-md-5">
             @yield('content')
         </div>
     </main>

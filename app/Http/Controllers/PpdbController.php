@@ -3,19 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brosur;
-
+use App\Models\Taj;
 
 class PpdbController extends Controller
 {
     public function home()
     {
-        $brosurs = Brosur::orderBy('id', 'desc')->first();
-        if ($brosurs) {
-            $images = json_decode($brosurs->images);
-        } else {
-            $images = [];
-        }
-        return view('ppdb.index', compact('images'));
+        $brosur = Taj::orderBy('id', 'desc')->first();
+        return view('ppdb.index', compact('brosur'));
     }
 
     public function daftar()

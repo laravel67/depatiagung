@@ -1,7 +1,7 @@
 @extends('ppdb.layouts.app')
 @section('content')
 <div class="row justify-content-center align-items-center">
-    <div class="col-md">
+    <div class="col-md d-none d-md-block">
         <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module">
         </script>
         <dotlottie-player src="https://lottie.host/7e576060-182c-4a08-8363-30a56d16e071/WZnBfyjU5R.json"

@@ -239,7 +239,7 @@
                 <br>
                 <br>
                 <br>
-                <strong class="text-center">( {{ $penitia->ketua_penitia }} )</strong>
+                <strong class="text-center">( {{ $penitia->chief }} )</strong>
             </div>
             <div class="col-4">
                 <strong class="text-center">Calon Siswa Baru</strong>

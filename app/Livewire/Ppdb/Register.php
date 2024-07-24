@@ -6,6 +6,7 @@ use App\Models\Taj;
 use App\Models\User;
 use App\Models\Student;
 use Livewire\Component;
+use App\Rules\PhoneNumberRule;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -67,15 +68,13 @@ class Register extends Component
             'status' => 'required|in:baru,pindahan',
             'jenjang' => 'required|in:mts,ma',
             'kelas' => $kelasValidationRule,
-            'kontak' => 'unique:students,kontak|required|numeric|max:9999999999999',
+            'kontak' => ['required', 'unique:students,kontak', new PhoneNumberRule],
             'email' => [
                 'required',
                 'email',
                 Rule::unique('students', 'email'),
                 Rule::unique('users', 'email')
             ],
-            // 'password' => 'required|min:8|confirmed',
-            // 'image' => 'nullable|image|max:1024',
         ], [
             'nik.required' => 'Kolom NIK harus diisi.',
             'nik.numeric' => 'Kolom NIK harus berupa angka.',
@@ -126,16 +125,12 @@ class Register extends Component
             'jenjang.required' => 'Kolom Jenjang harus dipilih.',
             'jenjang.in' => 'Kolom Jenjang harus berisi "mts" atau "ma".',
             'kelas.in' => 'Kolom Kelas harus berisi "I", "II", atau "III".',
-            'kontak.required' => 'Kolom Kontak harus diisi.',
-            'kontak.numeric' => 'Kolom Kontak harus berupa angka.',
-            'kontak.max' => 'Kolom Kontak tidak boleh lebih dari 13 digit.',
-            'kontak.unique' => 'Kontak sudah digunakan.',
             'email.required' => 'Kolom Email harus diisi.',
             'email.email' => 'Format Email tidak valid.',
             'email.unique' => 'Email sudah ada dalam database.',
         ]);
-        $latestTajId = Taj::latest()->value('id');
-        $validatedData['ta_id'] = $latestTajId;
+        $activeTaj = Taj::where('status', 1)->first();
+        $validatedData['ta_id'] = $activeTaj->id ?? null;
         $user = User::create([
             'name' => $validatedData['nama'],
             'email' => $validatedData['email'],
@@ -143,7 +138,7 @@ class Register extends Component
         ]);
         Student::create($validatedData);
         Auth::login($user);
-        return redirect()->route('ppdb.profile')->with('success', 'Pendaftaran berhasil!, Silahkah unggah foto 3x4');
+        return redirect()->route('ppdb.profile')->with('success', "Pendaftaran berhasil! Login dengan email: {$this->email} dan sandi: {$this->kontak}");
     }
     public function checkActive()
     {

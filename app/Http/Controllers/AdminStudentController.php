@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Rules\PhoneNumberRule;
 use Illuminate\Support\Facades\Storage;
 
 class AdminStudentController extends Controller
@@ -12,7 +13,7 @@ class AdminStudentController extends Controller
     {
         return view()->share('title', 'Data Pendaftaran');
     }
-    
+
     public function index()
     {
         return view('dashboard.daftar.index');
@@ -55,7 +56,7 @@ class AdminStudentController extends Controller
             $rules['email'] = 'required|email|unique:students,email';
         }
         if ($request->kontak != $student->kontak) {
-            $rules['kontak'] = 'required|numeric|unique:students,kontak';
+            $rules['kontak'] = ['required', 'unique:students,kontak', new PhoneNumberRule];
         }
         if ($request->nik_ayah != $student->nik_ayah) {
             $rules['nik_ayah'] = 'required|numeric|unique:students,nik_ayah';

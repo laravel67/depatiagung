@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Ppdb;
 
-use Livewire\Component;
 use App\Models\Student;
+use Livewire\Component;
+use App\Rules\PhoneNumberRule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -79,7 +80,7 @@ class DataRegister extends Component
             'nisn' => 'required|numeric|digits:10|unique:students,nisn',
             'nik_ayah' => 'required|numeric|digits:16|unique:students,nik_ayah',
             'nik_ibu' => 'required|numeric|digits:16|unique:students,nik_ibu',
-            'kontak' => 'required|numeric|max:9999999999999|unique:students,kontak',
+            'kontak' => ['required', 'unique:students,kontak', new PhoneNumberRule],
         ];
 
         if ($this->id) {
@@ -162,8 +163,6 @@ class DataRegister extends Component
             'jenjang.required' => 'Kolom Jenjang harus dipilih.',
             'jenjang.in' => 'Kolom Jenjang harus berisi "mts" atau "ma".',
             'kelas.in' => 'Kolom Kelas harus berisi "I", "II", atau "III".',
-            'kontak.required' => 'Kolom Kontak harus diisi.',
-            'kontak.numeric' => 'Kolom Kontak harus berupa angka.',
             'kontak.max' => 'Kolom Kontak tidak boleh lebih dari 13 digit.',
             'kontak.unique' => 'Kontak sudah digunakan.',
         ]);

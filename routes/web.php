@@ -30,8 +30,6 @@ use App\Http\Controllers\UserProfileController;
 
 
 Auth::routes();
-
-
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/berita', [PostController::class, 'index'])->name('posts');
 Route::get('/berita/{slug}', [PostController::class, 'show'])->name('post');
@@ -41,36 +39,29 @@ Route::get('/profile/sambutan', [ProfileController::class, 'sambutan'])->name('s
 Route::get('/profile/struktural', [ProfileController::class, 'struktur'])->name('struktur');
 Route::get('/profile/sejarah', [ProfileController::class, 'sejarah'])->name('sejarah');
 Route::get('/profile/visi-misi', [ProfileController::class, 'visi'])->name('visi');
-
 // Akademik
 Route::get('/akademik/kurikulum', [AkademikController::class, 'kurikulum'])->name('kurikulum');
 Route::get('/akademik/sarana-prasarana', [AkademikController::class, 'sarana'])->name('sarana');
 Route::get('/akademik/biografi', [AkademikController::class, 'biografi'])->name('biografi');
-
 // Achievment
 Route::get('/prestasi/akdemik', [AchievmentController::class, 'akademik'])->name('akademik');
 Route::get('/prestasi/non-akdemik', [AchievmentController::class, 'nonakademik'])->name('nonakademik');
-
 // Ektra Kulikuler
 Route::get('/kesiswaan/ekstrakulikuler', [KesiswaanController::class, 'lifeskill'])->name('lifeskill');
 Route::get('/kesiswaan/prestasi-santri', [AchievmentController::class, 'student'])->name('students.prestasi');
-
 // Pendaftaran PPDB
-Route::get('/ppdb/home', [PpdbController::class, 'home'])->name('ppdb.home');
-Route::get('/ppdb/daftar', [PpdbController::class, 'daftar'])->name('ppdb.daftar');
-Route::get('/ppdb/download', [DownloadController::class, 'download'])->name('downloading');
-Route::get('/ppdb/downloads/brosur', [DownloadController::class, 'downloadBrosur'])->name('downloadBrosur');
-// Route::get('/ppdb/downloads/form', [DownloadController::class, 'downloadFormulir'])->name('download.formulir');
-
+Route::get('/info-pendaftaran', [PpdbController::class, 'home'])->name('ppdb.home');
+Route::get('/formulir-pendaftaran', [PpdbController::class, 'daftar'])->name('ppdb.daftar');
+Route::get('/downloads', [DownloadController::class, 'download'])->name('downloading');
+Route::get('/ppdb/download/brosur/{id}', [DownloadController::class, 'downloadBrosur'])->name('downloadBrosur');
+// Route::get('/ppdb/download/form', [DownloadController::class, 'downloadFormulir'])->name('download.formulir');
 // Arsip
 Route::get('/kesiswaan/album', [KesiswaanController::class, 'album'])->name('album');
-
-// Santri
+// Siswa
 Route::group(['middleware' => ['siswa']], function () {
-    Route::get('/ppdb/pendaftaran/data', [PpdbController::class, 'profileRegister'])->name('ppdb.profile');
+    Route::get('/biodata', [PpdbController::class, 'profileRegister'])->name('ppdb.profile');
     Route::get('/download/formulir/{id}', [DownloadController::class, 'downloadForm'])->name('downloadForm');
 });
-
 // User dan admin
 Route::group(['middleware' => ['role']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -91,7 +82,6 @@ Route::group(['middleware' => ['role']], function () {
     Route::post('/reset-password', [UserProfileController::class, 'updatepassword'])->name('password.update');
     Route::post('/update/profile', [UserProfileController::class, 'updateprofile'])->name('profile.update');
 });
-
 // Admin
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/category/slug', [AdminCategoryController::class, 'slug']);

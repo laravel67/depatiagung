@@ -1,15 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Mpdf\Mpdf;
-use ZipArchive;
 use App\Models\Taj;
-use App\Models\Brosur;
-use App\Models\Daftar;
 use App\Models\Student;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class DownloadController extends Controller
 {
@@ -25,25 +18,26 @@ class DownloadController extends Controller
 
     public function download()
     {
-        $form = Taj::latest()->first();
-        $brosur = Brosur::latest()->first();
-        return view('ppdb.formulir.unduh', compact('form', 'brosur'));
+        $brosur = Taj::latest()->first();
+        return view('ppdb.formulir.unduh', compact('brosur'));
     }
 
-    public function downloadBrosur()
+    public function downloadBrosur(int $id)
     {
-        $brosurDirectory = storage_path('app/public/brosurs');
-        dd($brosurDirectory);
-        if (file_exists($brosurDirectory)) {
-            $files = glob($brosurDirectory . '/*');
-            if (!empty($files)) {
-                $filePath = $files[1];
+        // Cari brosur berdasarkan ID
+        $brosur = Taj::find($id);
+
+        if ($brosur && $brosur->image) {
+            $filePath = storage_path('app/public/brosurs/' . $brosur->image);
+
+            if (file_exists($filePath)) {
                 return response()->download($filePath);
             } else {
-                return response()->json(['message' => 'Tidak ada file brosur dalam direktori'], 404);
+                return response()->json(['message' => 'File brosur tidak ditemukan'], 404);
             }
         } else {
-            return response()->json(['message' => 'Direktori brosurs tidak ditemukan'], 404);
+            return response()->json(['message' => 'Brosur tidak tersedia'], 404);
         }
     }
+
 }

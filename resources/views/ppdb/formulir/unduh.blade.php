@@ -4,11 +4,11 @@
     <h5 class="border-bottom border-gray pb-2 mb-0">Download</h5>
     <div class="media text-muted pt-3">
         <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            @if($brosur && $brosur->status=1)
             <div class="d-flex justify-content-between align-items-center w-100">
                 <strong class="text-primary">Brosur DEPATI AGUNG</strong>
-                <a href="{{ route('downloadBrosur') }}" class="btn btn-sm btn-outline-success rounded-circle"><i class="fa-solid fa-download text-lg"></i></a>
+                <a href="{{ route('downloadBrosur', $brosur->id) }}" class="btn btn-sm btn-outline-success rounded-circle"><i class="fa-solid fa-download text-lg"></i></a>
             </div>
-           @if($brosur)
             <span class="text-dark">{{ \Carbon\Carbon::parse($brosur->updated_at)->translatedFormat('j F Y') }}</span>
             @else
             <span class="text-danger">Brosur tidak tersedia</span>
