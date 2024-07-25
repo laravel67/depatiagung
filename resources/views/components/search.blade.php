@@ -1,0 +1,1 @@
+<input type="search" wire:model.live="search" class="form-control form-control-sm" placeholder="Pencarian..." autofocus>

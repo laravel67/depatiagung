@@ -7,8 +7,7 @@
                     Kategori</a>
             </div>
             <div class="col-7 col-md-6">
-                <input type="search" wire:model.live="search" class="form-control form-control-sm"
-                    placeholder="Cari...">
+                <x-search></x-search>
             </div>
         </div>
         <div class="table-responsive">

@@ -1,4 +1,3 @@
-@extends('components.layouts.app')
-@section('content')
-@livewire('mapel')
-@endsection
+<x-main>
+    <livewire:mapel>
+</x-main>

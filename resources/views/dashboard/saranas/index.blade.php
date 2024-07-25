@@ -1,4 +1,3 @@
-@extends('components.layouts.app')
-@section('content')
-@livewire('sarana')
-@endsection
+<x-main>
+    <livewire:sarana>
+</x-main>

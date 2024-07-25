@@ -1,7 +1,7 @@
 <x-main>
     <div class="row">
         <div class="col-md-7">
-            <h6 class="border-bottom"><i class="fa-solid fa-pen"></i> Buat Kategori</h6>
+            <h6 class="border-bottom"><i class="fa-solid fa-pen"></i> Ubah Kategori</h6>
             <form action="{{ route('category.update', $category->slug) }}" method="POST">
                 @method('PUT')
                 @csrf

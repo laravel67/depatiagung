@@ -5,8 +5,7 @@
                 Post</a>
         </div>
         <div class="col-md">
-            <input type="search" wire:model.live="search" class="form-control form-control-sm"
-                placeholder="Cari judul,kategori,dan author...">
+            <x-search></x-search>
         </div>
     </div>
     <div class="table-responsive">

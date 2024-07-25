@@ -7,8 +7,7 @@
                     Mapel</a>
             </div>
             <div class="col-7 col-md-6">
-                <input type="search" wire:model.live="search" class="form-control form-control-sm"
-                    placeholder="Cari...">
+                <x-search></x-search>
             </div>
         </div>
         <div class="table-responsive">
@@ -18,9 +17,7 @@
                         <th>No.</th>
                         <th>Mata Pelajaran</th>
                         <th>Slug Mapel</th>
-                        <th>
-                            Opsi
-                        </th>
+                        <th>Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,12 +28,12 @@
                         <td>{{ $mapel->slug }}</td>
                         <td>
                             <div class="btn btn-group">
-                                <a href="{{ route('mapel.edit', $mapel->slug) }}"
-                                    class="btn btn-sm btn-warning text-white"><i class="fa-solid fa-edit"></i></a>
-                                <button wire:click.prevent='deleting("{{ $mapel->slug }}")'
-                                    class="btn btn-sm btn-danger text-white">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
+                                <x-btn-action href="{{ route('mapel.edit', $mapel->slug) }}" color="warning">
+                                    {{ __('edit') }}
+                                </x-btn-action>
+                                <x-btn-action model="deleting('{{ $mapel->slug }}')" color="danger">
+                                    {{ __('trash') }}
+                                </x-btn-action>
                             </div>
                         </td>
                     </tr>
@@ -47,7 +44,5 @@
             {!! $mapels->links() !!}
         </div>
     </div>
-    <div class="col-md-3 d-none d-md-flex">
-        <img src="{{ asset('backend/img/undraw_designer_girl_re_h54c.svg') }}" class="img-fluid">
-    </div>
+    <x-image-draw></x-image-draw>
 </div>

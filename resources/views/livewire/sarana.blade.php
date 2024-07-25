@@ -7,8 +7,7 @@
                     Sarana Prasarana</a>
             </div>
             <div class="col-7 col-md-6">
-                <input type="search" wire:model.live="search" class="form-control form-control-sm"
-                    placeholder="Cari...">
+                <x-search></x-search>
             </div>
         </div>
         <div class="table-responsive">
@@ -40,14 +39,15 @@
                         <td>{{ $sarana->slug }}</td>
                         <td>
                             <div class="btn btn-group">
-                                <a href="{{ route('asarana.show', $sarana->slug) }}"
-                                    class="btn btn-sm btn-success text-white"><i class="fa-solid fa-eye"></i></a>
-                                <a href="{{ route('asarana.edit', $sarana->slug) }}"
-                                    class="btn btn-sm btn-warning text-white"><i class="fa-solid fa-edit"></i></a>
-                                <button wire:click.prevent='deleting("{{ $sarana->slug }}")'
-                                    class="btn btn-sm btn-danger text-white">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
+                                <x-btn-action href="{{ route('asarana.show', $sarana->slug) }}" color="success">
+                                    {{ __('eye') }}
+                                </x-btn-action>
+                                <x-btn-action href="{{ route('asarana.edit', $sarana->slug) }}" color="warning">
+                                    {{ __('edit') }}
+                                </x-btn-action>
+                                <x-btn-action model="deleting('{{ $sarana->slug }}')" color="danger">
+                                    {{ __('trash') }}
+                                </x-btn-action>
                             </div>
                         </td>
                     </tr>
