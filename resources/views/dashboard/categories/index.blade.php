@@ -1,4 +1,3 @@
-@extends('components.layouts.app')
-@section('content')
-@livewire('kategori')
-@endsection
+<x-main>
+    <livewire:kategori>
+</x-main>

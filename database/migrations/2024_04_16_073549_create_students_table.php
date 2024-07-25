@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('nik')->unique();
-            $table->foreignId('ta_id');
+            $table->foreignId('ta_id')->constrained('tajs');
             $table->string('nama');
             $table->integer('umur');
             $table->string('tempat_lahir');

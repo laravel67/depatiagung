@@ -1,4 +1,4 @@
-@extends('components.layouts.app')
+{{-- @extends('components.layouts.app')
 @section('content')
 <div class="row">
     <div class="col-md-7">
@@ -49,4 +49,47 @@
 @endsection
 @push('js')
 @include('dashboard.posts.script')
-@endpush
+@endpush --}}
+
+<x-main>
+    <div class="row">
+        <div class="col-md-7">
+            <h6 class="border-bottom p-2">
+                    <x-btn-back></x-btn-back>
+                    <x-btn-action href="{{ route('apost.edit', $post->slug) }}" color="warning">{{ __('edit') }}</x-btn-action>
+            </h6>
+            <div class=" mb-3">
+                @if ($post->image)
+                <img src="{{ asset('storage/'. $post->image) }}" class="card-img-top" alt="{{ $post->image }}"
+                    style="height: 400px; width: 100%; display: block;overflow: hidden;">
+                @else
+                <img src="{{ asset('backend/img/no-image.svg') }}" class="card-img-top" alt="{{ $post->image }}"
+                    style="height: 400px; width: 100%; display: block;overflow: hidden;">
+                @endif
+                <div class="card-body">
+                    <h3 class="card-title">{{ $post->title }}</h3>
+                    <article align='justify' class="card-text text-dark blockquote">
+                        {!! $post->body !!}
+                    </article>
+                    <p class="card-text">
+                        <small class="text-muted text-end">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            {{
+                            \Carbon\Carbon::parse($post->created_at)->locale('id')->translatedFormat('d F
+                            Y')}}
+                        </small>
+                        <small class="text-muted text-end mx-1">
+                            <i class="fa-solid fa-user"></i>
+                            {{$post->author->name}}
+                        </small>
+                        <small class="text-muted text-end mx-1">
+                            <i class="fa-solid fa-tag"></i>
+                            {{$post->category->name}}
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <x-image-draw></x-image-draw>
+    </div>
+</x-main>

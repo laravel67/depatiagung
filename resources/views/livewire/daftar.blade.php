@@ -1,92 +1,106 @@
-<div class="row">
-    <div class="col">
-        <div class="row mb-3">
-            <div class="col-md col-md-6">
-                <div class="d-flex align-items-center">
-                    <div class="px-1">Show</div>
-                    <select wire:model="perPage" wire:change="show($event.target.value)"
-                        class="form-control col-md-1 col-2 px- text-center form-control-sm">
-                        @for ($i = 5; $i <= 100; $i +=5) <option value="{{ $i }}">{{ $i }}</option>
-                            @endfor
-                    </select>
-                    <div class="px-1">Rows</div>
-                </div>
-            </div>
-            <div class="col-7 col-md-6">
-                <input type="search" wire:model.live="search" class="form-control form-control-sm"
-                    placeholder="Cari...">
+<div>
+    <div class="row mb-3 px-2 justify-content-around">
+        <div class="col-6 col-md-2">
+            <div class="d-flex align-items-center">
+                <select wire:model="perPage" wire:change="show($event.target.value)"
+                    class="form-control col-md-4 col-4 text-center form-control-sm">
+                    @for ($i = 5; $i <= 100; $i +=5) <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                </select>
+                <div class="px-1">Enteries</div>
             </div>
         </div>
-        <div class="table-responsive">
-            <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>No Identitas</th>
-                        <th>Nama Lengkap</th>
-                        <th>Tempat Tanggal Lahir</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Agama</th>
-                        <th>Kewarganegaraan</th>
-                        <th>Tanggal Pendaftaran</th>
-                        <th>Kontak</th>
-                        <th>
-                            Opsi
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($daftars as $i=> $daftar)
-                    <tr>
-                        <td>{{ $daftars->firstItem() + $i }}</td>
-                        <td>{{ $daftar->nik }}</td>
-                        <td>{{ $daftar->nama }}</td>
-                        <td>
-                            {{ $daftar->tempat_lahir }}, {{
-                            \Carbon\Carbon::parse($daftar->tanggal_lahir)->locale('id')->translatedFormat('d F
-                            Y')}}
-                        </td>
-                        <td>{{ $daftar->jenis_kelamin }}</td>
-                        <td>{{ $daftar->umur }} Tahun</td>
-                        <td>
-                            @if ($daftar->status=='baru')
-                                Siswa Baru
-                            @else
-                                Siswa Pindahan
-                            @endif
-                        </td>
-                        <td>
-                            {{
-                            \Carbon\Carbon::parse($daftar->created_at)->locale('id')->translatedFormat('d F
-                            Y')}}
-                        </td>
-                        <td>
-                            @if ($daftar->kontak)
-                            {{ $daftar->kontak }}
-                            @else
-                            <strong>-</strong>
-                            @endif
-                        </td>
-                        <td>
-                            <div class="btn btn-group">
-                                <a href="{{ route('daftar.show', $daftar->id) }}"
-                                    class="btn btn-sm btn-success text-white"><i class="fa-solid fa-eye"></i></a>
-                                <a href="{{ route('daftar.edit', $daftar->id) }}"
-                                    class="btn btn-sm btn-warning text-white"><i class="fa-solid fa-edit"></i></a>
-                                    <button wire:click='deleting({{ $daftar->id }})' class="btn btn-sm btn-danger text-white"><i
-                                            class="fa-solid fa-trash"></i>
-                                    </button>
-                            </div>
-                        </td>
-                    </tr>
+        <div class="col-6 col-md-2">
+            <div class="d-flex align-items-center">
+                <div class="px-1">Tahun Ajaran</div>
+                <select wire:model="ta" wire:change="show($event.target.value)"
+                    class="form-control col-md-5 col-4 text-center form-control-sm">
+                    <option value="">--</option>
+                    @forelse ($tajs as $taj)
+                    <option value="{{ $taj->id }}">{{ $taj->name }}</option>    
                     @empty
+                        
                     @endforelse
-                </tbody>
-            </table>
-            {!! $daftars->links() !!}
+                </select>
+            </div>
+        </div>
+        <div class="col-4 col-md-3 d-none d-md-block">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button wire:click="export" type="button" class="btn btn-sm btn-danger">Export</button>
+                <button type="button" class="btn btn-sm btn-success">Import</button>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <input type="search" wire:model.live="search" class="form-control form-control-sm"
+                placeholder="Cari...">
         </div>
     </div>
-    {{-- <div class="col-md-3 d-none d-md-flex">
-        <img src="{{ asset('backend/img/undraw_designer_girl_re_h54c.svg') }}" class="img-fluid">
-    </div> --}}
+    <div class="table-responsive">
+        <table class="table table-striped table-sm" >
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>No Identitas</th>
+                    <th>Nama Lengkap</th>
+                    <th>Tempat Tanggal Lahir</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Agama</th>
+                    <th>Tahun Ajaran</th>
+                    <th>Tanggal Pendaftaran</th>
+                    <th>Kontak</th>
+                    <th>
+                        Opsi
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($daftars as $i=> $daftar)
+                <tr>
+                    <td>{{ $daftars->firstItem() + $i }}</td>
+                    <td>{{ $daftar->nik }}</td>
+                    <td>{{ $daftar->nama }}</td>
+                    <td>
+                        {{ $daftar->tempat_lahir }}, {{
+                        \Carbon\Carbon::parse($daftar->tanggal_lahir)->locale('id')->translatedFormat('d F
+                        Y')}}
+                    </td>
+                    <td>{{ $daftar->jenis_kelamin }}</td>
+                    <td>{{ $daftar->umur }} Tahun</td>
+                    <td>
+                        @if ($daftar->ta_id)
+                        {{ $daftar->ta->name }}
+                        @else
+                        <strong>-</strong>
+                        @endif
+                    </td>
+                    <td>
+                        {{
+                        \Carbon\Carbon::parse($daftar->created_at)->locale('id')->translatedFormat('d F
+                        Y')}}
+                    </td>
+                    <td>
+                        @if ($daftar->kontak)
+                        {{ $daftar->kontak }}
+                        @else
+                        <strong>-</strong>
+                        @endif
+                    </td>
+                    <td>
+                        <div class="btn btn-group">
+                            <a href="{{ route('daftar.show', $daftar->id) }}"
+                                class="btn btn-sm btn-success text-white"><i class="fa-solid fa-eye"></i></a>
+                            <a href="{{ route('daftar.edit', $daftar->id) }}"
+                                class="btn btn-sm btn-warning text-white"><i class="fa-solid fa-edit"></i></a>
+                                <button wire:click='deleting({{ $daftar->id }})' class="btn btn-sm btn-danger text-white"><i
+                                        class="fa-solid fa-trash"></i>
+                                </button>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                @endforelse
+            </tbody>
+        </table>
+        {!! $daftars->links() !!}
+    </div>
 </div>

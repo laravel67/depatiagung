@@ -1,3 +1,4 @@
+@push('js')
 <script>
     const title=document.querySelector('#title');
     const slug=document.querySelector('#slug');
@@ -19,3 +20,4 @@
         }
     }
 </script>
+@endpush

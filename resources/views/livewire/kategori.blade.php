@@ -31,12 +31,12 @@
                         <td>{{ $category->slug }}</td>
                         <td>
                             <div class="btn btn-group">
-                                <a href="{{ route('category.edit', $category->slug) }}"
-                                    class="btn btn-sm btn-warning text-white"><i class="fa-solid fa-edit"></i></a>
-                                <button wire:click.prevent='deleting("{{ $category->slug }}")'
-                                    class="btn btn-sm btn-danger text-white">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
+                                <x-btn-action href="{{ route('category.edit', $category->slug) }}" color="warning">
+                                    {{ __('edit') }}
+                                </x-btn-action>
+                                <x-btn-action model="deleting('{{ $category->slug }}')" color="danger">
+                                    {{ __('trash') }}
+                                </x-btn-action>
                             </div>
                         </td>
                     </tr>
@@ -47,7 +47,5 @@
             {!! $categories->links() !!}
         </div>
     </div>
-    <div class="col-md-3 d-none d-md-flex">
-        <img src="{{ asset('backend/img/undraw_designer_girl_re_h54c.svg') }}" class="img-fluid">
-    </div>
+    <x-image-draw></x-image-draw>
 </div>

@@ -1,4 +1,3 @@
-@extends('components.layouts.app')
-@section('content')
-@livewire('post.index')
-@endsection
+<x-main>
+    <livewire:post.index>
+</x-main>

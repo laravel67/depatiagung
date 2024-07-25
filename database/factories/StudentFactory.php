@@ -18,7 +18,7 @@ class StudentFactory extends Factory
     {
         return [
             'nik' => $this->faker->unique()->numerify('##############'),
-            'ta_id' => 1,
+            'ta_id' => $this->faker->numberBetween(1, 3),
             'nama' => $this->faker->name,
             'umur' => $this->faker->numberBetween(11, 18),
             'tempat_lahir' => $this->faker->city,

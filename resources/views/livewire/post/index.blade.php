@@ -30,9 +30,9 @@
                 <tr>
                     <td>{{ $posts->firstItem()+$i }}</td>
                     <td>{{ $post->title }}</td>
-                    <td>{{ $post->category->name }}</td>
+                    <td>{{ $post->category->name ?? '-' }}</td>
                     @can('admin')
-                    <td>{{ $post->author->name }}</td>
+                    <td>{{ $post->author->name ?? '-' }}</td>
                     @endcan
                     <td>
                         {{
@@ -41,14 +41,15 @@
                     </td>
                     <td>
                         <div class="btn btn-group">
-                            <a href="{{ route('apost.show', $post->slug) }}" class="btn btn-sm btn-success"><i
-                                    class="fa-solid fa-eye"></i></a>
-                            <a href="{{ route('apost.edit', $post->slug) }}"
-                                class="btn btn-sm btn-warning text-white"><i class="fa-solid fa-edit"></i></a>
-                            <button wire:click.prevent='deleting("{{ $post->slug }}")'
-                                class="btn btn-sm btn-danger text-white">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
+                            <x-btn-action href="{{ route('apost.show', $post->slug) }}" color="success">
+                                {{ __('eye') }}
+                            </x-btn-action>
+                            <x-btn-action href="{{ route('apost.edit', $post->slug) }}" color="warning">
+                                {{ __('edit') }}
+                            </x-btn-action>
+                            <x-btn-action model="deleting('{{ $post->slug }}')" color="danger">
+                                {{ __('trash') }}
+                            </x-btn-action>
                         </div>
                     </td>
                 </tr>
