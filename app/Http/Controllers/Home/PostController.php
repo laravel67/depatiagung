@@ -12,6 +12,10 @@ use App\Models\Acara;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        return view()->share('title', 'Berita');
+    }
     public function index()
     {
         $title = '';

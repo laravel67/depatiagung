@@ -1,6 +1,5 @@
-@extends('components.frontend.layouts.app')
-@section('content')
-@include('home.profile.header')
+<x-content>
+    <x-profile-header />
 <div class="card mt-3 mb-1">
     <div class="card-body">
         <div class="row justify-content-center align-items-center text-center">
@@ -31,4 +30,4 @@
     </div>
 </div>
 @include('home.akademik.modal-detail-biografi')
-@endsection
+</x-content>

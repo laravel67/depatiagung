@@ -11,25 +11,24 @@ class AkademikController extends Controller
 {
     public function kurikulum()
     {
-        return view('home.akademik.kurikulum', [
-            'title' => 'Kurikulum'
-        ]);
+        view()->share('title', 'Kurikulum');
+        return view('home.akademik.kurikulum');
     }
-    
+
     public function sarana()
     {
+        view()->share('title', 'Sarana Prasarana Pembelaran');
         $saranas = Sarana::orderBy('id', 'desc')->get();
         return view('home.akademik.sarana-prasarana', [
-            'title' => 'Sarana Prasarana Pembelaran',
             'saranas' => $saranas
         ]);
     }
 
     public function biografi()
     {
+        view()->share('title', 'Biografi Tenaga Pengajar');
         $gurus = Guru::orderBy('id', 'desc')->get();
         return view('home.akademik.biografi', [
-            'title' => 'Biografi Tenaga Pengajar',
             'gurus' => $gurus
         ]);
     }

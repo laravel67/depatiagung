@@ -10,36 +10,32 @@ class ProfileController extends Controller
 {
     public function identitas()
     {
-        return view('home.profile.identitas', [
-            'title' => 'Identitas'
-        ]);
+        view()->share('title', 'Identitas');
+        return view('home.profile.identitas');
     }
 
     public function struktur()
     {
-        return view('home.profile.struktur', [
-            'title' => 'Struktur Organisasi'
-        ]);
+        view()->share('title', 'Struktur Organisasi');
+        return view('home.profile.struktur');
     }
 
     public function sejarah()
     {
-        return view('home.profile.sejarah', [
-            'title' => 'Sejarah'
-        ]);
+        view()->share('title', 'Sejarah');
+        return view('home.profile.sejarah');
     }
 
     public function visi()
     {
-        return view('home.profile.visi-misi', [
-            'title' => 'Visi, Misi & Motto'
-        ]);
+        view()->share('title', 'Visi, Misi & Motto');
+        return view('home.profile.visi-misi');
     }
 
     public function sambutan()
     {
+        view()->share('title', 'Kata Sambutan Pimpinan PPS Depati Agung');
         return view('home.profile.sambutan', [
-            'title' => 'Kata Sambutan Pimpinan PPS Depati Agung',
             'sambutan' => Sambutan::latest()->first()
         ]);
     }

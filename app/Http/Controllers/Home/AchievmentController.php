@@ -9,27 +9,27 @@ class AchievmentController extends Controller
 {
     public function akademik()
     {
+        view()->share('title', 'Pencapaian/Prestasi Akademik');
         $akdemiks = Achievment::orderBy('id', 'desc')->where('category', 'akademik')->paginate(10);
         return view('home.achievments.akademik', [
-            'title' => 'Pencapaian/Prestasi Akademik',
             'posts' => $akdemiks
         ]);
     }
 
     public function nonakademik()
     {
+        view()->share('title', 'Pencapaian/Prestasi Non Akademi');
         $akdemiks = Achievment::orderBy('id', 'desc')->where('category', 'nonakademik')->paginate(10);
         return view('home.achievments.non-akademik', [
-            'title' => 'Pencapaian/Prestasi Non Akademi',
             'posts' =>  $akdemiks
         ]);
     }
 
     public function student()
     {
+        view()->share('title', 'Pencapaian/Prestasi Santri/Wati');
         $akdemiks = Achievment::orderBy('id', 'desc')->where('category', 'student')->paginate(10);
         return view('home.kesiswaan.prestasi-siswa', [
-            'title' => 'Pencapaian/Prestasi Santri/Wati',
             'posts' =>  $akdemiks
         ]);
     }

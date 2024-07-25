@@ -11,16 +11,16 @@ class KesiswaanController extends Controller
 {
     public function lifeskill()
     {
-        $title = "Ekstra Kulikuler";
+        view()->share('title', 'Ekstra Kulikuler'); 
         $fisik = Lifeskill::where('category', 'fisik')->orderBy('id', 'desc')->get();
         $nonfisik = Lifeskill::where('category', 'nonfisik')->orderBy('id', 'desc')->get();
-        return view('home.kesiswaan.lifeskill', compact('title', 'fisik', 'nonfisik'));
+        return view('home.kesiswaan.lifeskill', compact('fisik', 'nonfisik'));
     }
 
     public function album()
     {
+        view()->share('title', 'Album Foto');
         $posts = Galeri::orderBy('id', 'desc')->paginate(12);
-        $title = 'Album Foto';
-        return view('home.kesiswaan.galery', compact('title', 'posts'));
+        return view('home.kesiswaan.galery', compact('posts'));
     }
 }

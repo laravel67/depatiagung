@@ -1,3 +1,4 @@
+@props(['slides' => []])
 <div class="d-block align-items-center text-center mt-5 mb-3 text-white-50 bg-purple rounded shadow-sm">
     <div class="px-2 d-md-block">
         <img class="mt-3" src="{{ asset('logo_depati_aguung.png') }}" alt="Logo" width="80" height="80"><br>
