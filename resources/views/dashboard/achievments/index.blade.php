@@ -1,4 +1,3 @@
-@extends('components.layouts.app')
-@section('content')
-@livewire('achievment')
-@endsection
+<x-main>
+    <livewire:achievment>
+</x-main>

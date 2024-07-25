@@ -7,8 +7,7 @@
                     Tambah Achievment</a>
             </div>
             <div class="col-7 col-md-6">
-                <input type="search" wire:model.live="search" class="form-control form-control-sm"
-                    placeholder="Cari...">
+                <x-search/>           
             </div>
         </div>
         <div class="table-responsive">
@@ -40,14 +39,15 @@
                         <td>{{ $achievment->category }}</td>
                         <td>
                             <div class="btn btn-group">
-                                <a href="{{ route('prestasi.show', $achievment->slug) }}"
-                                    class="btn btn-sm btn-success text-white"><i class="fa-solid fa-eye"></i></a>
-                                <a href="{{ route('prestasi.edit', $achievment->slug) }}"
-                                    class="btn btn-sm btn-warning text-white"><i class="fa-solid fa-edit"></i></a>
-                                <button wire:click.prevent='deleting("{{ $achievment->slug }}")'
-                                    class="btn btn-sm btn-danger text-white">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
+                                <x-btn-action href="{{ route('prestasi.show', $achievment->slug) }}" color="success">
+                                    {{ __('eye') }}
+                                </x-btn-action>
+                                <x-btn-action href="{{ route('prestasi.edit', $achievment->slug) }}" color="warning">
+                                    {{ __('edit') }}
+                                </x-btn-action>
+                                <x-btn-action model="deleting('{{ $achievment->slug }}')" color="danger">
+                                    {{ __('trash') }}
+                                </x-btn-action>
                             </div>
                         </td>
                     </tr>
@@ -58,7 +58,5 @@
             {!! $achievments->links() !!}
         </div>
     </div>
-    <div class="col-md-3 d-none d-md-flex">
-        <img src="{{ asset('backend/img/undraw_designer_girl_re_h54c.svg') }}" class="img-fluid">
-    </div>
+    <x-image-draw/>
 </div>

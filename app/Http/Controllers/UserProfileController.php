@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\PhoneNumberRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -34,7 +35,7 @@ class UserProfileController extends Controller
 
     public function updateprofile(Request $request)
     {
-        $user = Auth::user(); 
+        $user = Auth::user();
         $validated = $request->validate([
             'name' => 'required|max:255|string',
             'username' => [
@@ -43,7 +44,7 @@ class UserProfileController extends Controller
                 'unique:users,username,' . $user->id
             ],
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'phone' => 'required|numeric|digits:12',
+            'phone' => ['required', new PhoneNumberRule],
             'image' => 'nullable|image|max:2048',
         ]);
         $user->name = $request->name;

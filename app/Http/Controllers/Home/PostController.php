@@ -19,12 +19,12 @@ class PostController extends Controller
             $category = Category::firstWhere('slug', request('category'));
             $title = 'kategori : ' . $category->name;
         }
-        
+
         if (request('author')) {
             $author = User::firstWhere('username', request('author'));
             $title = ' Oleh : ' . $author->name;
         }
-        $posts = Post::latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString();
+        $posts = Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString();
         $categories = Category::latest()->get();
         $shareComponent = new Share();
         $shareComponent->page(

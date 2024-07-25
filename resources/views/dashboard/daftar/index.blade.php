@@ -1,4 +1,3 @@
-@extends('components.layouts.app')
-@section('content')
-@livewire('daftar')
-@endsection
+<x-main>
+    <livewire:daftar>
+</x-main>

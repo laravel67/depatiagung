@@ -35,7 +35,7 @@
     <x-navbar></x-navbar>
     <div class="container-fluid">
         <div class="row">
-            @include('components.layouts.side-menu')
+            <x-link-items/>
             {{ $slot }}
         </div>
     </div>

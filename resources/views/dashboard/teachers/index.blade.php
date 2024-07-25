@@ -1,4 +1,3 @@
-@extends('components.layouts.app')
-@section('content')
-@livewire('teacher')
-@endsection
+<x-main>
+    <livewire:teacher>
+</x-main>

@@ -31,8 +31,7 @@
             </div>
         </div>
         <div class="col-6 col-md-3">
-            <input type="search" wire:model.live="search" class="form-control form-control-sm"
-                placeholder="Cari...">
+            <x-search/>
         </div>
     </div>
     <div class="table-responsive">
@@ -87,13 +86,15 @@
                     </td>
                     <td>
                         <div class="btn btn-group">
-                            <a href="{{ route('daftar.show', $daftar->id) }}"
-                                class="btn btn-sm btn-success text-white"><i class="fa-solid fa-eye"></i></a>
-                            <a href="{{ route('daftar.edit', $daftar->id) }}"
-                                class="btn btn-sm btn-warning text-white"><i class="fa-solid fa-edit"></i></a>
-                                <button wire:click='deleting({{ $daftar->id }})' class="btn btn-sm btn-danger text-white"><i
-                                        class="fa-solid fa-trash"></i>
-                                </button>
+                                <x-btn-action href="{{ route('daftar.show', $daftar->id) }}" color="success">
+                                    {{ __('eye') }}
+                                </x-btn-action>
+                                <x-btn-action href="{{ route('daftar.edit', $daftar->id) }}" color="warning">
+                                    {{ __('edit') }}
+                                </x-btn-action>
+                                <x-btn-action model="deleting('{{ $daftar->id }}')" color="danger">
+                                    {{ __('trash') }}
+                                </x-btn-action>
                         </div>
                     </td>
                 </tr>

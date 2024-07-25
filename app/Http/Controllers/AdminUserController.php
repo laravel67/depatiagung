@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Rules\PhoneNumberRule;
 
 class AdminUserController extends Controller
 {
@@ -32,7 +33,7 @@ class AdminUserController extends Controller
                 'unique:users,username'
             ],
             'email' => 'required|email|unique:users,email',
-            'phone' => 'required|numeric|digits:12',
+            'phone' => ['required', new PhoneNumberRule],
             'role' => 'required',
         ], [
             'name.required' => 'Kolom nama diperlukan.',
@@ -44,9 +45,6 @@ class AdminUserController extends Controller
             'email.required' => 'Kolom email diperlukan.',
             'email.email' => 'Format email tidak valid.',
             'email.unique' => 'Email sudah terdaftar.',
-            'phone.required' => 'Kolom telepon diperlukan.',
-            'phone.numeric' => 'Telepon harus berupa angka.',
-            'phone.digits' => 'Nomor telepon harus terdiri dari 12 digit.',
             'role.required' => 'Kolom peran diperlukan.',
         ]);
         User::create($validated);
@@ -59,10 +57,6 @@ class AdminUserController extends Controller
         return  view('dashboard.users.show', compact('user'));
     }
 
-    public function edit(User $user)
-    {
-        //
-    }
 
     public function update(Request $request, User $user)
     {

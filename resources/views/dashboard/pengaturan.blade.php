@@ -1,4 +1,3 @@
-@extends('components.layouts.app')
-@section('content')
-@livewire('pengaturan.index')
-@endsection
+<x-main>
+    <livewire:pengaturan.index>
+</x-main>
