@@ -7,7 +7,9 @@
             <div class="header-text">
                 <h4 class="text-light d-md-block d-none"> {{ __('Yayasan Pondok Pesantren Salafiyah') }}</h4>
                 <h4 class="text-light d-md-block d-none">{{ __('DEPATI AGUNG') }}</h4>
-                <a style="text-decoration: underline" href="https://maps.app.goo.gl/UhmFQ9JcG2ft8JCq8" class="text-light"><small>Desa Pulau Raman, Muara Siau, Merangin Regency, Jambi 37371, Indonesia.</small> </a>
+                <a style="text-decoration: underline" href="https://maps.app.goo.gl/UhmFQ9JcG2ft8JCq8"
+                    class="text-light"><small>Desa Pulau Raman, Muara Siau, Merangin Regency, Jambi 37371,
+                        Indonesia.</small> </a>
             </div>
         </div>
     </div>
@@ -74,7 +76,7 @@
                         </a>
                         <a class="dropdown-item text-light {{ Request::is('achievments/nonakdemik') ? 'bg-dark': '' }}"
                             href="{{ route('nonakademik') }}">
-                           {{ __('Non Akademik') }}
+                            {{ __('Non Akademik') }}
                         </a>
                     </div>
                 </li>
@@ -86,7 +88,8 @@
                             href="{{ route('lifeskill') }}">
                             {{ __('Ekstra Kulikuler') }}
                         </a>
-                        <a class="dropdown-item text-light {{ Request::is('kesiswaan/organisasi-santri') ? 'bg-dark': '' }}" href="">
+                        <a class="dropdown-item text-light {{ Request::is('kesiswaan/organisasi-santri') ? 'bg-dark': '' }}"
+                            href="">
                             {{ __('Organinasasi Santri') }}
                         </a>
                         <a class="dropdown-item text-light {{ Request::is('kesiswaan/students-achievments') ? 'bg-dark': '' }}"
@@ -95,7 +98,7 @@
                         </a>
                         <a class="dropdown-item text-light {{ Request::is('kesiswaan/album') ? 'bg-dark': '' }}"
                             href="{{ route('album') }}">
-                           {{ __('Album') }}
+                            {{ __('Album') }}
                         </a>
                     </div>
                 </li>
@@ -103,19 +106,19 @@
                     <a class="nav-link" href="{{ route('ppdb.home') }}">{{ __('PPDB') }}</a>
                 </li>
                 @can('admin')
-                    <li class="nav-item mx-lg-3">
-                        <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
-                    </li>
+                <li class="nav-item mx-lg-3">
+                    <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
+                </li>
                 @endcan
                 @can('user')
-                    <li class="nav-item mx-lg-3">
-                        <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
-                    </li>
+                <li class="nav-item mx-lg-3">
+                    <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
+                </li>
                 @endcan
                 @can('siswa')
-                    <li class="nav-item mx-lg-3">
-                        <a class="nav-link" href="{{ route('ppdb.profile') }}">{{ __('Data Pendaftaran') }}</a>
-                    </li>
+                <li class="nav-item mx-lg-3">
+                    <a class="nav-link" href="{{ route('ppdb.profile') }}">{{ __('Data Pendaftaran') }}</a>
+                </li>
                 @endcan
             </ul>
         </div>

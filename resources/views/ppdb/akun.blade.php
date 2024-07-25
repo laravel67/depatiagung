@@ -1,4 +1,3 @@
-@extends('ppdb.layouts.app')
-@section('content')
-@livewire('ppdb.data-register')
-@endsection
+<x-template>
+    <livewire:ppdb.data-register>
+</x-template>

@@ -28,25 +28,30 @@
                     <a class="nav-link" href="/">Beranda</a>
                 </li>
                 @guest
-                    <li class="nav-item mx-md-5">
-                        <a class="btn text-light mt-1 col-12 border-0" href="{{ route('login') }}"><i class="fa-solid fa-sign-in"></i> Login</a>
-                    </li>
+                <li class="nav-item mx-md-5">
+                    <a class="btn text-light mt-1 col-12 border-0" href="{{ route('login') }}"><i
+                            class="fa-solid fa-sign-in"></i> Login</a>
+                </li>
                 @else
                 <li class="nav-item dropdown mx-md-5">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                         @if (Auth::user()->image)
-                        <img src="{{ asset('storage/'.Auth::user()->image) }}" class="rounded-circle" width="30" height="30">
+                        <img src="{{ asset('storage/'.Auth::user()->image) }}" class="rounded-circle" width="30"
+                            height="30">
                         @else
-                        <img src="{{ asset('frontend/img/man-user.svg') }}" class="rounded-circle" width="30" height="30">
+                        <img src="{{ asset('frontend/img/man-user.svg') }}" class="rounded-circle" width="30"
+                            height="30">
                         @endif
                     </a>
                     <div class="dropdown-menu">
                         @can('admin')
                         <a class="dropdown-item px-2" href="{{ route('user.profile') }}">
                             @if (Auth::user()->image)
-                            <img src="{{ asset('storage/'.Auth::user()->image) }}" class="rounded-circle" width="20" height="20">
+                            <img src="{{ asset('storage/'.Auth::user()->image) }}" class="rounded-circle" width="20"
+                                height="20">
                             @else
-                            <img src="{{ asset('frontend/img/man-user.svg') }}" class="rounded-circle" width="20" height="20">
+                            <img src="{{ asset('frontend/img/man-user.svg') }}" class="rounded-circle" width="20"
+                                height="20">
                             @endif
                             {{ Auth::user()->name }}
                         </a>

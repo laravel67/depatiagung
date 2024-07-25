@@ -14,14 +14,14 @@
 </head>
 
 <body class="bg-gray">
-    @include('ppdb.layouts.topbar')
-    <main role="main" class="container-md my-5" >
+    <x-template-topbar-menu/>
+    <main role="main" class="container-md my-5">
         <div class="py-md-5">
-            @yield('content')
+            {{ $slot }}
         </div>
     </main>
     <div class="bottom-0">
-        @include('components.frontend.partials.footer')
+        <x-footer/>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>

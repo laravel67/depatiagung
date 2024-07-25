@@ -30,14 +30,14 @@
 </head>
 
 <body class="bg-gray">
-    @include('components.frontend.partials.topbar')
+    <x-topbar-menu/>
     <main role="main" class="container-md mb-5">
         @yield('content')
         {{ $slot }}
         <button class="btn btn-success rounded-circle" onclick="topFunction()" id="backToTopBtn" class="btn btn-primary"
             title="Go to top"><i class="fa-solid fa-chevron-up"></i></button>
     </main>
-    @include('components.frontend.partials.footer')
+    <x-footer/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> --}}
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
