@@ -1,11 +1,9 @@
 <div class="row mt-4">
-    <div class="col-md-6">
-        <h6 class="border-bottom mb-3"><i class="fa-solid fa-calendar"></i> Daftar Acara</h6>
+    <div class="col-md-8">
         <div class="table-responsive">
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>No.</th>
                         <th>Nama Acara</th>
                         <th>Waktu</th>
                         <th>Tempat</th>
@@ -15,7 +13,6 @@
                 <tbody>
                     @forelse ($acara as $i => $row)
                     <tr>
-                        <td>{{ $acara->firstItem() + $i }}</td>
                         <td>{{ $row->name }}</td>
                        <td>
                         {{ \Carbon\Carbon::parse($row->waktu)->locale('id')->translatedFormat('d F
@@ -42,7 +39,7 @@
             {{ $acara->links() }}
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <h6 class="border-bottom mb-3"><i class="fa-solid fa-pen"></i> 
             @if ($isEditing)
                 Ubah Acara

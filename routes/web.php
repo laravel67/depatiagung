@@ -91,5 +91,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/dashboard/users', AdminUserController::class)->names('user');
     Route::get('/dashboard/pengaturan/pendaftaran', [AdminSettingController::class, 'setDaftar'])->name('set.reg');
     Route::get('/dashboard/pengaturan/umum', [AdminPengaturanController::class, 'index'])->name('pengaturan');
+    Route::post('/dashboard/pengaturan/sambutan', [AdminPengaturanController::class, 'sambutan'])->name('pengaturan.sambutan');
     Route::get('/dashboard/kesiswaan', [AdminKesiswaanController::class, 'index'])->name('admin.kesiswaan');
 });

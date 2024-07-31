@@ -147,28 +147,23 @@
                     <img src="{{ asset('logo_depati_aguung.png') }}" class="img-fluid" width="200">
                 </div>
                 <article>
-                    <p align='justify' class="blockquote">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero magnam consectetur corporis
-                        architecto,
-                        deleniti
-                        molestias eos consequatur fugit placeat atque harum aut sint officia omnis iste commodi, ea
-                        doloremque
-                        quia
-                        nemo.
-                        Cum veritatis dolor, tenetur excepturi corrupti optio voluptate corporis enim aperiam quos animi
-                        cumque,
-                        quas
-                        quae
-                        laudantium facilis recusandae fugit minima sint, voluptatem atque culpa soluta nisi. Molestiae ipsam
-                        aspernatur
-                        quidem iste accusamus? Nemo quis praesentium consectetur, suscipit eveniet voluptas excepturi
-                        temporibus
-                        ex quos
-                        quae maxime minus repudiandae quod sint totam, atque hic, ut explicabo omnis inventore. Eaque qui
-                        aliquid
-                        dolores
-                        aperiam atque rem beatae? Quasi quas sed excepturi!
+                    <p align='justify' class="blockquote p-md-5">
+                        <span>
+                            Kepala tegak menyonsong jihat agungkan allah,
+                            zhat Maha ahad-
+                            Dendangkan syiar agama muhammad-
+                            Panji islam berkibar -
+                            Setiap abad -
+                        </span>
+                        <span>
+                            ondok Pesantren. Depati agung - mahad.idaman slalu Dijunjung - taman ini taman Syurgawi nan elok- Meniti hari merangkai
+                            esok
+                        </span>
+                        <span>
+                            allah... allah allah allahuakbar 3x
+                        </span>
                     </p>
+                    
                 </article>
             </div>
         </div>

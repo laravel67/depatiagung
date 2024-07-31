@@ -23,7 +23,7 @@
                     @enderror
                 </div>
                 <x-input-text-area name="deskripsi">{{ __('Biografi Singkat') }}</x-input-text-area>
-                <x-input type="file" name="image">{{ __('Image/Gambar') }}</x-input>
+                <x-input type="file" name="image" onchange="previewImage()" accept="image/*">{{ __('Image/Gambar') }}</x-input>
                 <x-btn-form></x-btn-form>
                 <img id="previewContainer" class="mt-3 img-fluid" width="300">
             </form>

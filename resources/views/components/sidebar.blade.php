@@ -23,7 +23,6 @@
                     </div>
                 </div>
             </li>
-            <hr>
             {{ $slot }}
         </ul>
     </div>

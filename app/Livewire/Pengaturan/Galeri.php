@@ -20,7 +20,7 @@ class Galeri extends Component
     ];
     public function render()
     {
-        $images = ModelsGaleri::orderBy('id', 'desc')->paginate(20);
+        $images = ModelsGaleri::orderBy('id', 'desc')->paginate(8);
         return view('livewire.pengaturan.galeri', compact('images'));
     }
 

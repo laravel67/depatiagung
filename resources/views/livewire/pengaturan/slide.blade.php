@@ -1,11 +1,9 @@
 <div class="row mt-4">
     <div class="col-md-6">
-        <h6 class="border-bottom mb-3"><i class="fa-solid fa-image"></i> Slide</h6>
         <div class="table-responsive">
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>No.</th>
                         <th>Caption</th>
                         <th>Opsi</th>
                     </tr>
@@ -13,7 +11,6 @@
                 <tbody>
                     @forelse ($slides as $i => $row)
                     <tr>
-                        <td>{{ $slides->firstItem() + $i }}</td>
                         <td>{{ $row->caption }}</td>
                         <td>
                             <button wire:click='edit({{ $row->id }})' class="btn btn-sm btn-warning text-light"><i

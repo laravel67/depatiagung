@@ -30,7 +30,7 @@
 
                 <x-input-text-area name="deskripsi" :value="old('deskripsi', $guru->deskripsi)"
                     label="{{ __('Biografi Singkat') }}" />
-                <x-input type="file" name="image" label="{{ __('Image/Gambar') }}" />
+                <x-input type="file" name="image" label="{{ __('Image/Gambar') }}" onchange="previewImage()" accept="image/*" />
                 <x-btn-form />
 
                 @if ($guru->image)
