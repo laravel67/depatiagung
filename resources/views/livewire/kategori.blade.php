@@ -16,7 +16,7 @@
                     <tr>
                         <th>No.</th>
                         <th>Nama Kategori</th>
-                        <th>Slug Kategory</th>
+                        <th>Slug Kategori</th>
                         <th>
                             Opsi
                         </th>

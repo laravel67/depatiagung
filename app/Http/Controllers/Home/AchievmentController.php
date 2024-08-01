@@ -33,4 +33,10 @@ class AchievmentController extends Controller
             'posts' =>  $akdemiks
         ]);
     }
+
+    public function persada()
+    {
+        view()->share('title', 'Struktur Organisasi Santri');
+        return view('home.kesiswaan.persada');
+    }
 }

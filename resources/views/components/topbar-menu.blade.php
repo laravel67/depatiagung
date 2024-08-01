@@ -81,15 +81,15 @@
                     </div>
                 </li>
                 <li
-                    class="nav-item dropdown mx-lg-3 {{ Request::is('kesiswaan/ekstrakulikuler*', 'kesiswaan/prestasi-santri*', 'kesiswaan/album*') ? 'active':'' }}">
+                    class="nav-item dropdown mx-lg-3 {{ Request::is('kesiswaan/ekstrakulikuler*', 'kesiswaan/prestasi-santri*', 'kesiswaan/album*', 'kesiswaan/persada') ? 'active':'' }}">
                     <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="false">{{ __('Kesiswaan') }}</a>
                     <div class="dropdown-menu bg-green">
                         <a class="dropdown-item text-light {{ Request::is('kesiswaan/ekstrakulikuler*') ? 'bg-dark': '' }}"
                             href="{{ route('lifeskill') }}">
                             {{ __('Ekstra Kulikuler') }}
                         </a>
-                        <a class="dropdown-item text-light {{ Request::is('kesiswaan/organisasi-santri') ? 'bg-dark': '' }}"
-                            href="">
+                        <a class="dropdown-item text-light {{ Request::is('kesiswaan/persada') ? 'bg-dark': '' }}"
+                            href="{{ route('persada') }}">
                             {{ __('Organinasasi Santri') }}
                         </a>
                         <a class="dropdown-item text-light {{ Request::is('kesiswaan/students-achievments') ? 'bg-dark': '' }}"

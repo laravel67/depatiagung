@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\Home\AkademikController;
 use App\Http\Controllers\Home\KesiswaanController;
 use App\Http\Controllers\AdminAchievmentController;
+use App\Http\Controllers\AdminJabatanController;
 use App\Http\Controllers\AdminKesiswaanController;
 use App\Http\Controllers\AdminPengaturanController;
 use App\Http\Controllers\AdminSettingController;
@@ -22,6 +23,8 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Home\AchievmentController;
+use App\Http\Controllers\ImportExcelController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserProfileController;
 
 
@@ -46,9 +49,10 @@ Route::get('/akademik/biografi', [AkademikController::class, 'biografi'])->name(
 // Achievment
 Route::get('/prestasi/akdemik', [AchievmentController::class, 'akademik'])->name('akademik');
 Route::get('/prestasi/non-akdemik', [AchievmentController::class, 'nonakademik'])->name('nonakademik');
-// Ektra Kulikuler
+// Kesiswaan
 Route::get('/kesiswaan/ekstrakulikuler', [KesiswaanController::class, 'lifeskill'])->name('lifeskill');
 Route::get('/kesiswaan/prestasi-santri', [AchievmentController::class, 'student'])->name('students.prestasi');
+Route::get('/kesiswaan/persada', [AchievmentController::class, 'persada'])->name('persada');
 // Pendaftaran PPDB
 Route::get('/info-pendaftaran', [PpdbController::class, 'home'])->name('ppdb.home');
 Route::get('/formulir-pendaftaran', [PpdbController::class, 'daftar'])->name('ppdb.daftar');
@@ -72,7 +76,7 @@ Route::group(['middleware' => ['role']], function () {
     Route::get('/mapels/slug', [AdminGuruController::class, 'slug']);
     Route::resource('/dashboard/guru', AdminGuruController::class)->names('guru');
     Route::get('/achievments/slug', [AdminAchievmentController::class, 'slug']);
-    Route::resource('/dashboard/achievments', AdminAchievmentController::class)->names('prestasi');
+    Route::resource('/dashboard/prestasi', AdminAchievmentController::class)->names('prestasi');
     // Route::resource('/dashboard/data/pendaftaran', AdminDaftarController::class)->names('daftar');
     Route::get('/dashboard/pendaftaran', [AdminStudentController::class, 'index'])->name('daftar.index');
     Route::get('/dashboard/pendaftaran/{student}/show', [AdminStudentController::class, 'show'])->name('daftar.show');
@@ -93,4 +97,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard/pengaturan/umum', [AdminPengaturanController::class, 'index'])->name('pengaturan');
     Route::post('/dashboard/pengaturan/sambutan', [AdminPengaturanController::class, 'sambutan'])->name('pengaturan.sambutan');
     Route::get('/dashboard/kesiswaan', [AdminKesiswaanController::class, 'index'])->name('admin.kesiswaan');
+
+    Route::get('/dashboard/struktural', [MainController::class, 'struktur'])->name('admin.struktur');
+    Route::get('/dashboard/bidang', [MainController::class, 'bidang'])->name('admin.bidang');
+    Route::get('/dashboard/jabatan', [MainController::class, 'jabatan'])->name('admin.jabatan');
+
+
+    // Route::get('/dashboard/jabatan', [AdminJabatanController::class, 'index'])->name('jabatan');
+    Route::post('/import/jabatan', [ImportExcelController::class, 'jabatan'])->name('import.jabatan');
+    Route::post('/import/bidang', [ImportExcelController::class, 'bidang'])->name('import.bidang');
 });

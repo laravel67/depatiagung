@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Controller;
+use App\Models\Bidang;
 use App\Models\Sambutan;
+use App\Models\Struktur;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Guru;
 
 class ProfileController extends Controller
 {
@@ -17,7 +20,35 @@ class ProfileController extends Controller
     public function struktur()
     {
         view()->share('title', 'Struktur Organisasi');
-        return view('home.profile.struktur');
+        $yayasan = Bidang::where('name', 'YAYASAN')->first();
+        $pimpinan = Bidang::where('name', 'PIMPINAN')->first();
+        $kabagTu = Bidang::where('name', 'KABAG TU')->first();
+        $bendahara = Bidang::where('name', 'BENDAHARA')->first();
+        $pengasuhPutra = Bidang::where('name', 'PENGASUH PUTRA')->first();
+        $pengasuhPutri = Bidang::where('name', 'PENGASUH PUTRI')->first();
+        $kamadMas = Bidang::where('name', 'KAMAD MAS')->first();
+        $kamadMts = Bidang::where('name', 'KAMAD MTS')->first();
+        $bidPendidikan = Bidang::where('name', 'BID PENDIDIKAN')->first();
+        $bidPrasarana = Bidang::where('name', 'BID PRASARANA')->first();
+        $bidKesiswaan = Bidang::where('name', 'BID KESISWAAN')->first();
+        $bidKesehatan = Bidang::where('name', 'BID KESEHATAN')->first();
+        $teachers = Guru::all();
+
+        return view('home.profile.struktur', compact(
+            'yayasan',
+            'pimpinan',
+            'kabagTu',
+            'bendahara',
+            'pengasuhPutra',
+            'pengasuhPutri',
+            'kamadMas',
+            'kamadMts',
+            'bidPendidikan',
+            'bidPrasarana',
+            'bidKesiswaan',
+            'bidKesehatan',
+            'teachers'
+        ));
     }
 
     public function sejarah()

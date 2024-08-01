@@ -1,7 +1,7 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse" style="background-color: rgb(0, 0, 0)">
-    <div class="sidebar-sticky pt-3">
-        <ul class="nav flex-column">
-            <li class="nav-item">
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse" style="background-color: rgb(0, 0, 0);">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-md-column">
+            <li class="nav-item d-none d-md-block mb-md-4">
                 <div class="nav-link text-light d-flex align-items-center">
                     <a href="{{ route('user.profile') }}">
                         @if (Auth::user()->image)

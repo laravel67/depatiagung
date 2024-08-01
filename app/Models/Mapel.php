@@ -15,6 +15,7 @@ class Mapel extends Model
     {
         return $this->hasMany(Guru::class);
     }
+    
     public function getRouteKeyName()
     {
         return 'slug';

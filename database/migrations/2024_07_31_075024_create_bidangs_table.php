@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('strukturs', function (Blueprint $table) {
+        Schema::create('bidangs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('bidang_id')->constrained('bidangs')->onDelete('cascade');
-            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('strukturs');
+        Schema::dropIfExists('bidangs');
     }
 };

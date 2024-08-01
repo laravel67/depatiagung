@@ -9,7 +9,7 @@ class Guru extends Model
 {
     use HasFactory;
     protected $guarded = [''];
-    protected $with = ['mapels'];
+    protected $with = ['mapels', 'jabatans'];
 
 
 
@@ -17,6 +17,13 @@ class Guru extends Model
     {
         return $this->belongsToMany(Mapel::class);
     }
+
+
+    public function jabatans()
+    {
+        return $this->belongsToMany(Jabatan::class);
+    }
+
 
     public function struktur()
     {

@@ -36,7 +36,7 @@
                 <div class="col-12">
                     <div id="slideGaleri" class="carousel slide my-5 my-md-3 bg-white rounded shadow-sm"
                         data-ride="carousel">
-                        <h6 class="pb-2 text-success card-header">Galeri</h6>
+                        <h6 class="pb-2 text-success card-header">{{ __('Galeri') }}</h6>
                         <div class="carousel-inner text-center">
                             @foreach($galeri as $key => $item)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
