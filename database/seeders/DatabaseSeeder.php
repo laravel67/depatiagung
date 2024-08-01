@@ -26,15 +26,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Taj::factory()->create(['name' => '2023-2024', 'chief' => 'Murtaki Shihab']);
-        Taj::factory()->create(['name' => '2024-2025', 'chief' => 'Murtaki Shihab']);
-        Taj::factory()->create(['name' => '2026-2027', 'chief' => 'Murtaki Shihab']);
-        User::factory(10)->create();
+        // Taj::factory()->create(['name' => '2023-2024', 'chief' => 'Murtaki Shihab']);
+        // Taj::factory()->create(['name' => '2024-2025', 'chief' => 'Murtaki Shihab']);
+        // Taj::factory()->create(['name' => '2026-2027', 'chief' => 'Murtaki Shihab']);
+        // User::factory(10)->create();
         // Post::factory(100)->create();
-        Category::factory(10)->create();
-        Guru::factory(50)->create();
-        Mapel::factory(10)->create();
-        Student::factory(100)->create();
+        // Category::factory(10)->create();
+        // Guru::factory(50)->create();
+        // Mapel::factory(10)->create();
+        // Student::factory(100)->create();
         // Sambutan::factory(1)->create();
 
         // $faker = Factory::create();
@@ -52,21 +52,29 @@ class DatabaseSeeder extends Seeder
             'password' => '123',
             'role' => 'admin',
         ]);
+        User::factory()->create([
+            'name' => 'Arinal',
+            'username' => 'arinal',
+            'email' => 'arinal@gmail.com',
+            'phone' => '082279761815',
+            'password' => '456',
+            'role' => 'admin',
+        ]);
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
 
-        $names = [
-            'YAYASAN', 'PIMPINAN', 'KABAG TU', 'BENDAHARA', 'PENGASUH PUTRA',
-            'PENGASUH PUTRI', 'KAMAD MAS', 'KAMAD MTS', 'BID PENDIDIKAN',
-            'BID PRASARANA', 'BID KESISWAAN', 'BID KESEHATAN'
-        ];
+        // $names = [
+        //     'YAYASAN', 'PIMPINAN', 'KABAG TU', 'BENDAHARA', 'PENGASUH PUTRA',
+        //     'PENGASUH PUTRI', 'KAMAD MAS', 'KAMAD MTS', 'BID PENDIDIKAN',
+        //     'BID PRASARANA', 'BID KESISWAAN', 'BID KESEHATAN'
+        // ];
 
-        foreach ($names as $name) {
-            Bidang::factory()->create([
-                'name' => $name,
-            ]);
-        }
+        // foreach ($names as $name) {
+        //     Bidang::factory()->create([
+        //         'name' => $name,
+        //     ]);
+        // }
     }
 }

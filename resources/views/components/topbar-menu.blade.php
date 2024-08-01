@@ -17,7 +17,7 @@
 <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark bg-green">
     <div class="container-lg">
         <a class="navbar-brand d-md-none" href="#">{{ __('YPPS DEPATI AGUNG') }}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

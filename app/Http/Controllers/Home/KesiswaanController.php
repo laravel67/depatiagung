@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Galeri;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Lifeskill;
 use App\Models\Persada;
@@ -21,8 +20,9 @@ class KesiswaanController extends Controller
     public function persada()
     {
         $pa = Persada::where('category', 'PA')->latest()->first();
-        $pi = Persada::where('category', 'PA')->latest()->first();
-        view()->share('title', 'Struktur Organisasi Santri Depati Agung ' . $pa->priode);
+        $pi = Persada::where('category', 'PI')->latest()->first();
+        $priode = $pa->priode ?? $pi->priode;
+        view()->share('title', 'Struktur Organisasi Santri Depati Agung ' . $priode);
         return view('home.kesiswaan.persada', compact('pa', 'pi'));
     }
 

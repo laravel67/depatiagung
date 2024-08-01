@@ -42,8 +42,9 @@ class Bidang extends Component
     public function store()
     {
         $this->validate();
+        $uppercaseName = strtoupper($this->name);
         Bid::create([
-            'name' => $this->name
+            'name' => $uppercaseName
         ]);
         return redirect()->route('admin.bidang')->with('success', 'Bidang berhasil ditambah!');
     }
@@ -60,8 +61,9 @@ class Bidang extends Component
     {
         $this->validate();
         $bidang = Bid::findOrFail($this->idBidang);
+        $uppercaseName = strtoupper($this->name);
         $bidang->update([
-            'name' => $this->name
+            'name' => $uppercaseName
         ]);
         return redirect()->route('admin.bidang')->with('success', 'Bidang berhasil diperbarui!');
     }

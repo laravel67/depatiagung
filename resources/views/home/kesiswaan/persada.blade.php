@@ -20,6 +20,6 @@
         </div>
     </div>
     @else
-    <p>No data available for category PA.</p>
+    <p>No data available for category PI.</p>
     @endif
 </x-content>
