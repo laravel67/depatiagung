@@ -3,7 +3,7 @@
 <div class="form-group">
     <label for="{{ $name }}">{{ $slot }}</label>
     <select {{ $attributes->merge(['class' => 'form-control ' . ($errors->has($name) ? 'is-invalid' : '')]) }}
-        name="{{ $name }}" id="{{ $name }}">
+        name="{{ $name }}" id="{{ $name }}" wire:model={{ $name }}>
         <option value="">-- Pilih {{ $slot }} --</option>
         @foreach ($options as $option)
         <option value="{{ $option->id }}" {{ $selected==$option->id ? 'selected' : '' }}>

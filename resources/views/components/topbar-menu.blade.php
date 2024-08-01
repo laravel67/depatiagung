@@ -68,20 +68,24 @@
                     </div>
                 </li>
                 <li
-                    class="nav-item dropdown mx-lg-3 {{ Request::is('achievments/akdemik*', 'achievments/nonakdemik*') ? 'active':'' }}">
+                    class="nav-item dropdown mx-lg-3 {{ Request::is('prestasi/akademik*', 'prestasi/nonakademik*', 'prestasi/santri*') ? 'active':'' }}">
                     <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="false">{{ __('Prestasi') }}</a>
                     <div class="dropdown-menu bg-green">
-                        <a class="dropdown-item text-light {{ Request::is('achievments/akdemik') ? 'bg-dark': '' }}"
+                        <a class="dropdown-item text-light {{ Request::is('prestasi/akademik') ? 'bg-dark': '' }}"
                             href="{{ route('akademik') }}">{{ __('Akademik') }}
                         </a>
-                        <a class="dropdown-item text-light {{ Request::is('achievments/nonakdemik') ? 'bg-dark': '' }}"
+                        <a class="dropdown-item text-light {{ Request::is('prestasi/nonakademik') ? 'bg-dark': '' }}"
                             href="{{ route('nonakademik') }}">
                             {{ __('Non Akademik') }}
+                        </a>
+                        <a class="dropdown-item text-light {{ Request::is('prestasi/santri') ? 'bg-dark': '' }}"
+                            href="{{ route('students.prestasi') }}">
+                            {{ __('Prestasi Santri') }}
                         </a>
                     </div>
                 </li>
                 <li
-                    class="nav-item dropdown mx-lg-3 {{ Request::is('kesiswaan/ekstrakulikuler*', 'kesiswaan/prestasi-santri*', 'kesiswaan/album*', 'kesiswaan/persada') ? 'active':'' }}">
+                    class="nav-item dropdown mx-lg-3 {{ Request::is('kesiswaan/ekstrakulikuler*', 'kesiswaan/album*', 'kesiswaan/persada') ? 'active':'' }}">
                     <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="false">{{ __('Kesiswaan') }}</a>
                     <div class="dropdown-menu bg-green">
                         <a class="dropdown-item text-light {{ Request::is('kesiswaan/ekstrakulikuler*') ? 'bg-dark': '' }}"
@@ -91,10 +95,6 @@
                         <a class="dropdown-item text-light {{ Request::is('kesiswaan/persada') ? 'bg-dark': '' }}"
                             href="{{ route('persada') }}">
                             {{ __('Organinasasi Santri') }}
-                        </a>
-                        <a class="dropdown-item text-light {{ Request::is('kesiswaan/students-achievments') ? 'bg-dark': '' }}"
-                            href="{{ route('students.prestasi') }}">
-                            {{ __('Prestasi Santri') }}
                         </a>
                         <a class="dropdown-item text-light {{ Request::is('kesiswaan/album') ? 'bg-dark': '' }}"
                             href="{{ route('album') }}">

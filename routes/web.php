@@ -14,14 +14,12 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\Home\AkademikController;
 use App\Http\Controllers\Home\KesiswaanController;
 use App\Http\Controllers\AdminAchievmentController;
-use App\Http\Controllers\AdminJabatanController;
 use App\Http\Controllers\AdminKesiswaanController;
 use App\Http\Controllers\AdminPengaturanController;
 use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Home\AchievmentController;
 use App\Http\Controllers\ImportExcelController;
 use App\Http\Controllers\MainController;
@@ -37,35 +35,44 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/berita', [PostController::class, 'index'])->name('posts');
 Route::get('/berita/{slug}', [PostController::class, 'show'])->name('post');
 // Profile
-Route::get('/profile/identitas', [ProfileController::class, 'identitas'])->name('identitas');
-Route::get('/profile/sambutan', [ProfileController::class, 'sambutan'])->name('sambutan');
-Route::get('/profile/struktural', [ProfileController::class, 'struktur'])->name('struktur');
-Route::get('/profile/sejarah', [ProfileController::class, 'sejarah'])->name('sejarah');
-Route::get('/profile/visi-misi', [ProfileController::class, 'visi'])->name('visi');
-// Akademik
-Route::get('/akademik/kurikulum', [AkademikController::class, 'kurikulum'])->name('kurikulum');
-Route::get('/akademik/sarana-prasarana', [AkademikController::class, 'sarana'])->name('sarana');
-Route::get('/akademik/biografi', [AkademikController::class, 'biografi'])->name('biografi');
-// Achievment
-Route::get('/prestasi/akdemik', [AchievmentController::class, 'akademik'])->name('akademik');
-Route::get('/prestasi/non-akdemik', [AchievmentController::class, 'nonakademik'])->name('nonakademik');
-// Kesiswaan
-Route::get('/kesiswaan/ekstrakulikuler', [KesiswaanController::class, 'lifeskill'])->name('lifeskill');
-Route::get('/kesiswaan/prestasi-santri', [AchievmentController::class, 'student'])->name('students.prestasi');
-Route::get('/kesiswaan/persada', [AchievmentController::class, 'persada'])->name('persada');
-// Pendaftaran PPDB
-Route::get('/info-pendaftaran', [PpdbController::class, 'home'])->name('ppdb.home');
-Route::get('/formulir-pendaftaran', [PpdbController::class, 'daftar'])->name('ppdb.daftar');
-Route::get('/downloads', [DownloadController::class, 'download'])->name('downloading');
-Route::get('/ppdb/download/brosur/{id}', [DownloadController::class, 'downloadBrosur'])->name('downloadBrosur');
-// Route::get('/ppdb/download/form', [DownloadController::class, 'downloadFormulir'])->name('download.formulir');
-// Arsip
-Route::get('/kesiswaan/album', [KesiswaanController::class, 'album'])->name('album');
-// Siswa
-Route::group(['middleware' => ['siswa']], function () {
-    Route::get('/biodata', [PpdbController::class, 'profileRegister'])->name('ppdb.profile');
-    Route::get('/download/formulir/{id}', [DownloadController::class, 'downloadForm'])->name('downloadForm');
+Route::prefix('/profile')->controller(ProfileController::class)->group(function () {
+    Route::get('/identitas', 'identitas')->name('identitas');
+    Route::get('/sambutan', 'sambutan')->name('sambutan');
+    Route::get('/struktural', 'struktur')->name('struktur');
+    Route::get('/sejarah', 'sejarah')->name('sejarah');
+    Route::get('/visi-misi', 'visi')->name('visi');
 });
+// Akademik
+Route::prefix('/akademik')->controller(AkademikController::class)->group(function () {
+    Route::get('/kurikulum', 'kurikulum')->name('kurikulum');
+    Route::get('/sarana-prasarana', 'sarana')->name('sarana');
+    Route::get('/biografi', 'biografi')->name('biografi');
+});
+// Achievment/Prestasi
+Route::prefix('/prestasi')->controller(AchievmentController::class)->group(function () {
+    Route::get('/akademik', 'akademik')->name('akademik');
+    Route::get('/nonakademik', 'nonakademik')->name('nonakademik');
+    Route::get('/santri', 'student')->name('students.prestasi');
+});
+// Kesiswaan
+Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(function () {
+    Route::get('/ekstrakulikuler', 'lifeskill')->name('lifeskill');
+    Route::get('/persada', 'persada')->name('persada');
+    Route::get('/album', 'album')->name('album');
+});
+// Pendaftaran PPDB
+Route::prefix('/ppdb')->controller(PpdbController::class)->group(function () {
+    Route::get('/info-pendaftaran',  'home')->name('ppdb.home');
+    Route::get('/formulir-pendaftaran',  'daftar')->name('ppdb.daftar');
+    Route::get('/downloads', 'download')->name('downloading');
+    Route::get('/download/brosur/{id}', 'downloadBrosur')->name('downloadBrosur');
+    Route::middleware(['siswa'])->group(function () {
+        Route::get('/biodata', 'profileRegister')->name('ppdb.profile');
+        Route::get('/download/formulir/{id}', 'downloadForm')->name('downloadForm');
+    });
+});
+
+/** ROUTE BAGIAN DASHBOARD */
 // User dan admin
 Route::group(['middleware' => ['role']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -77,7 +84,6 @@ Route::group(['middleware' => ['role']], function () {
     Route::resource('/dashboard/guru', AdminGuruController::class)->names('guru');
     Route::get('/achievments/slug', [AdminAchievmentController::class, 'slug']);
     Route::resource('/dashboard/prestasi', AdminAchievmentController::class)->names('prestasi');
-    // Route::resource('/dashboard/data/pendaftaran', AdminDaftarController::class)->names('daftar');
     Route::get('/dashboard/pendaftaran', [AdminStudentController::class, 'index'])->name('daftar.index');
     Route::get('/dashboard/pendaftaran/{student}/show', [AdminStudentController::class, 'show'])->name('daftar.show');
     Route::get('/dashboard/pendaftaran/{student}/edit', [AdminStudentController::class, 'edit'])->name('daftar.edit');
@@ -97,13 +103,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard/pengaturan/umum', [AdminPengaturanController::class, 'index'])->name('pengaturan');
     Route::post('/dashboard/pengaturan/sambutan', [AdminPengaturanController::class, 'sambutan'])->name('pengaturan.sambutan');
     Route::get('/dashboard/kesiswaan', [AdminKesiswaanController::class, 'index'])->name('admin.kesiswaan');
-
     Route::get('/dashboard/struktural', [MainController::class, 'struktur'])->name('admin.struktur');
+    Route::get('/dashboard/persada', [MainController::class, 'persada'])->name('admin.persada');
     Route::get('/dashboard/bidang', [MainController::class, 'bidang'])->name('admin.bidang');
     Route::get('/dashboard/jabatan', [MainController::class, 'jabatan'])->name('admin.jabatan');
-
-
-    // Route::get('/dashboard/jabatan', [AdminJabatanController::class, 'index'])->name('jabatan');
     Route::post('/import/jabatan', [ImportExcelController::class, 'jabatan'])->name('import.jabatan');
     Route::post('/import/bidang', [ImportExcelController::class, 'bidang'])->name('import.bidang');
 });

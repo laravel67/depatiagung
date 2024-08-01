@@ -36,7 +36,13 @@
                     <li class="list-group-item">
                         Guru Mapel :
                         @foreach ($guru->mapels as $mapel)
-                        <strong>{{ $mapel->name }}</strong>,
+                        <strong class="badge bg-success rounded-0 text-light">{{ $mapel->name }}</strong>,
+                        @endforeach
+                    </li>
+                    <li class="list-group-item">
+                        Jabatan :
+                        @foreach ($guru->jabatans as $jabatan)
+                        <strong class="badge bg-danger rounded-0 text-light">{{ $jabatan->name }}</strong>,
                         @endforeach
                     </li>
                     <li class="list-group-item">

@@ -28,6 +28,22 @@
                     @enderror
                 </div>
 
+                <div class="form-group">
+                    <label for="jabatan_id">{{ __('Jabatan') }}</label>
+                    <select class="form-control mapels @error('jabatan_id') is-invalid @enderror" name="jabatan_id[]" id="jabatan_id"
+                        multiple="multiple">
+                        @foreach ($jabatans as $jabatan)
+                        <option value="{{ $jabatan->id }}" {{ in_array($jabatan->id, old('jabatan_id',
+                            $guru->jabatans->pluck('id')->toArray())) ? 'selected' : '' }}>
+                            {{ $jabatan->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @error('jabatan_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <x-input-text-area name="deskripsi" :value="old('deskripsi', $guru->deskripsi)"
                     label="{{ __('Biografi Singkat') }}" />
                 <x-input type="file" name="image" label="{{ __('Image/Gambar') }}" onchange="previewImage()" accept="image/*" />

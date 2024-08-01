@@ -22,6 +22,20 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="jabatan_id">Jabatan</label>
+                    <select type="text" class="form-control mapels @error('jabatan_id') is-invalid @enderror" name="jabatan_id[]"
+                        id="jabatan_id" multiple="multiple">
+                        @foreach ($jabatans as $jabatan)
+                        <option value="{{ $jabatan->id }}" {{ in_array($jabatan->id, old('jabatan_id', [])) ? 'selected' : '' }}>
+                            {{ $jabatan->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @error('jabatan_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
                 <x-input-text-area name="deskripsi">{{ __('Biografi Singkat') }}</x-input-text-area>
                 <x-input type="file" name="image" onchange="previewImage()" accept="image/*">{{ __('Image/Gambar') }}</x-input>
                 <x-btn-form></x-btn-form>

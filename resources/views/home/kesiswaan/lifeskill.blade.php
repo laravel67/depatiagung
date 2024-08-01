@@ -1,5 +1,5 @@
 <x-content>
-    @include('home.profile.header')
+    <x-profile-header />
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">

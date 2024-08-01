@@ -29,9 +29,7 @@
                             <img src="{{ asset('storage/'.$guru->image) }}" class=" rounded-circle" width="50"
                                 height="50">
                             @else
-                            <img class="rounded-circle"
-                                src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-                                alt="Generic placeholder image" width="50" height="50">
+                            <img src="{{ asset('frontend/img/man-user.svg') }}" class=" rounded-circle" width="50" height="50">
                             @endif
                         </td>
                         <td>{{ $guru->name }}</td>

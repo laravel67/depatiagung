@@ -22,9 +22,8 @@
                         <img class=" img-fluid" src="{{ asset('storage/'.$guru->image)}}" alt="Generic placeholder image"
                             width="340" height="340">
                         @else
-                        <img class=" img-fluid"
-                            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-                            alt="Generic placeholder image" width="140" height="140">
+                        <img class=" img-fluid" src="{{ asset('frontend/img/man-user.svg')}}" alt="Generic placeholder image" width="340"
+                            height="340">
                         @endif
                     </li>
                     <li class="list-group-item">
@@ -36,7 +35,13 @@
                     <li class="list-group-item">
                         Guru Mapel :
                         @foreach ($guru->mapels as $mapel)
-                        <strong>{{ $mapel->name }}</strong>,
+                        <strong class="badge bg-success text-light rounded-0">{{ $mapel->name }}</strong>
+                        @endforeach
+                    </li>
+                    <li class="list-group-item">
+                        Jabatan :
+                        @foreach ($guru->jabatans as $jabatan)
+                        <strong class="badge bg-danger text-light rounded-0">{{ $jabatan->name }}</strong>
                         @endforeach
                     </li>
                     <li class="list-group-item">

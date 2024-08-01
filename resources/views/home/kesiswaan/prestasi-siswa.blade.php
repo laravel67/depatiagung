@@ -1,5 +1,5 @@
 <x-content>
-    @include('home.profile.header')
+    <x-profile-header />
     <div class="card mt-3 mb-1">
         <div class="card-body">
             <div class="container marketing">

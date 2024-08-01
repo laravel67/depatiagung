@@ -23,4 +23,10 @@ class MainController extends Controller
         view()->share('title', 'Data Jabatan');
         return view('dashboard.jabatan');
     }
+
+    public function Persada()
+    {
+        view()->share('title', 'Data Persada Depati Agung');
+        return view('dashboard.persada');
+    }
 }

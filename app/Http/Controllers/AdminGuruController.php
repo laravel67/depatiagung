@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Jabatan;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,9 +13,9 @@ class AdminGuruController extends Controller
 {
     public function __construct()
     {
-        return view()->share('title', 'Data Ustadz/Ustadzah');
+        return view()->share('title', 'Data Guru');
     }
-    
+
     public function index()
     {
         return view('dashboard.teachers.index');
@@ -23,7 +24,8 @@ class AdminGuruController extends Controller
     public function create()
     {
         $mapels = Mapel::all();
-        return view('dashboard.teachers.create', compact('mapels'));
+        $jabatans = Jabatan::all();
+        return view('dashboard.teachers.create', compact('mapels', 'jabatans'));
     }
 
     public function store(Request $request)
@@ -35,6 +37,8 @@ class AdminGuruController extends Controller
             'mulai_mengajar' => 'required|date',
             'mapel_id' => 'required|array',
             'mapel_id.*' => 'integer',
+            'jabatan_id' => 'required|array',
+            'jabatan_id.*' => 'integer',
             'deskripsi' => 'required',
             'image' => 'nullable|image|max:1024|file',
         ]);
@@ -52,7 +56,8 @@ class AdminGuruController extends Controller
             'image' => $validated['image'] ?? null,
         ]);
         $guru->mapels()->attach($validated['mapel_id']);
-        return redirect(route('guru.index'))->with('success', 'Guru has been saved!');
+        $guru->jabatans()->attach($validated['jabatan_id']);
+        return redirect(route('guru.index'))->with('success', 'Data guru berhasil ditambah!');
     }
 
     public function show(Guru $guru)
@@ -63,7 +68,8 @@ class AdminGuruController extends Controller
     public function edit(Guru $guru)
     {
         $mapels = Mapel::all();
-        return view('dashboard.teachers.edit', compact('mapels', 'guru'));
+        $jabatans = Jabatan::all();
+        return view('dashboard.teachers.edit', compact('mapels', 'guru', 'jabatans'));
     }
 
     public function update(Request $request, Guru $guru)
@@ -75,6 +81,8 @@ class AdminGuruController extends Controller
             'mulai_mengajar' => 'required|date',
             'mapel_id' => 'required|array',
             'mapel_id.*' => 'integer',
+            'jabatan_id' => 'required|array',
+            'jabatan_id.*' => 'integer',
             'deskripsi' => 'required',
             'image' => 'nullable|image|max:1024|file',
         ];
@@ -99,18 +107,18 @@ class AdminGuruController extends Controller
             'image' => $validated['image'] ?? $guru->image, // Pastikan gambar tetap sama jika tidak ada perubahan
         ]);
         $guru->mapels()->sync($validated['mapel_id']);
-
-        return redirect(route('guru.index'))->with('success', 'Guru has been updated!');
+        $guru->jabatans()->sync($validated['jabatan_id']);
+        return redirect(route('guru.index'))->with('success', 'Data guru berhasil diubah!');
     }
 
-    public function destroy(Guru $guru)
-    {
-        if ($guru->image) {
-            Storage::delete($guru->image);
-        }
-        Guru::destroy($guru->id);
-        return back()->with('success', 'Sarana Prasarna has been deleted');
-    }
+    // public function destroy(Guru $guru)
+    // {
+    //     if ($guru->image) {
+    //         Storage::delete($guru->image);
+    //     }
+    //     Guru::destroy($guru->id);
+    //     return back()->with('success', 'Sarana Prasarna has been deleted');
+    // }
 
     public function slug(Request $request)
     {
