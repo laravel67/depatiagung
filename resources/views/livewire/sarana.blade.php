@@ -1,14 +1,20 @@
 <div class="row">
     <div class="col-md-7">
-        <div class="row mb-3">
-            <div class="col col-md-6">
-                <a class="btn btn-success btn-sm" href="{{ route('asarana.create') }}"><i
-                        class="fa-solid fa-circle-plus"></i>
-                    Sarana Prasarana</a>
+        <div class="d-flex justify-content-between mb-3">
+            <div class="d-flex">
+                <x-btn-add href="{{ route('asarana.create') }}">{{ __('Sarana Prasarana') }}</x-btn-add>
+                <div>
+                    <x-btn-modal id="importSarana" />
+                    <x-modal-import subTitle="Sarana Prasarana" id="importSarana">
+                        <form action="{{ route('import.sarana') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <x-input-import name="import">Pilih file Excel</x-input-import>
+                            <x-btn-import />
+                        </form>
+                    </x-modal-import>
+                </div>
             </div>
-            <div class="col-7 col-md-6">
-                <x-search></x-search>
-            </div>
+            <x-search></x-search>
         </div>
         <div class="table-responsive">
             <table class="table table-striped table-sm">

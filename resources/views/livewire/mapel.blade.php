@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <div class="d-flex mb-2 justify-content-between">
             <div>
-                <x-btn-modal id="importMapel">Mata Pelajaran</x-btn-modal>
+                <x-btn-modal id="importMapel" />
                 <x-modal-import subTitle="Import Mata Pelajaran" id="importMapel">
                     <form action="{{ route('import.mapel') }}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -11,8 +11,7 @@
                     </form>
                 </x-modal-import>
             </div>
-            <input type="search" wire:model.live='search' class="form-control form-control-sm col-5"
-                placeholder="Search...">
+            <x-search></x-search>
         </div>
         <table class="table table-striped">
             <thead>

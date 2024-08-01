@@ -1,14 +1,20 @@
 <div class="row">
     <div class="col-md-7">
-        <div class="row mb-3">
-            <div class="col col-md-6">
-                <a class="btn btn-success btn-sm" href="{{ route('guru.create') }}"><i
-                        class="fa-solid fa-circle-plus"></i>
-                    Tambah Guru</a>
+        <div class="d-flex justify-content-between mb-3">
+            <div class="d-flex">
+                <x-btn-add href="{{ route('guru.create') }}">{{ __('Tambah Guru') }}</x-btn-add>
+                    <div>
+                        <x-btn-modal id="importGuru" />
+                        <x-modal-import subTitle="Import Guru" id="importGuru">
+                            <form action="{{ route('import.guru') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <x-input-import name="import">Pilih file Excel</x-input-import>
+                                <x-btn-import />
+                            </form>
+                        </x-modal-import>
+                    </div>
             </div>
-            <div class="col-7 col-md-6">
-                <x-search></x-search>
-            </div>
+            <x-search></x-search>
         </div>
         <div class="table-responsive">
             <table class="table table-striped table-sm">

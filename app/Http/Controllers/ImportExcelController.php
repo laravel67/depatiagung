@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Imports\BidangImport;
+use App\Imports\GuruImport;
 use Illuminate\Http\Request;
 use App\Imports\JabatanImport;
 use App\Imports\MapelImport;
+use App\Imports\SaranaImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 
@@ -56,9 +58,45 @@ class ImportExcelController extends Controller
             Excel::import($import, $request->file('import'));
             $successCount = $import->getSuccessCount();
             if ($successCount > 0) {
-                return redirect()->route('mapel.index')->with('success', $successCount . ' Mata Pelajaran berhasil diimport');
+                return redirect()->route('admin.mapel')->with('success', $successCount . ' Mata Pelajaran berhasil diimport');
             } else {
-                return redirect()->route('mapel.index')->with('error', 'Tidak ada data yang berhasil diimport.');
+                return redirect()->route('admin.mapel')->with('error', 'Tidak ada data yang berhasil diimport.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error importing data. Please check the file format.');
+        }
+    }
+
+    public function guru(Request $request)
+    {
+        HeadingRowFormatter::default('none');
+        $import = new GuruImport;
+
+        try {
+            Excel::import($import, $request->file('import'));
+            $successCount = $import->getSuccessCount();
+            if ($successCount > 0) {
+                return redirect()->route('guru.index')->with('success', $successCount . ' Guru berhasil diimport');
+            } else {
+                return redirect()->route('guru.index')->with('error', 'Tidak ada data yang berhasil diimport.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error importing data. Please check the file format.');
+        }
+    }
+
+    public function sarana(Request $request)
+    {
+        HeadingRowFormatter::default('none');
+        $import = new SaranaImport;
+
+        try {
+            Excel::import($import, $request->file('import'));
+            $successCount = $import->getSuccessCount();
+            if ($successCount > 0) {
+                return redirect()->route('guru.index')->with('success', $successCount . ' Sarana Prasarana berhasil diimport');
+            } else {
+                return redirect()->route('guru.index')->with('error', 'Tidak ada data yang berhasil diimport.');
             }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error importing data. Please check the file format.');

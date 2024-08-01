@@ -29,6 +29,7 @@ class Guru extends Model
     {
         $this->belongsTo(Struktur::class);
     }
+    
     public function getRouteKeyName()
     {
         return 'slug';

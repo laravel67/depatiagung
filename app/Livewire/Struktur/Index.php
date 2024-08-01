@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Struktur;
 
-use App\Models\Bidang;
-use Livewire\Component;
+use App\Models\Jabatan;
 use App\Models\Struktur;
+use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,65 +14,108 @@ class Index extends Component
 
     public $name = [];
     public $nameOrang = [];
-    public $idbidang = [];
+    public $idjabatan = [];
     public $image = [];
     public $oldImage = [];
 
+
+    public $rules = [
+        'nameOrang.*' => 'required|string|max:255',
+        'image.*' => 'nullable|image|max:1024',
+    ];
+
+    public function rules()
+    {
+        return $this->rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'nameOrang.*.required' => 'Nama Lengkap wajib diisi.',
+            'nameOrang.*.string' => 'Nama Lengkap harus berupa teks.',
+            'nameOrang.*.max' => 'Nama Lengkap tidak boleh lebih dari 255 karakter.',
+            'image.*.image' => 'File harus berupa gambar.',
+            'image.*.max' => 'Gambar tidak boleh lebih dari 1 Mb.',
+        ];
+    }
+
+
     public function mount()
     {
-        $bidang = Bidang::all();
-        foreach ($bidang as $index => $row) {
+        $desiredJabatanNames = [
+            'PIMPINAN', 'YAYASAN', 'PENGASUH SANTRI PUTRA', 'PENGASUH SANTRI PUTRI',
+            'KABAG TU', 'BENDAHARA', 'KAMAD MTS', 'KAMAD MAS', 'BID PRASARANA',
+            'BID KESEHATAN', 'BID KESISWAAN', 'BID PENDIDIKAN'
+        ];
+
+        $jabatan = Jabatan::whereIn('name', $desiredJabatanNames)
+            ->with('strukturs')
+            ->get();
+
+        foreach ($jabatan as $index => $row) {
             $this->name[$index] = $row->name;
-            $this->idbidang[$index] = $row->id;
-            $this->nameOrang[$index] = $row->strukturs->first()?->name ?? '';
-            $this->oldImage[$index] = $row->strukturs->first()?->image ?? '';
+            $this->idjabatan[$index] = $row->id;
+
+            $firstStruktur = $row->strukturs->first();
+            $this->nameOrang[$index] = $firstStruktur->name ?? '';
+            $this->oldImage[$index] = $firstStruktur->image ?? '';
         }
     }
+
     public function render()
     {
-        $bidang = Bidang::all();
-        // $struktur = Struktur::all();
-        return view('livewire.struktur.index', compact('bidang'));
+        return view('livewire.struktur.index', [
+            'jabatan' => Jabatan::whereIn('name', $this->getDesiredJabatanNames())->get(),
+        ]);
     }
 
     public function store()
     {
-        $this->validate([
-            'nameOrang.*' => 'required|string|max:255',
-            'image.*' => 'nullable|image|max:1024', // Bisa null jika tidak ada gambar
-        ]);
+        $this->validate();
 
         foreach ($this->nameOrang as $index => $name) {
-            $struktur = Struktur::where('bidang_id', $this->idbidang[$index])->first();
+            if (!isset($this->idjabatan[$index])) {
+                session()->flash('error', "Jabatan ID not set for index $index");
+                continue;
+            }
+
+            $struktur = Struktur::where('jabatan_id', $this->idjabatan[$index])->first();
             $imgName = $struktur->image ?? null;
 
             if (isset($this->image[$index])) {
-                // Hapus gambar lama jika ada
                 if ($imgName) {
                     Storage::disk('public')->delete('strukturs/' . $imgName);
                 }
 
-                // Simpan gambar baru
                 $imgName = 'struktur-' . uniqid() . '.' . $this->image[$index]->getClientOriginalExtension();
                 $this->image[$index]->storeAs('strukturs', $imgName, 'public');
             }
 
             if ($struktur) {
-                // Jika entri sudah ada, update data
                 $struktur->update([
                     'name' => $name,
                     'image' => $imgName,
                 ]);
             } else {
-                // Jika tidak ada, buat entri baru
                 Struktur::create([
                     'name' => $name,
-                    'bidang_id' => $this->idbidang[$index],
+                    'jabatan_id' => $this->idjabatan[$index],
                     'image' => $imgName,
                 ]);
             }
         }
         Storage::deleteDirectory('livewire-tmp');
         return redirect()->route('admin.struktur')->with('success', 'Struktur berhasil diperbarui!');
+    }
+
+
+    private function getDesiredJabatanNames()
+    {
+        return [
+            'PIMPINAN', 'YAYASAN', 'PENGASUH SANTRI PUTRA', 'PENGASUH SANTRI PUTRI',
+            'KABAG TU', 'BENDAHARA', 'KAMAD MTS', 'KAMAD MAS', 'BID PRASARANA',
+            'BID KESEHATAN', 'BID KESISWAAN', 'BID PENDIDIKAN'
+        ];
     }
 }

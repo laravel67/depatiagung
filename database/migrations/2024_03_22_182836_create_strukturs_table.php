@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('strukturs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('bidang_id')->constrained('bidangs')->onDelete('cascade');
+            $table->foreignId('jabatan_id')->constrained('jabatans')->onDelete('cascade');
             $table->string('image')->nullable();
             $table->timestamps();
         });

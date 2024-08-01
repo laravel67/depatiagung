@@ -21,10 +21,6 @@
         <i class="fa-solid fa-briefcase"></i>
         {{ __('Data Jabatan') }}
     </x-link>
-    <x-link href="{{ route('admin.bidang') }}" :active="request()->is('dashboard/bidang*')">
-        <i class="fas fa-layer-group"></i>
-        {{ __('Data Bidang') }}
-    </x-link>
     <x-link href="{{ route('admin.mapel') }}" :active="request()->is('dashboard/mapel')">
         <i class="fa-solid fa-book"></i>
         {{ __('Mata Pelajaran') }}

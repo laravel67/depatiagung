@@ -8,6 +8,7 @@ use App\Models\Struktur;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
+use App\Models\Jabatan;
 
 class ProfileController extends Controller
 {
@@ -20,18 +21,18 @@ class ProfileController extends Controller
     public function struktur()
     {
         view()->share('title', 'Struktur Organisasi');
-        $yayasan = Bidang::where('name', 'YAYASAN')->first();
-        $pimpinan = Bidang::where('name', 'PIMPINAN')->first();
-        $kabagTu = Bidang::where('name', 'KABAG TU')->first();
-        $bendahara = Bidang::where('name', 'BENDAHARA')->first();
-        $pengasuhPutra = Bidang::where('name', 'PENGASUH PUTRA')->first();
-        $pengasuhPutri = Bidang::where('name', 'PENGASUH PUTRI')->first();
-        $kamadMas = Bidang::where('name', 'KAMAD MAS')->first();
-        $kamadMts = Bidang::where('name', 'KAMAD MTS')->first();
-        $bidPendidikan = Bidang::where('name', 'BID PENDIDIKAN')->first();
-        $bidPrasarana = Bidang::where('name', 'BID PRASARANA')->first();
-        $bidKesiswaan = Bidang::where('name', 'BID KESISWAAN')->first();
-        $bidKesehatan = Bidang::where('name', 'BID KESEHATAN')->first();
+        $yayasan = Jabatan::where('name', 'YAYASAN')->first();
+        $pimpinan = Jabatan::where('name', 'PIMPINAN')->first();
+        $kabagTu = Jabatan::where('name', 'KABAG TU')->first();
+        $bendahara = Jabatan::where('name', 'BENDAHARA')->first();
+        $pengasuhPutra = Jabatan::where('name', 'PENGASUH PUTRA')->first();
+        $pengasuhPutri = Jabatan::where('name', 'PENGASUH PUTRI')->first();
+        $kamadMas = Jabatan::where('name', 'KAMAD MAS')->first();
+        $kamadMts = Jabatan::where('name', 'KAMAD MTS')->first();
+        $bidPendidikan = Jabatan::where('name', 'BID PENDIDIKAN')->first();
+        $bidPrasarana = Jabatan::where('name', 'BID PRASARANA')->first();
+        $bidKesiswaan = Jabatan::where('name', 'BID KESISWAAN')->first();
+        $bidKesehatan = Jabatan::where('name', 'BID KESEHATAN')->first();
         $teachers = Guru::all();
 
         return view('home.profile.struktur', compact(

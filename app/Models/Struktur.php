@@ -8,16 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Struktur extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'bidang_id', 'image'];
+    protected $guarded = ['id'];
 
     public function guru()
     {
         return $this->belongsTo(Guru::class);
     }
 
-
-    public function bidang()
+    public function jabatan()
     {
-        return $this->belongsTo(Bidang::class);
+        return $this->belongsTo(Jabatan::class);
     }
 }

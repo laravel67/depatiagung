@@ -109,5 +109,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/jabatan',  'jabatan')->name('import.jabatan');
         Route::post('/bidang',  'bidang')->name('import.bidang');
         Route::post('/mapel',  'mapel')->name('import.mapel');
+        Route::post('/guru',  'guru')->name('import.guru');
+        Route::post('/sarana',  'sarana')->name('import.sarana');
+
     });
 });
