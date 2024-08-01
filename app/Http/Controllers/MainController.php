@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
+    public function mapel()
+    {
+        view()->share('title', 'Kelola Mata Pelajaran');
+        return view('dashboard.mapel');
+    }
+
     public function struktur()
     {
         view()->share('title', 'Kelola Struktur Depati Agung');

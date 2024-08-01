@@ -6,7 +6,7 @@
                 <x-modal-import subTitle="Import Bidang" id="importBidang">
                     <form action="{{ route('import.bidang') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <x-input-import name="bidang">Pilih file Excel</x-input-import>
+                        <x-input-import name="import">Pilih file Excel</x-input-import>
                         <x-btn-import />
                     </form>
                 </x-modal-import>

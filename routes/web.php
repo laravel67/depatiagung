@@ -7,7 +7,6 @@ use App\Http\Controllers\AdminGuruController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\PostController;
-use App\Http\Controllers\AdminMapelController;
 use App\Http\Controllers\AdminSaranaController;
 use App\Http\Controllers\Home\ProfileController;
 use App\Http\Controllers\AdminCategoryController;
@@ -96,17 +95,19 @@ Route::group(['middleware' => ['role']], function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/category/slug', [AdminCategoryController::class, 'slug']);
     Route::resource('/dashboard/categories', AdminCategoryController::class)->names('category');
-    Route::get('/mapel/slug', [AdminMapelController::class, 'slug']);
-    Route::resource('/dashboard/mapels', AdminMapelController::class)->names('mapel');
     Route::resource('/dashboard/users', AdminUserController::class)->names('user');
     Route::get('/dashboard/pengaturan/pendaftaran', [AdminSettingController::class, 'setDaftar'])->name('set.reg');
     Route::get('/dashboard/pengaturan/umum', [AdminPengaturanController::class, 'index'])->name('pengaturan');
     Route::post('/dashboard/pengaturan/sambutan', [AdminPengaturanController::class, 'sambutan'])->name('pengaturan.sambutan');
     Route::get('/dashboard/kesiswaan', [AdminKesiswaanController::class, 'index'])->name('admin.kesiswaan');
+    Route::get('/dashboard/mapel', [MainController::class, 'mapel'])->name('admin.mapel');
     Route::get('/dashboard/struktural', [MainController::class, 'struktur'])->name('admin.struktur');
     Route::get('/dashboard/persada', [MainController::class, 'persada'])->name('admin.persada');
     Route::get('/dashboard/bidang', [MainController::class, 'bidang'])->name('admin.bidang');
     Route::get('/dashboard/jabatan', [MainController::class, 'jabatan'])->name('admin.jabatan');
-    Route::post('/import/jabatan', [ImportExcelController::class, 'jabatan'])->name('import.jabatan');
-    Route::post('/import/bidang', [ImportExcelController::class, 'bidang'])->name('import.bidang');
+    Route::prefix('/import')->controller(ImportExcelController::class)->group(function () {
+        Route::post('/jabatan',  'jabatan')->name('import.jabatan');
+        Route::post('/bidang',  'bidang')->name('import.bidang');
+        Route::post('/mapel',  'mapel')->name('import.mapel');
+    });
 });

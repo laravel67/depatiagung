@@ -43,7 +43,7 @@ class Jabatan extends Component
     {
         $this->validate();
         Jab::create([
-            'name' => $this->name
+            'name' => ucwords(strtolower($this->name))
         ]);
         return redirect()->route('admin.jabatan')->with('success', 'Jabatan berhasil ditambah!');
     }
@@ -61,7 +61,7 @@ class Jabatan extends Component
         $this->validate();
         $jabatan = Jab::findOrFail($this->idJabatan);
         $jabatan->update([
-            'name' => $this->name
+            'name' => ucwords(strtolower($this->name))
         ]);
         return redirect()->route('admin.jabatan')->with('success', 'Jabatan berhasil diperbarui!');
     }
@@ -69,7 +69,7 @@ class Jabatan extends Component
     public function cancel()
     {
         $this->isEditing = false;
-        $this->idJabatan = null;
+        $this->idJabatan = '';
         $this->name = '';
     }
 

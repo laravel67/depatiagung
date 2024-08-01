@@ -12,14 +12,20 @@ class Mapel extends Component
     use WithPagination;
     public $search = '';
 
-    public $deletId;
+    public $mapelId, $name;
+    public $isEditing = false;
     protected $listeners = [
-        'deleteConfirmed' => 'delete'
+        'deleteConfirmed' => 'destroy'
+    ];
+
+    protected $rules = [
+        'name' => 'required|max:50|unique:mapels,name'
     ];
 
     protected $updateQueryString = [
         'search' => ['except' => '']
     ];
+
     public function mount()
     {
         $this->search = request()->query('search', $this->search);
@@ -30,22 +36,56 @@ class Mapel extends Component
     }
     public function render()
     {
-        $mapels = MapelS::where('name', 'like', '%' . $this->search . '%')->orderBy('id', 'desc')->paginate(10);
-        return view('livewire.mapel', compact('mapels'));
+        $mapel = MapelS::where('name', 'like', '%' . $this->search . '%')->orderBy('id', 'desc')->paginate(10);
+        return view('livewire.mapel', compact('mapel'));
     }
 
-    public function deleting($slug)
+    public function store()
     {
-        $this->deletId = $slug;
+        $this->validate();
+        Mapels::create([
+            'name' => ucwords(strtolower($this->name))
+        ]);
+        return redirect()->route('admin.mapel')->with('success', 'Mata Pelajaran berhasil ditambah!');
+    }
+
+    public function edit($id)
+    {
+        $mapel = Mapels::findOrFail($id);
+        $this->mapelId = $mapel->id;
+        $this->name = $mapel->name;
+        $this->isEditing = true;
+    }
+
+    public function update()
+    {
+        $this->validate();
+        $mapel = Mapels::findOrFail($this->mapelId);
+        $mapel->update([
+            'name' => ucwords(strtolower($this->name))
+        ]);
+        return redirect()->route('admin.mapel')->with('success', 'Mata Pelajaran berhasil diubah!');
+    }
+
+    public function cancel()
+    {
+        $this->isEditing = false;
+        $this->mapelId = '';
+        $this->name = '';
+    }
+
+    public function deleting($id)
+    {
+        $this->mapelId = $id;
         $this->dispatch('show-delete-confirmation');
     }
 
-    public function delete()
+    public function destroy()
     {
-        $mapel = Mapels::where('slug', $this->deletId)->first();
+        $mapel = Mapels::findOrFail($this->mapelId);
         if ($mapel) {
             $mapel->delete();
         }
-        return redirect()->route('mapel.index')->with('success', 'Mapel has been deleted!');
+        return redirect()->route('admin.mapel')->with('success', 'Mapel berhasil dihapus!');
     }
 }

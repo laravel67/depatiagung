@@ -25,7 +25,7 @@
         <i class="fas fa-layer-group"></i>
         {{ __('Data Bidang') }}
     </x-link>
-    <x-link href="{{ route('mapel.index') }}" :active="request()->is('dashboard/mapels*')">
+    <x-link href="{{ route('admin.mapel') }}" :active="request()->is('dashboard/mapel')">
         <i class="fa-solid fa-book"></i>
         {{ __('Mata Pelajaran') }}
     </x-link>
