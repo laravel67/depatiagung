@@ -18,16 +18,9 @@
                     <div class="col-md-5 order-md-1">
                         @if ($post->image)
                         <img data-aos="zoom-in" data-aos-duration="5000" src="{{ asset('storage/'.$post->image) }}"
-                            width="500" height="500" style="overflow: hidden" class="img-fluid">
+                            width="250" height="250" style="overflow: hidden" class="img-fluid">
                         @else
-                        <svg data-aos="zoom-in" data-aos-duration="5000"
-                            class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                            height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                            preserveAspectRatio="xMidYMid slice" focusable="false" style="overflow: hidden">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa"
-                                dy=".3em">500x500</text>
-                        </svg>
+                        <x-image-default/>
                         @endif
                     </div>
                 </div>

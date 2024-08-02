@@ -41,7 +41,7 @@ class UserFactory extends Factory
             'email' => $faker->unique()->safeEmail,
             'phone' => $faker->phoneNumber,
             'email_verified_at' => now(),
-            'role' => 'user',
+            'role' => $faker->randomElement(['user', 'admin']),
             'password' => bcrypt('password'), // Gunakan bcrypt untuk mengenkripsi password
             'remember_token' => Str::random(10),
         ];

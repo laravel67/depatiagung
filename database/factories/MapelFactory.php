@@ -17,7 +17,6 @@ class MapelFactory extends Factory
     public function definition(): array
     {
         return [
-            'slug' => $this->faker->slug,
             'name' => $this->faker->word,
         ];
     }

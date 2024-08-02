@@ -24,8 +24,8 @@ class PostFactory extends Factory
 
         return [
             'title' => $title,
-            'category_id' => $this->faker->numberBetween(1, 10),
-            'user_id' => $this->faker->numberBetween(1, 11),
+            'category_id' => $this->faker->numberBetween(1, 5),
+            'user_id' => $this->faker->numberBetween(1, 5),
             'slug' => $slug,
             'excerpt' => $excerpt,
             'body' => $body,

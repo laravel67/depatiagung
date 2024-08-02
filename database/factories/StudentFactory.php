@@ -18,7 +18,7 @@ class StudentFactory extends Factory
     {
         return [
             'nik' => $this->faker->unique()->numerify('##############'),
-            'ta_id' => $this->faker->numberBetween(1, 3),
+            'ta_id' => $this->faker->numberBetween(1, 10), // Sesuaikan rentang angka sesuai dengan jumlah data di tabel tajs
             'nama' => $this->faker->name,
             'umur' => $this->faker->numberBetween(11, 18),
             'tempat_lahir' => $this->faker->city,
@@ -39,7 +39,7 @@ class StudentFactory extends Factory
             'status' => $this->faker->randomElement(['baru', 'pindahan']),
             'jenjang' => $this->faker->randomElement(['mts', 'ma']),
             'kelas' => $this->faker->randomElement(['I', 'II', 'III']),
-            'kontak' => $this->faker->unique()->phoneNumber,
+            'kontak' => $this->faker->unique()->optional()->phoneNumber, // Kontak bisa null
             'email' => $this->faker->unique()->safeEmail,
             'image' => null,
             'created_at' => $this->faker->dateTimeBetween('-1 years', 'now'),

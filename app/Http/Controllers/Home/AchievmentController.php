@@ -28,9 +28,11 @@ class AchievmentController extends Controller
     public function student()
     {
         view()->share('title', 'Pencapaian/Prestasi Santri/Wati');
-        $akdemiks = Achievment::orderBy('id', 'desc')->where('category', 'student')->paginate(10);
+        $i = 0;
+        $akdemiks = Achievment::orderBy('id', 'desc')->where('category', 'siswa')->paginate(10);
         return view('home.kesiswaan.prestasi-siswa', [
-            'posts' =>  $akdemiks
+            'posts' =>  $akdemiks,
+            'i' => $i
         ]);
     }
 }

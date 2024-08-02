@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Rules\PhoneNumberRule;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
@@ -47,9 +48,10 @@ class AdminUserController extends Controller
             'email.unique' => 'Email sudah terdaftar.',
             'role.required' => 'Kolom peran diperlukan.',
         ]);
+        $validated['password'] = Hash::make('password');
         User::create($validated);
 
-        return redirect(route('user.index'))->with('success', 'New user has been saved!');
+        return redirect(route('user.index'))->with('success', 'User baru berhasil ditambah!');
     }
 
     public function show(User $user)

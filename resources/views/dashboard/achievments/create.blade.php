@@ -9,7 +9,7 @@
                 <x-input-select name="category" :defaultOptions="[
                             ['value' => 'akademik', 'label' => 'Akademik'],
                             ['value' => 'nonakademik', 'label' => 'Non Akademik'],
-                            ['value' => 'student', 'label' => 'Santri/Siswa']
+                            ['value' => 'siswa', 'label' => 'Santri/Siswa']
                         ]">{{ __('Kategori') }}
                 </x-input-select>
                 <x-input-text-area name="body">{{ __('Deskripsi') }}</x-input-text-area>

@@ -9,7 +9,7 @@
         </div>
     </div>
     @else
-    <p>No data available for category PA.</p>
+    <p> PA.</p>
     @endif
     @if ($pi)
     <div class="card mt-3 mb-1">
@@ -20,6 +20,6 @@
         </div>
     </div>
     @else
-    <p>No data available for category PI.</p>
+    <p> PI.</p>
     @endif
 </x-content>
