@@ -45,8 +45,6 @@ class AdminGuruController extends Controller
         if ($request->file('image')) {
             $validated['image'] = $request->file('image')->store('guru-images');
         }
-
-        // Buat guru baru
         $guru = Guru::create([
             'name' => $validated['name'],
             'slug' => $validated['slug'],

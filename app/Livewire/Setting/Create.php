@@ -32,7 +32,6 @@ class Create extends Component
         }
     }
 
-
     public function store()
     {
         $this->validate([
@@ -65,7 +64,6 @@ class Create extends Component
         $this->isEditing = true;
     }
 
-
     public function update()
     {
         $this->validate([
@@ -93,7 +91,6 @@ class Create extends Component
         File::deleteDirectory(storage_path('app/public/livewire-tmp'));
         return redirect()->route('set.reg')->with('success', 'Tahun Ajaran berhasil diubah!');
     }
-
 
     public function cancel()
     {

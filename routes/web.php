@@ -13,15 +13,11 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\Home\AkademikController;
 use App\Http\Controllers\Home\KesiswaanController;
 use App\Http\Controllers\AdminAchievmentController;
-use App\Http\Controllers\AdminKesiswaanController;
-use App\Http\Controllers\AdminPengaturanController;
-use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Home\AchievmentController;
 use App\Http\Controllers\ImportExcelController;
-use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserProfileController;
 
 
@@ -91,26 +87,33 @@ Route::group(['middleware' => ['role']], function () {
     Route::post('/reset-password', [UserProfileController::class, 'updatepassword'])->name('password.update');
     Route::post('/update/profile', [UserProfileController::class, 'updateprofile'])->name('profile.update');
 });
+
 // Admin
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/category/slug', [AdminCategoryController::class, 'slug']);
     Route::resource('/dashboard/categories', AdminCategoryController::class)->names('category');
     Route::resource('/dashboard/users', AdminUserController::class)->names('user');
-    Route::get('/dashboard/pengaturan/pendaftaran', [AdminSettingController::class, 'setDaftar'])->name('set.reg');
-    Route::get('/dashboard/pengaturan/umum', [AdminPengaturanController::class, 'index'])->name('pengaturan');
-    Route::post('/dashboard/pengaturan/sambutan', [AdminPengaturanController::class, 'sambutan'])->name('pengaturan.sambutan');
-    Route::get('/dashboard/kesiswaan', [AdminKesiswaanController::class, 'index'])->name('admin.kesiswaan');
-    Route::get('/dashboard/mapel', [MainController::class, 'mapel'])->name('admin.mapel');
-    Route::get('/dashboard/struktural', [MainController::class, 'struktur'])->name('admin.struktur');
-    Route::get('/dashboard/persada', [MainController::class, 'persada'])->name('admin.persada');
-    Route::get('/dashboard/bidang', [MainController::class, 'bidang'])->name('admin.bidang');
-    Route::get('/dashboard/jabatan', [MainController::class, 'jabatan'])->name('admin.jabatan');
+    Route::prefix('/dashboard')->controller(DashboardController::class)->group(function () {
+        Route::get('/ekstrakulikuler',  'lifeskill')->name('admin.lifeskill');
+        Route::get('/mapel',  'mapel')->name('admin.mapel');
+        Route::get('/struktural',  'struktur')->name('admin.struktur');
+        Route::get('/persada',  'persada')->name('admin.persada');
+        Route::get('/bidang',  'bidang')->name('admin.bidang');
+        Route::get('/jabatan',  'jabatan')->name('admin.jabatan');
+        Route::get('/pengaturan', 'generalSetting')->name('pengaturan');
+        Route::get('/pengaturan/pendaftaran', 'setDaftar')->name('set.reg');
+        Route::post('/pengaturan/sambutan', 'sambutan')->name('pengaturan.sambutan');
+    });
     Route::prefix('/import')->controller(ImportExcelController::class)->group(function () {
         Route::post('/jabatan',  'jabatan')->name('import.jabatan');
         Route::post('/bidang',  'bidang')->name('import.bidang');
         Route::post('/mapel',  'mapel')->name('import.mapel');
         Route::post('/guru',  'guru')->name('import.guru');
         Route::post('/sarana',  'sarana')->name('import.sarana');
-
     });
+});
+
+// Errors Handling 
+Route::fallback(function () {
+    return view('errors.404');
 });

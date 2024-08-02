@@ -64,7 +64,7 @@
         <i class="fa-solid fa-sitemap"></i>
         {{ __('Persada') }}
     </x-link>
-    <x-link href="{{ route('admin.kesiswaan') }}" :active="request()->is('dashboard/kesiswaan*')">
+    <x-link href="{{ route('admin.lifeskill') }}" :active="request()->is('dashboard/kesiswaan*')">
         <i class="fa-solid fa-star"></i>
         {{ __('Ekstra Kulikuler') }}
     </x-link>

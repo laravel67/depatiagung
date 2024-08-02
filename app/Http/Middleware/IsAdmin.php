@@ -21,7 +21,7 @@ class IsAdmin
             return redirect(route('login'));
         }
         if (!Auth::check() || (Auth::user()->role !== 'admin')) {
-            return response()->view('errors');
+            return response()->view('errors.not-authorized');
         }
         return $next($request);
     }
