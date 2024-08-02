@@ -84,7 +84,7 @@ Route::group(['middleware' => ['role']], function () {
     Route::get('/dashboard/pendaftaran/{student}/edit', [AdminStudentController::class, 'edit'])->name('daftar.edit');
     Route::put('/dashboard/pendaftaran/{student}/update', [AdminStudentController::class, 'update'])->name('daftar.update');
     Route::get('/dashboard/profile', [UserProfileController::class, 'userProfile'])->name('user.profile');
-    Route::post('/reset-password', [UserProfileController::class, 'updatepassword'])->name('password.update');
+    Route::post('/reset-password', [UserProfileController::class, 'updatepassword'])->name('pass.update');
     Route::post('/update/profile', [UserProfileController::class, 'updateprofile'])->name('profile.update');
 });
 

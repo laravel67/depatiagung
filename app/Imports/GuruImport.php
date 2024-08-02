@@ -26,8 +26,6 @@ class GuruImport implements ToCollection, WithHeadingRow, WithChunkReading
                 $pendidikan = $row['pendidikan'];
                 $deskripsi = isset($row['biografi']) ? $row['biografi'] : '';
                 $mulaiMengajar = Carbon::parse($row['mulai mengajar'])->toDateString();
-
-                // Buat atau temukan entri guru
                 $guru = Guru::firstOrCreate(
                     ['name' => $name],
                     [

@@ -21,15 +21,19 @@ class Persada extends Component
         'deleteConfirmed' => 'destroy'
     ];
 
-    protected $rules = [
-        'priode' => 'required|string|max:4',
-        'category' => 'required|in:PA,PI',
-        'image' => 'nullable|image|max:2048'
-    ];
-
     protected $updateQueryString = [
         'search' => ['except' => '']
     ];
+
+    public function updatedPriode($value)
+    {
+        if (strlen($value) == 4 && is_numeric($value)) {
+            $nextYear = str_pad((int)$value + 1, 4, '0', STR_PAD_LEFT);
+            $this->priode = $value . '-' . $nextYear;
+        }
+    }
+
+
     public function mount()
     {
         $this->search = request()->query('search', $this->search);
@@ -47,7 +51,11 @@ class Persada extends Component
 
     public function store()
     {
-        $this->validate();
+        $this->validate([
+            'priode' => 'required|string|max:9|unique:persadas,priode',
+            'category' => 'required|in:PA,PI',
+            'image' => 'nullable|image|max:2048'
+        ]);
         $imageName = '';
         if ($this->image) {
             $imageName = 'persada-' . $this->priode . '-' . $this->category . '.' . $this->image->getClientOriginalExtension();
@@ -77,7 +85,11 @@ class Persada extends Component
     public function update()
     {
         $persada = Per::findOrFail($this->idPersada);
-        $this->validate();
+        $this->validate([
+            'priode' => 'required|string|max:9|unique:persadas,priode',
+            'category' => 'required|in:PA,PI',
+            'image' => 'nullable|image|max:2048'
+        ]);
         if ($this->image) {
             if ($this->oldImage) {
                 Storage::delete('persada/' . $this->oldImage);

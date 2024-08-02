@@ -185,7 +185,10 @@
             </div>
             <div class="row">
                 <div class="col-md-12 copy">
-                    <p class="text-center"> Hak Cipta &copy; PonpesDepatiAgung 2024.</p>
+                    <div class="text-center">
+                        <p class="text-center mb-0"> Copyright Pondok Pesantren Depati Agung , All Right Reserved</p>
+                        <strong class="text-center">Designed by Arinal</strong>
+                    </div>
                 </div>
             </div>
         </div>

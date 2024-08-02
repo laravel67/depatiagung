@@ -16,6 +16,7 @@ class Register extends Component
     protected $listeners = [
         'deleteConfirmed' => 'delete'
     ];
+
     public function render()
     {
         $tajs = Taj::orderBy('id', 'desc')->paginate(5);

@@ -41,9 +41,9 @@ class ImportExcelController extends Controller
             Excel::import($import, $request->file('import'));
             $successCount = $import->getSuccessCount();
             if ($successCount > 0) {
-                return redirect()->route('admin.bidang')->with('success', $successCount . ' Ekstra Kulikuler berhasil diimport');
+                return redirect()->route('guru.index')->with('success', $successCount . ' Ekstra Kulikuler berhasil diimport');
             } else {
-                return redirect()->route('admin.bidang')->with('error', 'Tidak ada data yang berhasil diimport.');
+                return redirect()->route('guru.index')->with('error', 'Tidak ada data yang berhasil diimport.');
             }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error importing data. Please check the file format.');

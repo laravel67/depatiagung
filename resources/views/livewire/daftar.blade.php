@@ -1,11 +1,19 @@
 <div>
     <div class="row mb-3 px-2 justify-content-around">
+        <div class="col-4 col-md-3 d-none d-md-block">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button wire:click="export" type="button" class="btn btn-sm btn-danger">Export <i class="fas fa-file-download"></i></button>
+            </div>
+        </div>
         <div class="col-6 col-md-2">
             <div class="d-flex align-items-center">
                 <select wire:model="perPage" wire:change="show($event.target.value)"
                     class="form-control col-md-4 col-4 text-center form-control-sm">
-                    @for ($i = 5; $i <= 100; $i +=5) <option value="{{ $i }}">{{ $i }}</option>
+                    @if ($daftars->isNotEmpty())
+                        @for ($i = 5; $i <= 100; $i +=5) 
+                            <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
+                    @endif
                 </select>
                 <div class="px-1">Enteries</div>
             </div>
@@ -22,12 +30,6 @@
                         
                     @endforelse
                 </select>
-            </div>
-        </div>
-        <div class="col-4 col-md-3 d-none d-md-block">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button wire:click="export" type="button" class="btn btn-sm btn-danger">Export</button>
-                <button type="button" class="btn btn-sm btn-success">Import</button>
             </div>
         </div>
         <div class="col-6 col-md-3">

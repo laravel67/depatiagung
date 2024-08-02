@@ -4,7 +4,6 @@ namespace App\Livewire\Setting;
 
 use App\Models\Taj;
 use Livewire\Component;
-use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;

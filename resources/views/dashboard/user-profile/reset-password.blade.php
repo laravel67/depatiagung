@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route('password.update') }}">
+        <form method="POST" action="{{ route('pass.update') }}">
             @csrf
             <div class="row mb-3">
                 <div class="col-md-12">
