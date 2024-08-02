@@ -1,32 +1,35 @@
 <div class="row my-5 px-2">
-    <div class="col-md-8">
-        <div class="d-flex mb-2 justify-content-end">
-            <input type="search" wire:model.live='search' class="form-control form-control-sm col-5"
-                placeholder="Search...">
+    <div class="col-md-7">
+        <div class="d-flex mb-2 justify-content-between">
+            <div>
+                <x-btn-modal id="importLifeskill" />
+                <x-modal-import subTitle="Import Ekstra Kulikuler" id="importLifeskill">
+                    <form action="{{ route('import.lifeskill') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <x-input-import name="import">Pilih file Excel</x-input-import>
+                        <x-btn-import />
+                    </form>
+                </x-modal-import>
+            </div>
+            <x-search></x-search>
         </div>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Gambar</th>
-                    <th scope="col">Nama Ekstra Kulikuler</th>
-                    <th scope="col">Kategori Ekstra Kulikuler</th>
-                    <th scope="col">Deskripsi</th>
+                    <th scope="col">No.</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Kategori</th>
                     <th scope="col">Opsi</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($lifesklills as $lifeskill)
+                @forelse ($lifesklills as $i => $lifeskill)
                 <tr>
                     <th>
-                        @if ($lifeskill->image)
-                        <img src="{{ asset('storage/'.$lifeskill->image) }}" width="80" height="80" class="img-fluid">
-                        @else
-                        <img src="https://placehold.co/400" width="80" height="80" class="img-fluid">
-                        @endif
+                        {{ $lifesklills->firstItem()+$i }}
                     </th>
                     <td>{{ $lifeskill->name }}</td>
                     <td>{{ $lifeskill->category }}</td>
-                    <td>{{ $lifeskill->deskripsi }}</td>
                     <td>
                         <div class="btn-group">
                             <button wire:click='edit({{ $lifeskill->id }})' class="btn btn-sm btn-warning text-light"><i
@@ -43,56 +46,22 @@
         </table>
     </div>
     <div class="col-md-4">
+        <h4>{{ !$isEditing ? 'Tambah Ekstra Kulikuler':'Ubah Ekstra Kulikuler' }}</h4>
         <form wire:submit='{{ $isEditing ? ' update':'submit' }}'>
-            <div class="form-group">
-                <label for="name">Nama Ekstra Kulikuler</label>
-                <input type="text" class="form-control @error('name')
-                        is-invalid
-                    @enderror" id="name" wire:model='name'>
-                @error('name')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="category">Kategori Ekstra Kulikuler</label>
-                <select type="text" class="form-control @error('category')
-                        is-invalid
-                    @enderror" id="category" wire:model='category'>
-                    <option class="text-light" value="">--</option>
-                    <option value="fisik">Fisik</option>
-                    <option value="nonfisik">Non fisik</option>
-                </select>
-                @error('category')
-                <small class="invalid-feedback"></small>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="deskripsi">Deskripsi Ekstra Kulikuler</label>
-                <textarea type="text" class="form-control @error('deskripsi')
-                        is-invalid
-                    @enderror" id="deskripsi" wire:model='deskripsi'></textarea>
-                @error('deskripsi')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="image">Gambar</label>
-                <input type="file" class="form-control-file @error('image')
-                        is-invalid
-                    @enderror" id="image" wire:model='image'>
-                @error('image')
-                <small class="invalid-feedback">{{ $message }}</small>
-                @enderror
-            </div>
+            <x-input type="text" name="name" >{{ __('Nama Ekstra Kulikuler') }}</x-input>
+            <x-input-select type="text" :defaultOptions="
+                [
+                   ['value' => 'fisik', 'label' => 'Fisik'], 
+                   ['value' => 'nonfisik', 'label' => 'Non fisik']
+                ]" name="category">{{ __('Kategori Ekstra Kulikuler') }}
+            </x-input-select>
+            <x-input type="file" name="image">{{ __('Gambar') }}</x-input>
             @if ($image)
             <img src="{{ $image->temporaryUrl() }}" width="300">
             @else
             <img src="{{ $imageOld }}" width="300">
             @endif
-            <div class="btn-group float-right">
-                <button wire:click='cancel' type="button" class="btn btn-danger">Batal</button>
-                <button type="submit" class="btn btn-success">Simpan</button>
-            </div>
+            <x-form-btn></x-form-btn>
         </form>
     </div>
 </div>

@@ -19,7 +19,7 @@ class JabatanImport implements ToCollection, WithHeadingRow, WithChunkReading
     {
         foreach ($collection as $row) {
             if (isset($row['nama'])) {
-                $name = ucwords(strtolower($row['nama']));
+                $name = strtoupper($row['nama']);
                 Jabatan::firstOrCreate(
                     ['name' => $name],
                     ['created_at' => Carbon::now(), 'updated_at' => Carbon::now()]

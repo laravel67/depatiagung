@@ -110,6 +110,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/mapel',  'mapel')->name('import.mapel');
         Route::post('/guru',  'guru')->name('import.guru');
         Route::post('/sarana',  'sarana')->name('import.sarana');
+        Route::post('/prestasi',  'prestasi')->name('import.prestasi');
+        Route::post('/lifeskill',  'lifeskill')->name('import.lifeskill');
     });
 });
 

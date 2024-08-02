@@ -13,7 +13,7 @@ class Ekstrakulikuler extends Component
 {
     use WithFileUploads;
     use WithPagination;
-    public $name, $category, $deskripsi, $image, $imageOld;
+    public $name, $category, $image, $imageOld;
     public $isEditing = false;
 
     public $search = '';
@@ -44,14 +44,12 @@ class Ekstrakulikuler extends Component
         $this->validate([
             'name' => 'required|unique:lifeskills,name',
             'category' => 'required',
-            'deskripsi' => 'nullable|string',
             'image' => 'max:1024|image|file|nullable|mimes:png,jpg,jpeg,svg'
         ]);
 
         $lifeskill = new Lifeskill();
         $lifeskill->name = $this->name;
         $lifeskill->category = $this->category;
-        $lifeskill->deskripsi = $this->deskripsi;
         if ($this->image) {
             $name = Str::random(10) . '.' . $this->image->getClientOriginalExtension();
             $imagePath = $this->image->storeAs('lifeskills', $name);
@@ -60,7 +58,7 @@ class Ekstrakulikuler extends Component
         $lifeskill->save();
         $this->resetForm();
         Storage::deleteDirectory('livewire-tmp');
-        return redirect()->route('admin.kesiswaan')->with('success', 'Ekstra Kulikuler has been saved!');
+        return redirect()->route('admin.lifeskill')->with('success', 'Ekstra Kulikuler berhasil disimpan!');
     }
 
     public function edit($id)
@@ -69,7 +67,6 @@ class Ekstrakulikuler extends Component
         $this->idLs = $lifeskill->id;
         $this->name = $lifeskill->name;
         $this->category = $lifeskill->category;
-        $this->deskripsi = $lifeskill->deskripsi;
         $this->imageOld = asset('storage/' . $lifeskill->image);
         $this->isEditing = true;
     }
@@ -79,31 +76,29 @@ class Ekstrakulikuler extends Component
         $this->validate([
             'name' => 'required|unique:lifeskills,name,' . $this->idLs,
             'category' => 'required',
-            'deskripsi' => 'nullable|string',
             'image' => 'nullable|image|mimes:png,jpg,jpeg,svg|max:1024',
         ]);
 
         $lifeskill = Lifeskill::findOrFail($this->idLs);
         $lifeskill->name = $this->name;
         $lifeskill->category = $this->category;
-        $lifeskill->deskripsi = $this->deskripsi;
         if ($this->image) {
-            $name = Str::random(10) . '.' . $this->image->getClientOriginalExtension();
-            $imagePath = $this->image->storeAs('lifeskills', $name);
             if ($lifeskill->image) {
                 Storage::delete($lifeskill->image);
             }
+            $name = Str::random(10) . '.' . $this->image->getClientOriginalExtension();
+            $imagePath = $this->image->storeAs('lifeskills', $name);
             $lifeskill->image = $imagePath;
-        } 
+        }
         $lifeskill->save();
         $this->cancel();
         Storage::deleteDirectory('livewire-tmp');
-        return redirect()->route('admin.kesiswaan')->with('success', 'Ekstra Kulikuler has been updated!');
+        return redirect()->route('admin.lifeskill')->with('success', 'Ekstra Kulikuler berhasil di ubah!');
     }
 
     public function resetForm()
     {
-        $this->reset(['name', 'category', 'deskripsi', 'image']);
+        $this->reset(['name', 'category', 'image']);
     }
 
     public function deleting($id)
@@ -116,14 +111,17 @@ class Ekstrakulikuler extends Component
     {
         $ls = Lifeskill::where('id', $this->idLs)->first();
         if ($ls) {
-            Storage::delete($ls->image);
+            if($ls->image){
+                Storage::delete($ls->image);
+            }
             $ls->delete();
         }
-        return redirect()->route('admin.kesiswaan')->with('success', 'Ekstra Kulikuler has been delete!');
+        return redirect()->route('admin.lifeskill')->with('success', 'Ekstra Kulikuler berhasil dihapus!');
     }
     public function cancel()
     {
         $this->resetForm();
         $this->isEditing = false;
+        $this->imageOld = '';
     }
 }

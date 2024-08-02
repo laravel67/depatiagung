@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('category', ['fisik', 'nonfisik']);
-            $table->text('deskripsi')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

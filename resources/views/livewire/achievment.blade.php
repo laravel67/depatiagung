@@ -1,20 +1,26 @@
 <div class="row">
     <div class="col-md-7">
-        <div class="row mb-3">
-            <div class="col col-md-6">
-                <a class="btn btn-success btn-sm" href="{{ route('prestasi.create') }}"><i
-                        class="fa-solid fa-circle-plus"></i>
-                    Tambah Achievment</a>
+        <div class="d-flex justify-content-between mb-3">
+            <div class="d-flex">
+                <x-btn-add href="{{ route('prestasi.create') }}">{{ __('Achievment') }}</x-btn-add>
+                <div>
+                    <x-btn-modal id="importPrestasi" />
+                    <x-modal-import subTitle="Prestasi/Penghargaan" id="importPrestasi">
+                        <form action="{{ route('import.prestasi') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <x-input-import name="import">Pilih file Excel</x-input-import>
+                            <x-btn-import />
+                        </form>
+                    </x-modal-import>
+                </div>
             </div>
-            <div class="col-7 col-md-6">
-                <x-search/>           
-            </div>
+            <x-search></x-search>
         </div>
         <div class="table-responsive">
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>Gambar</th>
+                        <th>No.</th>
                         <th>Nama Achievment</th>
                         <th>Kategori</th>
                         <th>
@@ -24,16 +30,9 @@
                 </thead>
                 <tbody>
                     @forelse ($achievments as $i=> $achievment)
-                    <tr class=" ">
+                    <tr>
                         <td>
-                            @if ($achievment->image)
-                            <img src="{{ asset('storage/'.$achievment->image) }}" class=" rounded-circle" width="50"
-                                height="50">
-                            @else
-                            <img class="rounded-circle"
-                                src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-                                alt="Generic placeholder image" width="50" height="50">
-                            @endif
+                            {{ $achievments->firstItem()+$i }}
                         </td>
                         <td>{{ $achievment->title }}</td>
                         <td>{{ $achievment->category }}</td>
